@@ -2,6 +2,7 @@ package ru.library.ELibrary.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.library.ELibrary.models.Book;
 import ru.library.ELibrary.repositories.BooksRepository;
 
@@ -26,5 +27,10 @@ public class BooksService {
 
     public List<Book> findByName(String name) {
         return booksRepository.findByNameStartsWithIgnoreCase(name);
+    }
+
+    @Transactional
+    public void save(Book book) {
+        booksRepository.save(book);
     }
 }

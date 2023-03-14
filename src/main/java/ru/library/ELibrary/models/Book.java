@@ -1,10 +1,9 @@
 package ru.library.ELibrary.models;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Min;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.validator.constraints.NotEmpty;
+import jakarta.validation.constraints.*;
 
 @Entity
 @Table(name = "book")
@@ -25,10 +24,11 @@ public class Book {
     private String author;
 
     @Column(name = "year")
-    @Min(value = 0, message = "Значение поля год должно быть больше 0")
+    @Min(value = 1, message = "Значение поля год должно быть больше 0")
     private int year;
 
     @Column(name = "count")
+    @Min(value = 1, message = "Значение поля количество должно быть больше 0")
     private int count;
 
     @Column(name = "description")

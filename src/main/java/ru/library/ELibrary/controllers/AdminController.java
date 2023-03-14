@@ -1,12 +1,15 @@
 package ru.library.ELibrary.controllers;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
+import ru.library.ELibrary.models.Book;
 import ru.library.ELibrary.services.BooksService;
 import ru.library.ELibrary.services.PeopleService;
 
@@ -22,6 +25,11 @@ public class AdminController {
         this.booksService = booksService;
     }
 
+    @GetMapping
+    public String adminPage() {
+        return "admin/index";
+    }
+
     @GetMapping("/books")
     public String booksPage(@RequestParam(value = "search", defaultValue = "", required = false) String name,
                             Model model) {
@@ -33,6 +41,7 @@ public class AdminController {
     public String bookPage(@PathVariable("id") int id,
                            Model model) {
         model.addAttribute("book", booksService.getById(id));
+        // TODO добавить передачу владельцев книг
         return "admin/showBook";
     }
 
@@ -45,6 +54,24 @@ public class AdminController {
     @GetMapping("/people/{id}")
     public String personPage(@PathVariable("id") int id, Model model) {
         model.addAttribute("person", peopleService.getPerson(id));
+        // TODO добавить передачу книг пользователя
         return "admin/showPerson";
     }
+
+    @GetMapping("/add")
+    public String addBookPage(@ModelAttribute("book")Book book) {
+        return "admin/addBook";
+    }
+
+    @PostMapping("/add")
+    public String saveBook(ModelMap model,
+                                 @ModelAttribute("book") @Valid Book book,
+                                 BindingResult bindingResult) {
+        if(bindingResult.hasErrors())
+            return "admin/addBook";
+        booksService.save(book);
+        return "admin/index";
+    }
+
+    //TODO добавить редактирование книги
 }

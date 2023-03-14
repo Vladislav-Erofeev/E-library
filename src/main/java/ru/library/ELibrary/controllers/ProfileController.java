@@ -33,7 +33,7 @@ public class ProfileController {
         model.addAttribute("person", person);
         // TODO добавить передачу заказанных книг
         // TODO добавить передачу понравившихся книг
-        return "profile/profile";
+        return "person/profile";
     }
 
     @GetMapping("/edit")
@@ -41,7 +41,7 @@ public class ProfileController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Person person = ((PersonDetails) authentication.getPrincipal()).getPerson();
         model.addAttribute("person", person);
-        return "profile/edit";
+        return "person/edit";
     }
 
     @PatchMapping("/edit")
@@ -56,11 +56,11 @@ public class ProfileController {
         //Проверяем все поля пользователя
         personValidator.validate(person, bindingResult);
         if(bindingResult.hasErrors())
-            return "profile/edit";
+            return "person/edit";
         peopleService.update(personAuth.getId(), person);
 
         //Обновляем пользователя в сессии
         personDetails.update(person);
-        return "profile/profile";
+        return "person/profile";
     }
 }
