@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.library.ELibrary.models.Person;
-import ru.library.ELibrary.repositories.PeopleRepository;
 import ru.library.ELibrary.services.PeopleRegistrationService;
 import ru.library.ELibrary.utils.PersonValidator;
 
@@ -38,7 +37,7 @@ public class AuthController {
     }
 
     @PostMapping("/registration")
-    public String registration(@ModelAttribute("person")@Valid Person person,
+    public String registration(@ModelAttribute("person") @Valid Person person,
                                BindingResult bindingResult) {
         personValidator.validate(person, bindingResult);
         if(bindingResult.hasErrors())

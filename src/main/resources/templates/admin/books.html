@@ -8,5 +8,25 @@
 
 <h1>Book admin page</h1>
 
+<form method="get" action="/admin/books">
+    <input type="text" name="search">
+    <input type="submit" value="найти">
+</form>
+
+<table border="1" cellpadding="5">
+    <tr>
+        <td>Имя</td>
+        <td>Пол</td>
+        <td>Год рождения</td>
+        <td>Почта</td>
+        <td>Номер телефона</td>
+    </tr>
+    <tr th:each="book: ${books}">
+        <td><a th:text="${book.getName()}" th:href="@{/admin/books/{id}(id=${book.getId()})}"></a></td>
+        <td th:text="${book.getAuthor()}"></td>
+        <td th:text="${book.getCount()}"></td>
+    </tr>
+</table>
+
 </body>
 </html>
