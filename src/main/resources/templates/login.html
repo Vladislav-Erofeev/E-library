@@ -6,6 +6,8 @@
 </head>
 <body>
 
+<p th:if="${param.error}" style="color: red">Неверный логин или пароль</p>
+
 <form th:method="POST" th:action="@{/process_login}">
     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
     <label for="username">Введите почту: </label>

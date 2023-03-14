@@ -8,5 +8,27 @@
 
 <h1>People admin page</h1>
 
+<form method="get" action="/admin/people">
+    <input type="text" name="search">
+    <input type="submit" value="Найти">
+</form>
+
+<table border="1" cellpadding="5">
+    <tr>
+        <td>Имя</td>
+        <td>Пол</td>
+        <td>Год рождения</td>
+        <td>Почта</td>
+        <td>Номер телефона</td>
+    </tr>
+    <tr th:each="person: ${people}">
+        <td><a th:text="${person.getName()}" th:href="@{/admin/people/{id}(id=${person.getId()})}"></a></td>
+        <td th:text="${person.getGender()}"></td>
+        <td th:text="${person.getYear()}"></td>
+        <td th:text="${person.getEmail()}"></td>
+        <td th:text="${person.getPhone()}"></td>
+    </tr>
+</table>
+
 </body>
 </html>

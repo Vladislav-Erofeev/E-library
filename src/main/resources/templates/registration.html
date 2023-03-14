@@ -21,6 +21,7 @@
 
     <label for="email">Введите почту: </label>
     <input type="text" th:field="*{email}" id="email">
+    <p style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
     <br>
 
     <label for="phone">Введите номер телефона: </label>

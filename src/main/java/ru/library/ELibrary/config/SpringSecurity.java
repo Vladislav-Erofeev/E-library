@@ -19,7 +19,7 @@ public class SpringSecurity {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .requestMatchers("/admin/books", "/admin/pople").hasRole("ADMIN")
+                .requestMatchers("/admin/books", "/admin/people").hasRole("ADMIN")
                 .requestMatchers("/auth/login", "/auth/registration","/error").permitAll()
                 .anyRequest().authenticated()
                 .and()
