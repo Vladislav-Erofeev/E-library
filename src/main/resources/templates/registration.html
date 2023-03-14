@@ -33,6 +33,7 @@
     <br>
     <label for="password">Введите пароль: </label>
     <input type="text" th:field="*{password}" id="password">
+    <p style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
     <br>
     <input type="submit" value="Зарегистрироваться">
 </form>

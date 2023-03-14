@@ -6,11 +6,14 @@
 </head>
 <body>
 
-<h1>Здравствуйте, <span th:text="${person.getName()}"></span></h1>
+<a href="/index">Главная</a>
+<a>Книги</a>
+<a th:if="${isAuthorised}" href="/profile">Профиль</a>
+<a th:unless="${isAuthorised}" href="/login">Войти</a>
 
-<form th:method="POST" th:action="@{/logout}">
-    <input type="submit" value="Выйти">
-</form>
+<h1 th:if="${isAuthorised}">Здравствуйте, <span th:text="${person.getName()}"></span></h1>
+
+<h1 th:unless="${isAuthorised}">Index</h1>
 
 </body>
 </html>

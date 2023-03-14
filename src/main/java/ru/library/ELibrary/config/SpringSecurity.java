@@ -19,16 +19,17 @@ public class SpringSecurity {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .requestMatchers("/admin/books", "/admin/people").hasRole("ADMIN")
+                .requestMatchers("/admin/*").hasRole("ADMIN")
+                .requestMatchers("/index").permitAll()
                 .requestMatchers("/auth/login", "/auth/registration","/error").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/auth/login")
                 .loginProcessingUrl("/process_login")
-                .defaultSuccessUrl("/index", true)
+                .defaultSuccessUrl("/profile", true)
                 .failureUrl("/auth/login?error")
                 .and()
-                .logout().logoutUrl("/logout").logoutSuccessUrl("/auth/login");
+                .logout().logoutUrl("/logout").logoutSuccessUrl("/index");
         return http.build();
     }
 

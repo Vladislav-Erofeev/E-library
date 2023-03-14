@@ -1,5 +1,6 @@
 package ru.library.ELibrary.controllers;
 
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -13,8 +14,15 @@ public class IndexController {
     @GetMapping("/index")
     public String indexPage(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
-        Person person = personDetails.getPerson();
+        Person person = new Person();
+        model.addAttribute("isAuthorised", false);
+
+        //Если пользователь не авторизован
+        if(!(authentication instanceof AnonymousAuthenticationToken)) {
+            model.addAttribute("isAuthorised", true);
+            PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
+            person = personDetails.getPerson();
+        }
         model.addAttribute("person", person);
         return "index";
     }

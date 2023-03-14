@@ -1,11 +1,9 @@
 package ru.library.ELibrary.models;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Min;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.validator.constraints.NotEmpty;
+import jakarta.validation.constraints.*;
 
 @Entity
 @Table(name = "person")
@@ -27,12 +25,12 @@ public class Person {
     private String gender;
 
     @Column(name = "year")
-    @Min(value = 0, message = "Значение год должно быть больше 0")
-    @NotEmpty(message = "Поле год не может быть пустым")
+    @Min(value = 1, message = "Значение год должно быть больше 0")
     private int year;
 
     @Column(name = "email")
     @Email(message = "Почта должна быть валидной")
+    @NotEmpty(message = "Поле почта не должно быть пустым")
     private String email;
 
     @Column(name = "phone")
@@ -43,5 +41,6 @@ public class Person {
     private String role;
 
     @Column(name = "password")
+    @NotEmpty(message = "Поле пароль не может быть пустым")
     private String password;
 }

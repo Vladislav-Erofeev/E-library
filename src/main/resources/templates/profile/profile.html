@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<a href="/index">Главная</a>
+<a >Книги</a>
+<a href="/profile">Профиль</a>
+
+<p th:text="${person.getName()}"></p>
+<p th:text="${person.getYear()}"></p>
+<p th:text="${person.getPhone()}"></p>
+<p th:text="${person.getEmail()}"></p>
+
+<form th:method="POST" th:action="@{/logout}">
+    <input type="submit" value="Выйти">
+</form>
+
+</body>
+</html>
