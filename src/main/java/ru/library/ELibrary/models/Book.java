@@ -1,6 +1,7 @@
 package ru.library.ELibrary.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -22,6 +23,10 @@ public class Book {
     @Column(name = "author")
     @NotEmpty(message = "Поле автор не должно быть пустым")
     private String author;
+
+    @Column(name = "year")
+    @Min(value = 0, message = "Значение поля год должно быть больше 0")
+    private int year;
 
     @Column(name = "count")
     private int count;
