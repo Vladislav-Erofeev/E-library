@@ -7,8 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 import ru.library.ELibrary.models.Book;
 import ru.library.ELibrary.services.BooksService;
 import ru.library.ELibrary.services.PeopleService;
@@ -43,6 +41,12 @@ public class AdminController {
         model.addAttribute("book", booksService.getById(id));
         // TODO добавить передачу владельцев книг
         return "admin/showBook";
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public String deleteBook(@PathVariable("id") int id) {
+        booksService.delete(id);
+        return "admin/index";
     }
 
     @GetMapping("/people")

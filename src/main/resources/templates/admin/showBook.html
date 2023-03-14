@@ -6,11 +6,16 @@
 </head>
 <body>
 
-<p th:text="${book.getName()}"></p>
-<p th:text="${book.getAuthor()}"></p>
-<p th:text="${book.getYear()}"></p>
-<p th:text="${book.getCount()}"></p>
-<p th:text="${book.getDescription()}"></p>
+<a href="/admin">Главная</a>
 
+<p>Название книги: <span th:text="${book.getName()}"></span></p>
+<p>Автор книги: <span  th:text="${book.getAuthor()}"></span></p>
+<p>Год написания: <span th:text="${book.getYear()}"></span></p>
+<p>Количество книг:  <span  th:text="${book.getCount()}"></span></p>
+<p>Описание книги: <span  th:text="${book.getDescription()}"></span></p>
+
+<form th:method="DELETE" th:action="@{/admin/delete/{id}(id=${book.getId()})}">
+    <input type="submit" value="Удалить">
+</form>
 </body>
 </html>
