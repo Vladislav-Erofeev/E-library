@@ -2,6 +2,7 @@ package ru.library.ELibrary.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.library.ELibrary.models.Person;
 import ru.library.ELibrary.repositories.PeopleRepository;
 
@@ -31,5 +32,11 @@ public class PeopleService {
 
     public Optional<Person> findByEmail(String email) {
         return repository.findByEmail(email);
+    }
+
+    @Transactional
+    public void update(int id, Person person) {
+        person.setId(id);
+        repository.save(person);
     }
 }
