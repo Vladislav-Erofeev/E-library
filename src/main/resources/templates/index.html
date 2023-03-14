@@ -6,5 +6,11 @@
 </head>
 <body>
 
+<h1>Здравствуйте, <span th:text="${person.getName()}"></span></h1>
+
+<form th:method="POST" th:action="@{/logout}">
+    <input type="submit" value="Выйти">
+</form>
+
 </body>
 </html>
