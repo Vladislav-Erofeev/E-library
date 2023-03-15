@@ -41,6 +41,7 @@
 <div th:each="book : ${books}">
     <p th:text="${book.getName()}"></p>
     <p th:text="${book.getAuthor()}"></p>
+    <a th:href="@{books/{id}(id=${book.getId()})}">Подробнее</a>
 </div>
 </section>
 
