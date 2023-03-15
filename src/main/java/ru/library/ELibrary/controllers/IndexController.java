@@ -2,6 +2,7 @@ package ru.library.ELibrary.controllers;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -12,22 +13,25 @@ import org.springframework.web.HttpRequestHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import ru.library.ELibrary.models.Person;
 import ru.library.ELibrary.security.PersonDetails;
+import ru.library.ELibrary.services.AuthService;
+
+import java.util.Optional;
 
 @Controller
 public class IndexController {
+    private final AuthService authService;
+
+    @Autowired
+    public IndexController(AuthService authService) {
+        this.authService = authService;
+    }
+
     @GetMapping("/index")
     public String indexPage(Model model) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Person person = new Person();
         model.addAttribute("isAuthorised", false);
-
-        //Если пользователь не авторизован
-        if(!(authentication instanceof AnonymousAuthenticationToken)) {
+        Optional<Person> optionalPerson = authService.getPerson();
+        if(optionalPerson.isPresent())
             model.addAttribute("isAuthorised", true);
-            PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
-            person = personDetails.getPerson();
-        }
-        model.addAttribute("person", person);
         return "index";
     }
 

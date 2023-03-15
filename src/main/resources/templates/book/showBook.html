@@ -16,10 +16,14 @@
 <p th:text="${book.getDescription()}"></p>
 
 <div th:if="${isAuthorised}">
-<form th:method="POST" th:action="@{/books/{id}(id=${book.getId()})}" th:unless="${isLiked}">
-  <input type="submit" value="Лайкнуть">
-</form>
-    <p th:if="${isLiked}">Книга добавлена в понравившиеся</p>
+
+    <form th:method="POST" th:action="@{/books/{id}(id=${book.getId()})}" th:unless="${isLiked}">
+      <input type="submit" value="Лайкнуть">
+    </form>
+
+    <form th:method="DELETE" th:action="@{/books/{id}(id=${book.getId()})}" th:if="${isLiked}">
+        <input type="submit" value="Убрать лайк">
+    </form>
 </div>
 
 <div th:unless="${isAuthorised}">

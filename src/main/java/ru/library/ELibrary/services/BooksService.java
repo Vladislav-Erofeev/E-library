@@ -62,4 +62,10 @@ public class BooksService {
         Book book = booksRepository.findById(book_id).get();
         return book.getLikedPerson().stream().filter(person -> person.getId() == person_id).findAny().orElse(null);
     }
+
+    @Transactional
+    public void deleteLikedPerson(int id, Person person) {
+        Book book = booksRepository.findById(id).get();
+        book.getLikedPerson().remove(person);
+    }
 }

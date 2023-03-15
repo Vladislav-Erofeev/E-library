@@ -49,8 +49,13 @@ public class PeopleService {
         person.addLikedBook(book);
     }
 
-    @Transactional
     public List<Book> getLikedBooks(int id) {
         return repository.findById(id).get().getLikedBooks();
+    }
+
+    @Transactional
+    public void deleteLikedBook(int id, Book book) {
+        Person person = repository.findById(id).get();
+        person.getLikedBooks().remove(book);
     }
 }
