@@ -6,13 +6,25 @@
 </head>
 <body>
 
+<a href="/index">Главная</a>
+<a href="/books">Книги</a>
+<a th:if="${isAuthorised}" href="/profile">Профиль</a>
+<a th:unless="${isAuthorised}" href="/login">Войти</a>
+
 <h1 th:text="${book.getName()}"></h1>
 <p th:text="${book.getAuthor()}"></p>
 <p th:text="${book.getDescription()}"></p>
 
-<form th:method="POST" th:action="@{books/{id}(id=${book.getId()})}">
+<div th:if="${isAuthorised}">
+<form th:method="POST" th:action="@{/books/{id}(id=${book.getId()})}" th:unless="${isLiked}">
   <input type="submit" value="Лайкнуть">
 </form>
+    <p th:if="${isLiked}">Книга добавлена в понравившиеся</p>
+</div>
+
+<div th:unless="${isAuthorised}">
+    <p>Необходима авторизация</p>
+</div>
 
 </body>
 </html>

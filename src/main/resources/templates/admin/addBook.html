@@ -6,7 +6,8 @@
 </head>
 <body>
 
-<a href="/admin">Главная</a>
+<a href="/admin/books">Книги</a>
+<a href="/admin/people">Люди</a>
 
 <form th:method="POST" th:action="@{/admin/add}" th:object="${book}">
     <label for="name">Введите имя:</label>

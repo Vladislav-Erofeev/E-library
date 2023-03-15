@@ -31,7 +31,7 @@ public class PersonController {
         Person person = ((PersonDetails) authentication.getPrincipal()).getPerson();
         model.addAttribute("person", person);
         // TODO добавить передачу заказанных книг
-        // TODO добавить передачу понравившихся книг
+        model.addAttribute("likedBooks", peopleService.getLikedBooks(person.getId()));
         return "person/profile";
     }
 

@@ -5,6 +5,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import jakarta.validation.constraints.*;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 @Entity
 @Table(name = "book")
 @Data
@@ -34,4 +38,13 @@ public class Book {
     @Column(name = "description")
     @NotEmpty(message = "Поле описание не должно быть пустым")
     private String description;
+
+    @ManyToMany(mappedBy = "likedBooks")
+    private List<Person> likedPerson;
+
+    public void addLikedPerson(Person person) {
+        if(likedPerson == null)
+            likedPerson = new ArrayList<>();
+        likedPerson.add(person);
+    }
 }

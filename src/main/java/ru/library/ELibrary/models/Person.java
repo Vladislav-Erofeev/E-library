@@ -5,6 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import jakarta.validation.constraints.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "person")
 @Data
@@ -43,4 +46,16 @@ public class Person {
     @Column(name = "password")
     @NotEmpty(message = "Поле пароль не может быть пустым")
     private String password;
+
+    @ManyToMany
+    @JoinTable(name = "liked_books",
+            joinColumns = @JoinColumn(name = "person_id"),
+            inverseJoinColumns = @JoinColumn(name = "book_id"))
+    private List<Book> likedBooks;
+
+    public void addLikedBook(Book book) {
+        if(likedBooks == null)
+            likedBooks = new ArrayList<>();
+        likedBooks.add(book);
+    }
 }

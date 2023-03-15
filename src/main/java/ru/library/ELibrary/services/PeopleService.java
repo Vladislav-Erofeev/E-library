@@ -1,8 +1,10 @@
 package ru.library.ELibrary.services;
 
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.library.ELibrary.models.Book;
 import ru.library.ELibrary.models.Person;
 import ru.library.ELibrary.repositories.PeopleRepository;
 
@@ -38,5 +40,17 @@ public class PeopleService {
     public void update(int id, Person person) {
         person.setId(id);
         repository.save(person);
+    }
+
+    @Transactional
+    public void addLikedBook(int id, Book book) {
+        Person person = repository.findById(id).get();
+        Hibernate.initialize(person.getLikedBooks());
+        person.addLikedBook(book);
+    }
+
+    @Transactional
+    public List<Book> getLikedBooks(int id) {
+        return repository.findById(id).get().getLikedBooks();
     }
 }

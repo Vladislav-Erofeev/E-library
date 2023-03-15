@@ -22,6 +22,11 @@
 </style>
 <body>
 
+<a href="/index">Главная</a>
+<a href="/books">Книги</a>
+<a th:if="${isAuthorised}" href="/profile">Профиль</a>
+<a th:unless="${isAuthorised}" href="/login">Войти</a>
+
 <form method="get" action="/books">
     <select name="books_per_page">
         <option value="0" th:if="${booksPerPage == 0}" selected>Показать всех</option>
@@ -41,7 +46,7 @@
 <div th:each="book : ${books}">
     <p th:text="${book.getName()}"></p>
     <p th:text="${book.getAuthor()}"></p>
-    <a th:href="@{books/{id}(id=${book.getId()})}">Подробнее</a>
+    <a th:href="@{/books/{id}(id=${book.getId()})}">Подробнее</a>
 </div>
 </section>
 

@@ -26,7 +26,7 @@ public class SpringSecurity {
                 .and()
                 .formLogin().loginPage("/auth/login")
                 .loginProcessingUrl("/process_login")
-                .defaultSuccessUrl("/profile", true)
+                .defaultSuccessUrl("/index", true)
                 .failureUrl("/auth/login?error")
                 .and()
                 .logout().logoutUrl("/logout").logoutSuccessUrl("/index");

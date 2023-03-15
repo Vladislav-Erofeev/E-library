@@ -23,11 +23,6 @@ public class AdminController {
         this.booksService = booksService;
     }
 
-    @GetMapping
-    public String adminPage() {
-        return "admin/index";
-    }
-
     @GetMapping("/books")
     public String booksPage(@RequestParam(value = "search", defaultValue = "", required = false) String name,
                             Model model) {
