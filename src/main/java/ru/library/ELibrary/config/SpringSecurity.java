@@ -20,7 +20,7 @@ public class SpringSecurity {
         http
                 .authorizeRequests()
                 .requestMatchers("/admin/*", "/admin").hasRole("ADMIN")
-                .requestMatchers("/index").permitAll()
+                .requestMatchers("/index", "/books").permitAll()
                 .requestMatchers("/auth/login", "/auth/registration","/error").permitAll()
                 .anyRequest().authenticated()
                 .and()

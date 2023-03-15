@@ -74,7 +74,8 @@ public class AdminController {
         if(bindingResult.hasErrors())
             return "admin/addBook";
         booksService.save(book);
-        return "admin/index";
+        model.addAttribute("books", booksService.getBooks());
+        return "admin/books";
     }
 
     //TODO добавить редактирование книги

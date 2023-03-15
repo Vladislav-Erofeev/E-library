@@ -1,10 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+<style>
+    #books {
+        display: flex;
+        gap: 20px;
+    }
+
+    #books div {
+        border-style: solid;
+    }
+
+    #pages {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+    }
+</style>
 <body>
 
+<form method="get" action="/books">
+    <select name="books_per_page">
+        <option value="0" th:if="${booksPerPage == 0}" selected>Показать всех</option>
+        <option value="0" th:unless="${booksPerPage == 0}">Показать всех</option>
+        <option value="2" th:if="${booksPerPage == 2}" selected>2</option>
+        <option value="2" th:unless="${booksPerPage == 2}">2</option>
+        <option value="4" th:if="${booksPerPage == 4}" selected>4</option>
+        <option value="4" th:unless="${booksPerPage == 4}">4</option>
+        <option value="6" th:if="${booksPerPage == 6}" selected>6</option>
+        <option value="6" th:unless="${booksPerPage == 6}">6</option>
+    </select>
+
+    <input type="submit" value="Показать!">
+</form>
+
+<section id="books">
+<div th:each="book : ${books}">
+    <p th:text="${book.getName()}"></p>
+    <p th:text="${book.getAuthor()}"></p>
+</div>
+</section>
+
+<div id="pages">
+    <a th:each="number : ${#numbers.sequence(0, pageCount-1)}"
+       th:href="@{/books(page=${number}, books_per_page=${booksPerPage})}"
+       th:text="${number+1}"></a>
+</div>
 </body>
 </html>

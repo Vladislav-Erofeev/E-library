@@ -12,16 +12,15 @@ import ru.library.ELibrary.models.Person;
 import ru.library.ELibrary.security.PersonDetails;
 import ru.library.ELibrary.services.PeopleService;
 import ru.library.ELibrary.utils.PersonEditValidator;
-import ru.library.ELibrary.utils.PersonValidator;
 
 @Controller
 @RequestMapping("/profile")
-public class ProfileController {
+public class PersonController {
     private final PeopleService peopleService;
     private final PersonEditValidator personValidator;
 
     @Autowired
-    public ProfileController(PeopleService peopleService, PersonEditValidator personValidator) {
+    public PersonController(PeopleService peopleService, PersonEditValidator personValidator) {
         this.peopleService = peopleService;
         this.personValidator = personValidator;
     }
