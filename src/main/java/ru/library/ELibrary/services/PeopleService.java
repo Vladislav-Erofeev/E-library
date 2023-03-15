@@ -37,9 +37,12 @@ public class PeopleService {
     }
 
     @Transactional
-    public void update(int id, Person person) {
-        person.setId(id);
-        repository.save(person);
+    public void update(Person oldPerson, Person newPerson) {
+        newPerson.setId(oldPerson.getId());
+        newPerson.setLikedBooks(oldPerson.getLikedBooks());
+        newPerson.setPassword(oldPerson.getPassword());
+        newPerson.setRole(oldPerson.getRole());
+        repository.save(newPerson);
     }
 
     @Transactional

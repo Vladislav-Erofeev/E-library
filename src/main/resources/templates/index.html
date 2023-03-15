@@ -11,9 +11,7 @@
 <a th:if="${isAuthorised}" href="/profile">Профиль</a>
 <a th:unless="${isAuthorised}" href="/login">Войти</a>
 
-<h1 th:if="${isAuthorised}">Здравствуйте, <span th:text="${person.getName()}"></span></h1>
-
-<h1 th:unless="${isAuthorised}">Index</h1>
+<h1>Index</h1>
 
 <a href="/admin/books">Для админа</a>
 

@@ -55,10 +55,10 @@ public class PersonController {
         personValidator.validate(person, bindingResult);
         if(bindingResult.hasErrors())
             return "person/edit";
-        peopleService.update(personAuth.getId(), person);
+        peopleService.update(personAuth, person);
 
         //Обновляем пользователя в сессии
         authService.getPersonDetails().update(person);
-        return "person/profile";
+        return "redirect:/profile";
     }
 }

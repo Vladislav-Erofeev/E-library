@@ -39,9 +39,10 @@ public class AdminController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public String deleteBook(@PathVariable("id") int id) {
+    public String deleteBook(@PathVariable("id") int id,
+                             Model model) {
         booksService.delete(id);
-        return "admin/index";
+        return "redirect:/admin/books";
     }
 
     @GetMapping("/people")
@@ -69,8 +70,7 @@ public class AdminController {
         if(bindingResult.hasErrors())
             return "admin/addBook";
         booksService.save(book);
-        model.addAttribute("books", booksService.getBooks());
-        return "admin/books";
+        return "redirect:/admin/books";
     }
 
     //TODO добавить редактирование книги

@@ -66,28 +66,16 @@ public class BookController {
     @PostMapping("/{id}")
     public String likeBook(@PathVariable("id")int id, Model model) {
         Person person = authService.getPerson().get();
-
         booksService.addLikedPerson(id, peopleService.getPerson(id));
         peopleService.addLikedBook(person.getId(), booksService.getById(id));
-
-        model.addAttribute("isAuthorised", true);
-        model.addAttribute("isLiked", true);
-        model.addAttribute("book", booksService.getById(id));
-
-        return "book/showBook";
+        return "redirect:/books/"+id;
     }
 
     @DeleteMapping("/{id}")
     public String deleteLikeBook(@PathVariable("id")int id, Model model) {
         Person person = authService.getPerson().get();
-
         booksService.deleteLikedPerson(id, peopleService.getPerson(id));
         peopleService.deleteLikedBook(person.getId(), booksService.getById(id));
-
-        model.addAttribute("isAuthorised", true);
-        model.addAttribute("isLiked", false);
-        model.addAttribute("book", booksService.getById(id));
-
-        return "book/showBook";
+        return "redirect:/books/"+id;
     }
 }
