@@ -14,6 +14,7 @@ import ru.library.ELibrary.services.BooksService;
 import ru.library.ELibrary.services.PeopleService;
 import ru.library.ELibrary.utils.BooksName;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -26,7 +27,7 @@ public class AdminController {
     private final BooksService booksService;
     private final BooksName booksName;
 
-    private final String UPLOAD_DIRECTORY;
+    private final String IMAGES_DIRECTORY;
 
     @Autowired
     public AdminController(PeopleService peopleService, BooksService booksService,
@@ -34,7 +35,7 @@ public class AdminController {
         this.peopleService = peopleService;
         this.booksService = booksService;
         this.booksName = booksName;
-        UPLOAD_DIRECTORY = upload_directory;
+        IMAGES_DIRECTORY = upload_directory + "/images/books/";
     }
 
     @GetMapping("/books")
@@ -54,7 +55,9 @@ public class AdminController {
 
     @DeleteMapping("/delete/{id}")
     public String deleteBook(@PathVariable("id") int id,
-                             Model model) {
+                             Model model) throws IOException{
+        Path fileNameAndPath = Paths.get( IMAGES_DIRECTORY, booksService.getById(id).getUrl());
+        Files.delete(fileNameAndPath);
         booksService.delete(id);
         return "redirect:/admin/books";
     }
@@ -86,7 +89,7 @@ public class AdminController {
             return "admin/addBook";
 
         String fileName = booksName.name(file.getContentType());
-        Path fileNameAndPath = Paths.get(UPLOAD_DIRECTORY, fileName);
+        Path fileNameAndPath = Paths.get(IMAGES_DIRECTORY + "/images/books/", fileName);
         Files.write(fileNameAndPath, file.getBytes());
         book.setUrl(fileName);
 
@@ -95,6 +98,5 @@ public class AdminController {
         return "redirect:/admin/books";
     }
 
-
-    //TODO добавить редактирование книги
+    // TODO сделать систему оформления заказов
 }
