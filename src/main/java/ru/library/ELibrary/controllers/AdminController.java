@@ -2,6 +2,7 @@ package ru.library.ELibrary.controllers;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -25,13 +26,15 @@ public class AdminController {
     private final BooksService booksService;
     private final BooksName booksName;
 
-    private final String UPLOAD_DIRECTORY = "C:/Users/Forex/IdeaProjects/E-Library/src/main/resources/static/images/books";
+    private final String UPLOAD_DIRECTORY;
 
     @Autowired
-    public AdminController(PeopleService peopleService, BooksService booksService, BooksName booksName) {
+    public AdminController(PeopleService peopleService, BooksService booksService,
+                           BooksName booksName, @Value("${upload.directory}") String upload_directory) {
         this.peopleService = peopleService;
         this.booksService = booksService;
         this.booksName = booksName;
+        UPLOAD_DIRECTORY = upload_directory;
     }
 
     @GetMapping("/books")

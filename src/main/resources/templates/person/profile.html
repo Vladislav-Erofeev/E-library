@@ -30,11 +30,15 @@
 
 <section id="books">
     <div th:each="book : ${likedBooks}">
+        <img th:src="@{/static/images/books/{name}(name=${book.getUrl()})}" width="170" height="200">
         <p th:text="${book.getName()}"></p>
         <p th:text="${book.getAuthor()}"></p>
         <a th:href="@{/books/{id}(id=${book.getId()})}">Подробнее</a>
     </div>
 </section>
+
+<a href="/bin">Корзина</a>
+<br>
 
 <form th:method="POST" th:action="@{/logout}">
     <input type="submit" value="Выйти">
