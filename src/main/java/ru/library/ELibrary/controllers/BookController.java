@@ -1,15 +1,9 @@
 package ru.library.ELibrary.controllers;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.library.ELibrary.models.Person;
-import ru.library.ELibrary.security.PersonDetails;
 import ru.library.ELibrary.services.AuthService;
 import ru.library.ELibrary.services.BooksService;
 import ru.library.ELibrary.services.PeopleService;

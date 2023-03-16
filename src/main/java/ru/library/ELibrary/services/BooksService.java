@@ -81,4 +81,10 @@ public class BooksService {
         Hibernate.initialize(book.getPendingPerson());
         book.addPendingPerson(person);
     }
+
+    @Transactional
+    public void addUrl(int id, String url) {
+        Book book = booksRepository.findById(id).get();
+        book.setUrl(url);
+    }
 }

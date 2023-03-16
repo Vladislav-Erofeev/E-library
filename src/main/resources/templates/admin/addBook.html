@@ -9,7 +9,7 @@
 <a href="/admin/books">Книги</a>
 <a href="/admin/people">Люди</a>
 
-<form th:method="POST" th:action="@{/admin/add}" th:object="${book}">
+<form th:method="POST" th:action="@{/admin/add}" th:object="${book}" enctype="multipart/form-data">
     <label for="name">Введите имя:</label>
     <input type="text" th:field="*{name}" id="name">
     <br>
@@ -29,6 +29,7 @@
     <label for="description">Введите описание:</label>
     <input type="text" th:field="*{description}" id="description">
     <br>
+    <input type="file" name="image" accept="image/*" class="form-control-file">
 
     <input type="submit" value="Сохранить">
 </form>

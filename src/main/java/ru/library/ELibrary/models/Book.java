@@ -39,6 +39,9 @@ public class Book {
     @NotEmpty(message = "Поле описание не должно быть пустым")
     private String description;
 
+    @Column(name = "url")
+    private String url;
+
     @ManyToMany(mappedBy = "likedBooks")
     private List<Person> likedPerson;
 

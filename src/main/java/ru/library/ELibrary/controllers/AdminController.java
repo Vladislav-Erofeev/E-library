@@ -7,15 +7,23 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import ru.library.ELibrary.models.Book;
 import ru.library.ELibrary.services.BooksService;
 import ru.library.ELibrary.services.PeopleService;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
     private final PeopleService peopleService;
     private final BooksService booksService;
+
+    private final String UPLOAD_DIRECTORY = "C:/Users/Forex/IdeaProjects/E-Library/src/main/resources/static/images/books";
 
     @Autowired
     public AdminController(PeopleService peopleService, BooksService booksService) {
@@ -66,10 +74,19 @@ public class AdminController {
     @PostMapping("/add")
     public String saveBook(ModelMap model,
                                  @ModelAttribute("book") @Valid Book book,
-                                 BindingResult bindingResult) {
+                                 BindingResult bindingResult,
+                           @RequestParam("image")MultipartFile file) throws IOException{
         if(bindingResult.hasErrors())
             return "admin/addBook";
+
+        StringBuilder fileNames = new StringBuilder();
+        Path fileNameAndPath = Paths.get(UPLOAD_DIRECTORY, file.getOriginalFilename());
+        fileNames.append(file.getOriginalFilename());
+        Files.write(fileNameAndPath, file.getBytes());
+        book.setUrl(fileNames.toString());
+
         booksService.save(book);
+        model.addAttribute("id", book.getId());
         return "redirect:/admin/books";
     }
 

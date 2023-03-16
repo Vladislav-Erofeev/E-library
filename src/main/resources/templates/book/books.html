@@ -6,8 +6,10 @@
 </head>
 <style>
     #books {
+        width: 100%;
         display: flex;
         gap: 20px;
+        flex-wrap: wrap;
     }
 
     #books div {
@@ -44,6 +46,7 @@
 
 <section id="books">
 <div th:each="book : ${books}">
+    <img th:src="@{/static/images/books/{name}(name=${book.getUrl()})}" width="170" height="220">
     <p th:text="${book.getName()}"></p>
     <p th:text="${book.getAuthor()}"></p>
     <a th:href="@{/books/{id}(id=${book.getId()})}">Подробнее</a>

@@ -20,6 +20,9 @@
 <a href="/books">Книги</a>
 <a th:if="${isAuthorised}" href="/profile">Профиль</a>
 <a th:unless="${isAuthorised}" href="/login">Войти</a>
+<br>
+
+<img th:src="@{/static/images/books/{name}(name=${book.getUrl()})}" width="300" height="450">
 
 <h1 th:text="${book.getName()}"></h1>
 <p th:text="${book.getAuthor()}"></p>
