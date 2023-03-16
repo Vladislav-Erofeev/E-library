@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    #books {
+        display: flex;
+        gap: 20px;
+    }
+
+    #books div {
+        border-style: solid;
+    }
+</style>
+<body>
+
+
+<a href="/index">Главная</a>
+<a href="/books">Книги</a>
+<a href="/profile">Профиль</a>
+
+<section id="books">
+    <div th:each="book : ${books}">
+        <p th:text="${book.getName()}"></p>
+        <p th:text="${book.getAuthor()}"></p>
+        <a th:href="@{/books/{id}(id=${book.getId()})}">Подробнее</a>
+        <form th:method="DELETE" th:action="@{/bin/delete/{id}(id=${book.getId()})}">
+            <input type="submit" value="Убрать">
+        </form>
+    </div>
+</section>
+
+</body>
+</html>

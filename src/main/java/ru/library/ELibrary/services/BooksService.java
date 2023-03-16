@@ -68,4 +68,17 @@ public class BooksService {
         Book book = booksRepository.findById(id).get();
         book.getLikedPerson().remove(person);
     }
+
+    @Transactional
+    public void deletePendingPerson(int id, Person person) {
+        Book book = booksRepository.findById(id).get();
+        book.getPendingPerson().remove(person);
+    }
+
+    @Transactional
+    public void addPendingPerson(int id, Person person) {
+        Book book = booksRepository.findById(id).get();
+        Hibernate.initialize(book.getPendingPerson());
+        book.addPendingPerson(person);
+    }
 }

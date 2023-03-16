@@ -42,9 +42,18 @@ public class Book {
     @ManyToMany(mappedBy = "likedBooks")
     private List<Person> likedPerson;
 
+    @ManyToMany(mappedBy = "pendingBooks")
+    private List<Person> pendingPerson;
+
     public void addLikedPerson(Person person) {
         if(likedPerson == null)
             likedPerson = new ArrayList<>();
         likedPerson.add(person);
+    }
+
+    public void addPendingPerson(Person person) {
+        if(pendingPerson == null)
+            pendingPerson = new ArrayList<>();
+        pendingPerson.add(person);
     }
 }

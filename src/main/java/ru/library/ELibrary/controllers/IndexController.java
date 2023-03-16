@@ -26,6 +26,10 @@ public class IndexController {
         this.authService = authService;
     }
 
+    @GetMapping("/")
+    public String index() {
+        return "redirect:/index";
+    }
     @GetMapping("/index")
     public String indexPage(Model model) {
         model.addAttribute("isAuthorised", false);

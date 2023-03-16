@@ -48,14 +48,26 @@ public class Person {
     private String password;
 
     @ManyToMany
-    @JoinTable(name = "liked_books",
+    @JoinTable(name = "liked_book",
             joinColumns = @JoinColumn(name = "person_id"),
             inverseJoinColumns = @JoinColumn(name = "book_id"))
     private List<Book> likedBooks;
+
+    @ManyToMany
+    @JoinTable(name = "pending_book",
+    joinColumns = @JoinColumn(name = "person_id"),
+    inverseJoinColumns = @JoinColumn(name = "book_id"))
+    private List<Book> pendingBooks;
 
     public void addLikedBook(Book book) {
         if(likedBooks == null)
             likedBooks = new ArrayList<>();
         likedBooks.add(book);
+    }
+
+    public void addPendingBook(Book book) {
+        if(pendingBooks == null)
+            pendingBooks = new ArrayList<>();
+        pendingBooks.add(book);
     }
 }

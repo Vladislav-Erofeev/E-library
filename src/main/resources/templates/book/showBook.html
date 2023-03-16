@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+<style>
+    #books {
+        display: flex;
+        gap: 20px;
+    }
+
+    #books div {
+        border-style: solid;
+    }
+</style>
 <body>
 
 <a href="/index">Главная</a>
@@ -23,6 +33,10 @@
 
     <form th:method="DELETE" th:action="@{/books/{id}(id=${book.getId()})}" th:if="${isLiked}">
         <input type="submit" value="Убрать лайк">
+    </form>
+
+    <form th:method="POST" th:action="@{/order/add/{id}(id=${book.getId()})}">
+        <input type="submit" value="Добавить в корзину">
     </form>
 </div>
 
