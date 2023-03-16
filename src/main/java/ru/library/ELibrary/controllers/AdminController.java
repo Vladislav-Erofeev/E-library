@@ -89,7 +89,7 @@ public class AdminController {
             return "admin/addBook";
 
         String fileName = booksName.name(file.getContentType());
-        Path fileNameAndPath = Paths.get(IMAGES_DIRECTORY + "/images/books/", fileName);
+        Path fileNameAndPath = Paths.get(IMAGES_DIRECTORY, fileName);
         Files.write(fileNameAndPath, file.getBytes());
         book.setUrl(fileName);
 
