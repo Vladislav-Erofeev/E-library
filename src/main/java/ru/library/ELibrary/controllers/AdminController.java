@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import ru.library.ELibrary.models.Book;
 import ru.library.ELibrary.services.BooksService;
 import ru.library.ELibrary.services.PeopleService;
+import ru.library.ELibrary.utils.BooksName;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -22,13 +23,15 @@ import java.nio.file.Paths;
 public class AdminController {
     private final PeopleService peopleService;
     private final BooksService booksService;
+    private final BooksName booksName;
 
     private final String UPLOAD_DIRECTORY = "C:/Users/Forex/IdeaProjects/E-Library/src/main/resources/static/images/books";
 
     @Autowired
-    public AdminController(PeopleService peopleService, BooksService booksService) {
+    public AdminController(PeopleService peopleService, BooksService booksService, BooksName booksName) {
         this.peopleService = peopleService;
         this.booksService = booksService;
+        this.booksName = booksName;
     }
 
     @GetMapping("/books")
@@ -79,16 +82,16 @@ public class AdminController {
         if(bindingResult.hasErrors())
             return "admin/addBook";
 
-        StringBuilder fileNames = new StringBuilder();
-        Path fileNameAndPath = Paths.get(UPLOAD_DIRECTORY, file.getOriginalFilename());
-        fileNames.append(file.getOriginalFilename());
+        String fileName = booksName.name(file.getContentType());
+        Path fileNameAndPath = Paths.get(UPLOAD_DIRECTORY, fileName);
         Files.write(fileNameAndPath, file.getBytes());
-        book.setUrl(fileNames.toString());
+        book.setUrl(fileName);
 
         booksService.save(book);
         model.addAttribute("id", book.getId());
         return "redirect:/admin/books";
     }
+
 
     //TODO добавить редактирование книги
 }
