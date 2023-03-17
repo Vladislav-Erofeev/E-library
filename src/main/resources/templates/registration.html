@@ -3,40 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="/static/style/general.css" />
 </head>
 <body>
+    <header>
+        <div class="logo">
+            <img src="/static/Vector.svg">
+        </div>
+        <ul class="menu">
+            <div class="menu__osn">
+                <div class="menu__osn__btnone"><a href="/index">Главная</a></div>
+                <div class="menu__osn__btnone"><a href="/books">Книги</a></div>
+            </div>
+            <div class="menu__osn">
+                <div th:if="${isAuthorised}"><a class="menu__osn__text"  href="/profile">Мои книги</a></div>
+                <div th:if="${isAuthorised}" class="menu__osn__btntwo" ><a href="/profile">Профиль</a></div>
+                <div th:unless="${isAuthorised}"><a class="menu__osn__text"  href="/auth/registration">Регистрация</a></div>
+                <div th:unless="${isAuthorised}" class="menu__osn__btntwo"><a href="/login">Войти</a></div>
+            </div>
+        </ul>
+    </header>
 
-<form th:method="POST" th:action="@{/auth/registration}" th:object="${person}">
-    <label for="name">Введите имя: </label>
-    <input type="text" th:field="*{name}" id="name">
-    <p style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
-    <br>
+    <form th:method="POST" th:action="@{/auth/registration}" th:object="${person}">
+        <label for="name">Введите имя: </label>
+        <input type="text" th:field="*{name}" id="name">
+        <p style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+        <br>
 
-    <label for="gender">Введите пол: </label>
-    <input type="text" th:field="*{gender}" id="gender">
-    <p style="color: red" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></p>
-    <br>
+        <label for="gender">Введите пол: </label>
+        <input type="text" th:field="*{gender}" id="gender">
+        <p style="color: red" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></p>
+        <br>
 
-    <label for="year">Введите год рождения: </label>
-    <input type="text" th:field="*{year}" id="year">
-    <p style="color: red" th:if="${#fields.hasErrors('year')}" th:errors="*{year}"></p>
-    <br>
+        <label for="year">Введите год рождения: </label>
+        <input type="text" th:field="*{year}" id="year">
+        <p style="color: red" th:if="${#fields.hasErrors('year')}" th:errors="*{year}"></p>
+        <br>
 
-    <label for="email">Введите почту: </label>
-    <input type="text" th:field="*{email}" id="email">
-    <p style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
-    <br>
+        <label for="email">Введите почту: </label>
+        <input type="text" th:field="*{email}" id="email">
+        <p style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+        <br>
 
-    <label for="phone">Введите номер телефона: </label>
-    <input type="text" th:field="*{phone}" id="phone">
-    <p style="color: red" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></p>
-    <br>
-    <label for="password">Введите пароль: </label>
-    <input type="text" th:field="*{password}" id="password">
-    <p style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
-    <br>
-    <input type="submit" value="Зарегистрироваться">
-</form>
+        <label for="phone">Введите номер телефона: </label>
+        <input type="text" th:field="*{phone}" id="phone">
+        <p style="color: red" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></p>
+        <br>
+        <label for="password">Введите пароль: </label>
+        <input type="text" th:field="*{password}" id="password">
+        <p style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+        <br>
+        <input type="submit" value="Зарегистрироваться">
+    </form>
 
 </body>
 </html>

@@ -1,3 +1,181 @@
-body {
-    background-color: aquamarine;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    color: #4F4D52;
+    text-decoration: none;
+}
+
+.logo{
+    background-color: white;
+    padding-left: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.menu{
+    background-color: #C6A88E;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.menu__osn{
+    display:flex;
+    align-items: center;
+}
+
+.logo__btn,
+.menu__osn__btnone,
+.menu__osn__btntwo{
+    background-color: #E2DFD8;
+    height: 60px;
+    width: 180px;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
+.logo__btn a,
+.menu__osn__btnone a,
+.menu__osn__btntwo a{
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.menu__osn__btntwo{
+    background-color: #616B75;
+}
+
+.menu__osn__btntwo a{
+    color: #E2DFD8;
+}
+
+.menu__osn__text{
+    text-decoration: none;
+    font-weight: 1000;
+    color: #E2DFD8;
+    font-size: 24px;
+}
+/*------------index------------*/
+.image__library img{
+    width: 100%;
+    height: 100%;
+}
+
+.top_book{
+    display: flex;
+    justify-content: center;
+}
+/*------------books------------*/
+.books__on__books {
+    width: calc(100% - 40px);
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin: 20px;
+}
+
+.books__block {
+    background-color: #C6A88E;
+    border-radius: 10px;
+    width: 230px;
+    height: 310px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding: 5px;
+}
+
+.books__block img{
+    display: block;
+    height: 170px;
+    width: auto;
+}
+.books__author,
+.books__name{
+    text-decoration: none;
+    font-weight: 700;
+    color: #4F4D52;
+    font-size: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 210px;
+    text-align: center;
+}
+
+.books__author{
+    color: #000000;
+}
+
+.books__btn{
+    width: 120px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: #E2DFD8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.books__btn a{
+    font-size: 12px;
+    color: black;
+    font-weight: 700;
+}
+
+/*------------login------------*/
+
+.login__form{
+    display: flex;
+    width: 620px;
+    height: 340px;
+    background-color: #ABA299;
+    border-radius: 50px;
+    margin: auto;
+    margin-top: 50px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+}
+
+.login__form h1{
+    color: white;
+    font-size: 36px;
+}
+
+.login__form__intext{
+    width: 560px;
+    height: 50px;
+    background-color: #E2DFD8;
+    border: none;
+    border-radius: 50px;
+    margin: 15px 0;
+    font-weight: bold;
+    font-size: 20px;
+    padding-left: 40px;
+}
+
+.login__form__intext:focus{
+    outline: none;
+}
+
+.login__form__btn{
+    width: 248px;
+    height: 50px;
+    background-color: #D0A535;
+    border: solid 4px #616B75;
+    border-radius: 50px;
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
 }
