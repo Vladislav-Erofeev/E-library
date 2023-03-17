@@ -24,9 +24,14 @@ public class Person {
     @NotEmpty(message = "Поле имя не может быть пустым")
     private String name;
 
-    @Column(name = "gender")
-    @NotEmpty(message = "Поле пол не может быть пустым")
-    private String gender;
+    @Column(name = "last_name")
+    @NotEmpty(message = "Поле фамилия не может быть пустым")
+    private String lastName;
+
+    @Column(name = "surname")
+    @NotEmpty(message = "Поле отчество не может быть пустым")
+    private String surname;
+
 
     @Column(name = "year")
     @Min(value = 1, message = "Значение год должно быть больше 0")
@@ -36,10 +41,6 @@ public class Person {
     @Email(message = "Почта должна быть валидной")
     @NotEmpty(message = "Поле почта не должно быть пустым")
     private String email;
-
-    @Column(name = "phone")
-    @NotEmpty(message = "Поле телефон не может быть пустым")
-    private String phone;
 
     @Column(name = "role")
     private String role;

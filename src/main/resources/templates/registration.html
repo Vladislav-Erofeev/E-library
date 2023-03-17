@@ -12,9 +12,14 @@
     <p style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
     <br>
 
-    <label for="gender">Введите пол: </label>
-    <input type="text" th:field="*{gender}" id="gender">
-    <p style="color: red" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></p>
+    <label for="last_name">Введите фамилию: </label>
+    <input type="text" th:field="*{lastName}" id="last_name">
+    <p style="color: red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></p>
+    <br>
+
+    <label for="surname">Введите отчество: </label>
+    <input type="text" th:field="*{surname}" id="surname">
+    <p style="color: red" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></p>
     <br>
 
     <label for="year">Введите год рождения: </label>
@@ -27,10 +32,6 @@
     <p style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
     <br>
 
-    <label for="phone">Введите номер телефона: </label>
-    <input type="text" th:field="*{phone}" id="phone">
-    <p style="color: red" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></p>
-    <br>
     <label for="password">Введите пароль: </label>
     <input type="text" th:field="*{password}" id="password">
     <p style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
