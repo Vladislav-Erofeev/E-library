@@ -27,7 +27,7 @@ public class BookController {
 
     @GetMapping
     private String booksPage(@RequestParam(value = "page", defaultValue = "0") int page,
-                             @RequestParam(value = "books_per_page", defaultValue = "0")int booksPerPage,
+                             @RequestParam(value = "books_per_page", defaultValue = "2")int booksPerPage,
                              Model model) {
         Optional<Person> optionalPerson = authService.getPerson();
         model.addAttribute("isAuthorised", false);
@@ -44,6 +44,7 @@ public class BookController {
     @GetMapping("/{id}")
     public String book(@PathVariable("id")int id, Model model) {
         model.addAttribute("book", booksService.getById(id));
+        booksService.incrViews(id);
         Optional<Person> optionalPerson = authService.getPerson();
         model.addAttribute("isAuthorised", false);
         model.addAttribute("isLiked", null);

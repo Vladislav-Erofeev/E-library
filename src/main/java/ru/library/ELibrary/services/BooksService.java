@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.library.ELibrary.models.Book;
@@ -46,9 +47,7 @@ public class BooksService {
     }
 
     public Page<Book> getPage(int page, int booksPerPage) {
-        if(booksPerPage == 0)
-            return new PageImpl<>(booksRepository.findAll());
-        return booksRepository.findAll(PageRequest.of(page, booksPerPage));
+        return booksRepository.findAll(PageRequest.of(page, booksPerPage, Sort.by("views").descending()));
     }
 
     @Transactional
@@ -86,5 +85,19 @@ public class BooksService {
     public void addUrl(int id, String url) {
         Book book = booksRepository.findById(id).get();
         book.setUrl(url);
+    }
+
+    @Transactional
+    public void incrViews(int id) {
+        Book book = booksRepository.findById(id).get();
+        if(book.getViews() == null)
+            book.setViews(0);
+        book.setViews(book.getViews() + 1);
+    }
+
+    public List<Book> getTopBooks() {
+        List<Book> books= booksRepository.findAll(PageRequest.of(0, 5,
+                Sort.by("views").descending())).getContent();
+        return books;
     }
 }

@@ -5,6 +5,16 @@
     <title>Title</title>
     <link rel="stylesheet" href="/static/style/general.css" />
 </head>
+<style>
+    #books {
+        display: flex;
+        gap: 20px;
+    }
+
+    #books div {
+        border-style: solid;
+    }
+</style>
 <body>
 
 <a href="/index">Главная</a>
@@ -13,6 +23,14 @@
 <a th:unless="${isAuthorised}" href="/login">Войти</a>
 
 <h1>Index</h1>
+<section id="books">
+    <div th:each="book : ${books}">
+        <img th:src="@{/static/images/books/{name}(name=${book.getUrl()})}" width="170" height="200">
+        <p th:text="${book.getName()}"></p>
+        <p th:text="${book.getAuthor()}"></p>
+        <a th:href="@{/books/{id}(id=${book.getId()})}">Подробнее</a>
+    </div>
+</section>
 
 <a href="/admin/books">Для админа</a>
 

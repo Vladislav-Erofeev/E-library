@@ -31,8 +31,6 @@
 
 <form method="get" action="/books">
     <select name="books_per_page">
-        <option value="0" th:if="${booksPerPage == 0}" selected>Показать всех</option>
-        <option value="0" th:unless="${booksPerPage == 0}">Показать всех</option>
         <option value="2" th:if="${booksPerPage == 2}" selected>2</option>
         <option value="2" th:unless="${booksPerPage == 2}">2</option>
         <option value="4" th:if="${booksPerPage == 4}" selected>4</option>

@@ -42,6 +42,9 @@ public class Book {
     @Column(name = "url")
     private String url;
 
+    @Column(name = "views")
+    private Integer views;
+
     @ManyToMany(mappedBy = "likedBooks")
     private List<Person> likedPerson;
 
