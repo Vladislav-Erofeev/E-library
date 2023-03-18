@@ -40,8 +40,11 @@ public class AdminController {
 
     @GetMapping("/books")
     public String booksPage(@RequestParam(value = "search", defaultValue = "", required = false) String name,
+                            @RequestParam(value = "page", defaultValue = "0")int page,
                             Model model) {
-        model.addAttribute("books", booksService.findByName(name));
+        model.addAttribute("books", booksService.getPage(name, page, 2));
+        model.addAttribute("search", name);
+        model.addAttribute("pageCount", booksService.getPage(name, page, 2).getTotalPages());
         return "admin/books";
     }
 
