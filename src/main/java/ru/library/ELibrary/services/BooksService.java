@@ -13,7 +13,6 @@ import ru.library.ELibrary.models.Person;
 import ru.library.ELibrary.repositories.BooksRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class BooksService {
@@ -46,10 +45,23 @@ public class BooksService {
         booksRepository.deleteById(id);
     }
 
-    public Page<Book> getPage(int page, int booksPerPage) {
-        return booksRepository.findAll(PageRequest.of(page, booksPerPage, Sort.by("views").descending()));
+    /**
+     * Поиск и получение страницы с результатом
+     * @param name - строка для поиска
+     * @param page - номер страницы
+     * @param booksPerPage - количество элементов
+     * @return Страницу с найденными элементами
+     */
+    public Page<Book> getPage(String name, int page, int booksPerPage) {
+        return booksRepository.findByNameStartsWithIgnoreCase(name,
+                PageRequest.of(page, booksPerPage, Sort.by("views").descending()));
     }
 
+    /**
+     * Добавление человека при лайке
+     * @param id - id книги в бд
+     * @param person - человек, который лайкнул книгу
+     */
     @Transactional
     public void addLikedPerson(int id, Person person) {
         Book book = booksRepository.findById(id).get();
