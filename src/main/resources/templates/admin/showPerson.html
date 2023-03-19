@@ -3,12 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="${person.getName()}">Title</title>
+    <link rel="stylesheet" href="/static/style/general.css" />
 </head>
 <body>
 
-<a href="/index">Главная</a>
-<a href="/admin/books">Книги</a>
-<a href="/admin/people">Люди</a>
+<header>
+    <div class="admin__logo">
+        <img src="/static/Vector.svg">
+    </div>
+    <div class="admin__menu">
+        <div><a href="/index">Главная</a></div>
+        <div><a href="/admin/books">Книги</a></div>
+        <div><a href="/admin/people">Люди</a></div>
+    </div>
+</header>
 
 <p th:text="${person.getLastName()}"></p>
 <p th:text="${person.getName()}"></p>

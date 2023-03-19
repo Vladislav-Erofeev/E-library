@@ -34,9 +34,9 @@
     <section class="books__on__books">
         <div class="books__block" th:each="book : ${books}">
             <img th:src="@{/static/images/books/{name}(name=${book.getUrl()})}">
-            <p class="books__author" th:text="${book.getAuthor()}"></p>
-            <p class="books__name" th:text="${book.getName()}"></p>
-            <a class="books__btn" th:href="@{/books/{id}(id=${book.getId()})}">Подробнее</a>
+            <div class="books__author" th:text="${book.getAuthor()}"></div>
+            <div class="books__name" th:text="${book.getName()}"></div>
+            <div class="books__btn"><a th:href="@{/books/{id}(id=${book.getId()})}">Подробнее</a></div>
         </div>
     </section>
 

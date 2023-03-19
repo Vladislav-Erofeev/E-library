@@ -8,6 +8,14 @@
     text-decoration: none;
 }
 
+.error{
+    width: fit-content;
+    margin: 325px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .logo{
     background-color: white;
     padding-left: 50px;
@@ -36,6 +44,7 @@
 }
 
 .logo__btn,
+.error div,
 .menu__osn__btnone,
 .menu__osn__btntwo{
     background-color: #E2DFD8;
@@ -49,11 +58,12 @@
 }
 
 .logo__btn a,
+.error div a,
 .menu__osn__btnone a,
 .menu__osn__btntwo a{
     text-decoration: none;
     font-weight: bold;
-    font-size: 24px;
+    font-size: 20px;
 }
 
 .menu__osn__btntwo{
@@ -68,7 +78,7 @@
     text-decoration: none;
     font-weight: 1000;
     color: #E2DFD8;
-    font-size: 24px;
+    font-size: 20px;
 }
 /*------------index------------*/
 .image__library img{
@@ -217,7 +227,7 @@
 .admin__menu div a{
     text-decoration: none;
     font-weight: bold;
-    font-size: 24px;
+    font-size: 20px;
     color: #202B6D;
 }
 
@@ -293,7 +303,7 @@
     border-radius: 10px;
 }
 .admin__pages li a {
-    color: black;
+    color: #202B6D;
     float: left;
     padding: 8px 16px;
     text-decoration: none;
@@ -322,4 +332,68 @@
 
 .admin__table td{
     padding:10px 30px;
+}
+
+/*----------*/
+
+.admin__form{
+    width: 500px;
+    display: grid;
+    grid-template-columns: 150px 400px;
+    margin: 30px auto;
+    gap: 10px;
+}
+
+.admin__form input[type="text"]{
+    background-color:#EBEEF3;
+    height: 25px;
+    border: 2px solid #202B6D;
+    border-radius: 20px;
+    padding-left: 10px;
+}
+
+.admin__form textarea{
+    background-color:#EBEEF3;
+    height: 150px;
+    border: 2px solid #202B6D;
+    border-radius: 20px;
+    padding-left: 10px;
+}
+
+.admin__form input[type="file"] {
+    width: 0;
+    height: 0;
+    position: absolute !important;
+}
+
+.admin__form input[type="file"] + label {
+    background-color: #202B6D;
+    width: 150px;
+    height: 25px;
+    border-radius: 25px;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.admin__form input[type="file"]:focus + label,
+.admin__form input[type="file"] + label:hover {
+    background-color: #6389DE;
+}
+.admin__form input[type="file"]:focus + label {
+    outline: 1px dotted #000;
+}
+
+.admin__form input[type="submit"]{
+    background-color:#202B6D;
+    border:none;
+    width: 200px;
+    height:40px;
+    grid-column: span 2;
+    border-radius: 30px;
+    margin: 10px auto;
+    color: #FFF;
+    font-weight: bold;
+    font-size:18px;
 }
