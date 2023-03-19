@@ -25,33 +25,21 @@
 </header>
 
 <form th:method="PATCH" th:action="@{/profile/edit}" th:object="${person}">
-    <label for="name">Введите имя: </label>
-    <input type="text" th:field="*{name}" id="name">
+    <input type="text" th:field="*{lastName}" id="last_name" placeholder="Введите фамилию:">
+    <p style="color: red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></p>
+
+    <input type="text" th:field="*{name}" id="name" placeholder="Введите имя:">
     <p style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
-    <br>
 
-    <label for="gender">Введите пол: </label>
-    <input type="text" th:field="*{gender}" id="gender">
-    <p style="color: red" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></p>
-    <br>
+    <input type="text" th:field="*{surname}" id="surname" placeholder="Введите отчество:">
+    <p style="color: red" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></p>
 
-    <label for="year">Введите год рождения: </label>
-    <input type="text" th:field="*{year}" id="year">
+    <input type="text" th:field="*{year}" id="year" placeholder="Введите год рождения:">
     <p style="color: red" th:if="${#fields.hasErrors('year')}" th:errors="*{year}"></p>
-    <br>
 
-    <label for="email">Введите почту: </label>
-    <input type="text" th:field="*{email}" id="email">
+    <input type="text" th:field="*{email}" id="email" placeholder="Введите почту:">
     <p style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
-    <br>
 
-    <label for="phone">Введите номер телефона: </label>
-    <input type="text" th:field="*{phone}" id="phone">
-    <p style="color: red" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></p>
-    <br>
-    <input type="hidden" th:field="*{password}">
-    <input type="hidden" th:field="*{role}">
-    <br>
     <input type="submit" value="Сохранить">
 </form>
 
