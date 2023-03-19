@@ -10,10 +10,11 @@
 <a href="/admin/books">Книги</a>
 <a href="/admin/people">Люди</a>
 
+<p th:text="${person.getLastName()}"></p>
 <p th:text="${person.getName()}"></p>
-<p th:text="${person.getGender()}"></p>
+<p th:text="${person.getSurname()}"></p>
+<p th:text="${person.getYear()}"></p>
 <p th:text="${person.getEmail()}"></p>
-<p th:text="${person.getPhone()}"></p>
 
 </body>
 </html>

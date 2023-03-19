@@ -3,35 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="/static/style/general.css" />
 </head>
 <body>
 
-<a href="/index">Главная</a>
-<a href="/admin/books">Книги</a>
-<a href="/admin/people">Люди</a>
+<header>
+    <div class="admin__logo">
+        <img src="/static/Vector.svg">
+    </div>
+    <div class="admin__menu">
+        <div><a href="/index">Главная</a></div>
+        <div><a href="/admin/books">Книги</a></div>
+        <div><a href="/admin/people">Люди</a></div>
+    </div>
+</header>
 
-<h1>People admin page</h1>
+<div class="admin__top">
+    <h1>Люди</h1>
+</div>
 
-<form method="get" action="/admin/people">
-    <input type="text" name="search">
+
+<form class="admin__book__form" method="get" action="/admin/people">
+    <input type="text" name="search" th:value="${search}" placeholder="Поиск">
     <input type="submit" value="Найти">
 </form>
 
-<table border="1" cellpadding="5">
-    <tr>
-        <td>Имя</td>
-        <td>Пол</td>
-        <td>Год рождения</td>
-        <td>Почта</td>
-        <td>Номер телефона</td>
-    </tr>
-    <tr th:each="person: ${people}">
-        <td><a th:text="${person.getName()}" th:href="@{/admin/people/{id}(id=${person.getId()})}"></a></td>
-        <td th:text="${person.getGender()}"></td>
-        <td th:text="${person.getYear()}"></td>
-        <td th:text="${person.getEmail()}"></td>
-        <td th:text="${person.getPhone()}"></td>
-    </tr>
+<table  class="admin__table">
+    <colgroup>
+        <col style="width: 18%;">
+        <col style="width: 18%;">
+        <col style="width: 18%;">
+        <col style="width: 8%;">
+        <col style="width: 18%;">
+    </colgroup>
+    <tbody>
+        <tr>
+            <th>Фамилия</th>
+            <th>Имя</th>
+            <th>Отчество</th>
+            <th>Год рождения</th>
+            <th>Почта</th>
+        </tr>
+        <tr th:each="person: ${people}">
+            <td><a th:text="${person.getLastName()}" th:href="@{/admin/people/{id}(id=${person.getId()})}"></a></td>
+            <td th:text="${person.getName()}"></td>
+            <td th:text="${person.getSurname()}"></td>
+            <td th:text="${person.getYear()}"></td>
+            <td th:text="${person.getEmail()}"></td>
+        </tr>
+    </tbody>
 </table>
 
 </body>
