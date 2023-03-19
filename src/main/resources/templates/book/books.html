@@ -34,9 +34,8 @@
 
     <br>
 <form method="get" action="/books">
+    <input type="hidden" name="search" th:value="${search}">
     <select name="books_per_page">
-        <option value="0" th:if="${booksPerPage == 0}" selected>Показать всех</option>
-        <option value="0" th:unless="${booksPerPage == 0}">Показать всех</option>
         <option value="2" th:if="${booksPerPage == 2}" selected>2</option>
         <option value="2" th:unless="${booksPerPage == 2}">2</option>
         <option value="4" th:if="${booksPerPage == 4}" selected>4</option>
@@ -47,7 +46,12 @@
 
     <input type="submit" value="Показать!">
 </form>
-    <br>
+
+<form method="get" action="/books">
+    <input type="hidden" th:value="${booksPerPage}" name="books_per_page">
+    <input type="text" name="search" th:value="${search}">
+    <input type="submit" value="найти">
+</form>
 
 <section class="books__on__books">
     <div class="books__block" th:each="book : ${books}">
@@ -58,9 +62,13 @@
     </div>
 </section>
 
+
+
+
+
 <div id="pages">
     <a th:each="number : ${#numbers.sequence(0, pageCount-1)}"
-       th:href="@{/books(page=${number}, books_per_page=${booksPerPage})}"
+       th:href="@{/books(page=${number}, books_per_page=${booksPerPage}, search=${search})}"
        th:text="${number+1}"></a>
 </div>
 </body>

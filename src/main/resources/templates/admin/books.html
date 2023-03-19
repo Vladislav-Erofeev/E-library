@@ -13,7 +13,7 @@
 <h1>Book admin page</h1>
 
 <form method="get" action="/admin/books">
-    <input type="text" name="search">
+    <input type="text" name="search" th:value="${search}">
     <input type="submit" value="найти">
 </form>
 
@@ -33,6 +33,13 @@
 </table>
 
 <a href="/admin/add">Добавить книгу</a>
+
+<br>
+<div id="pages">
+    <a th:each="number : ${#numbers.sequence(0, pageCount-1)}"
+       th:href="@{/admin/books(page=${number}, search=${search})}"
+       th:text="${number+1}"></a>
+</div>
 
 </body>
 </html>

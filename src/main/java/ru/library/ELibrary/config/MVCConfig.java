@@ -8,7 +8,6 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-@PropertySource("application.properties")
 public class MVCConfig implements WebMvcConfigurer {
     private final String UPLOAD_DIRECTORY;
 

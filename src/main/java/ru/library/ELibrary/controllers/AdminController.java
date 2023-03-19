@@ -3,6 +3,7 @@ package ru.library.ELibrary.controllers;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -14,7 +15,6 @@ import ru.library.ELibrary.services.BooksService;
 import ru.library.ELibrary.services.PeopleService;
 import ru.library.ELibrary.utils.BooksName;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -40,8 +40,11 @@ public class AdminController {
 
     @GetMapping("/books")
     public String booksPage(@RequestParam(value = "search", defaultValue = "", required = false) String name,
+                            @RequestParam(value = "page", defaultValue = "0")int page,
                             Model model) {
-        model.addAttribute("books", booksService.findByName(name));
+        model.addAttribute("books", booksService.getPage(name, page, 2));
+        model.addAttribute("search", name);
+        model.addAttribute("pageCount", booksService.getPage(name, page, 2).getTotalPages());
         return "admin/books";
     }
 

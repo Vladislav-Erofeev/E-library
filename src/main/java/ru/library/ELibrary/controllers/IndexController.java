@@ -8,16 +8,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import ru.library.ELibrary.models.Person;
 import ru.library.ELibrary.services.AuthService;
+import ru.library.ELibrary.services.BooksService;
 
 import java.util.Optional;
 
 @Controller
 public class IndexController {
     private final AuthService authService;
+    private final BooksService booksService;
 
     @Autowired
-    public IndexController(AuthService authService) {
+    public IndexController(AuthService authService, BooksService booksService) {
         this.authService = authService;
+        this.booksService = booksService;
     }
 
     @GetMapping("/")
@@ -27,6 +30,7 @@ public class IndexController {
     @GetMapping("/index")
     public String indexPage(Model model) {
         model.addAttribute("isAuthorised", false);
+        model.addAttribute("books", booksService.getTopBooks());
         Optional<Person> optionalPerson = authService.getPerson();
         if(optionalPerson.isPresent())
             model.addAttribute("isAuthorised", true);

@@ -26,17 +26,19 @@ public class BookController {
     }
 
     @GetMapping
-    private String booksPage(@RequestParam(value = "page", defaultValue = "0") int page,
-                             @RequestParam(value = "books_per_page", defaultValue = "0")int booksPerPage,
+    private String booksPage(@RequestParam(value = "search", defaultValue = "") String name,
+                             @RequestParam(value = "page", defaultValue = "0") int page,
+                             @RequestParam(value = "books_per_page", defaultValue = "2")int booksPerPage,
                              Model model) {
         Optional<Person> optionalPerson = authService.getPerson();
         model.addAttribute("isAuthorised", false);
         if(optionalPerson.isPresent())
             model.addAttribute("isAuthorised", true);
 
-        model.addAttribute("books", booksService.getPage(page, booksPerPage).get());
+        model.addAttribute("books", booksService.getPage(name, page, booksPerPage).get());
         model.addAttribute("booksPerPage", booksPerPage);
-        model.addAttribute("pageCount", booksService.getPage(page, booksPerPage).getTotalPages());
+        model.addAttribute("search", name);
+        model.addAttribute("pageCount", booksService.getPage(name, page, booksPerPage).getTotalPages());
 
         return "book/books";
     }
@@ -44,6 +46,7 @@ public class BookController {
     @GetMapping("/{id}")
     public String book(@PathVariable("id")int id, Model model) {
         model.addAttribute("book", booksService.getById(id));
+        booksService.incrViews(id);
         Optional<Person> optionalPerson = authService.getPerson();
         model.addAttribute("isAuthorised", false);
         model.addAttribute("isLiked", null);
