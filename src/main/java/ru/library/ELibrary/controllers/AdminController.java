@@ -35,7 +35,7 @@ public class AdminController {
         this.peopleService = peopleService;
         this.booksService = booksService;
         this.booksName = booksName;
-        IMAGES_DIRECTORY = upload_directory + "/images/books/";
+        IMAGES_DIRECTORY = upload_directory + "/books/";
     }
 
     @GetMapping("/books")

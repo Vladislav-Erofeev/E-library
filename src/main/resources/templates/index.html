@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="/static/style/general.css" />
+    <link rel="stylesheet" th:href="@{/style/general.css}" />
 </head>
 <style>
     #books {
@@ -25,7 +25,7 @@
 <h1>Index</h1>
 <section id="books">
     <div th:each="book : ${books}">
-        <img th:src="@{/static/images/books/{name}(name=${book.getUrl()})}" width="170" height="200">
+        <img th:src="@{/image/books/{name}(name=${book.getUrl()})}" width="170" height="200">
         <p th:text="${book.getName()}"></p>
         <p th:text="${book.getAuthor()}"></p>
         <a th:href="@{/books/{id}(id=${book.getId()})}">Подробнее</a>
