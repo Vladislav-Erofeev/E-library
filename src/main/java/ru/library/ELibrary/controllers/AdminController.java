@@ -3,6 +3,8 @@ package ru.library.ELibrary.controllers;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -50,9 +52,10 @@ public class AdminController {
     public String booksPage(@RequestParam(value = "search", defaultValue = "", required = false) String name,
                             @RequestParam(value = "page", defaultValue = "0")int page,
                             Model model) {
-        model.addAttribute("books", booksService.getPage(name, page, 2));
+        Page page1 =  booksService.getPage(name, page, 40, Sort.by("name"));
+        model.addAttribute("books", page1);
         model.addAttribute("search", name);
-        model.addAttribute("pageCount", booksService.getPage(name, page, 2).getTotalPages());
+        model.addAttribute("pageCount", page1.getTotalPages());
         return "admin/books";
     }
 
@@ -137,6 +140,12 @@ public class AdminController {
     @GetMapping("/add")
     public String addBookPage(@ModelAttribute("book")Book book) {
         return "admin/addBook";
+    }
+
+    @GetMapping("/batch")
+    public String batchUpd() {
+        booksService.batchUpd();
+        return "redirect:/admin/books";
     }
 
     @PostMapping("/add")
