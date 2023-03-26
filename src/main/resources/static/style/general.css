@@ -114,7 +114,7 @@
 .books__block img{
     display: block;
     height: 170px;
-    width: auto;
+    width: 100px;
 }
 .books__author,
 .books__name{
