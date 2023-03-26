@@ -16,6 +16,66 @@
 <p>Количество книг:  <span  th:text="${book.getCount()}"></span></p>
 <p>Описание книги: <span  th:text="${book.getDescription()}"></span></p>
 
+<section th:unless="${ordered.isEmpty()}">
+    <h1>Заказы</h1>
+    <table border="1" cellpadding="5">
+        <tr>
+            <td>Имя</td>
+            <td>Пол</td>
+            <td>Год рождения</td>
+            <td>Почта</td>
+            <td>Дата</td>
+            <td>Выдача</td>
+        </tr>
+        <tr th:each="order: ${ordered}">
+            <td><a th:text="${order.getPerson.getName()}" th:href="@{/admin/people/{id}(id=${order.getPerson.getId()})}"></a></td>
+            <td th:text="${order.getPerson.getLastName()}"></td>
+            <td th:text="${order.getPerson.getYear()}"></td>
+            <td th:text="${order.getPerson.getEmail()}"></td>
+            <td th:text="${order.getData()}" th:style = "${order.isOverdue()} ? 'color: red' : 'color: black' "></td>
+            <td>
+                <form th:action="@{/admin/books/order}" th:method="POST">
+                    <input type="hidden" name="order" th:value="${order.getId()}">
+                    <input type="submit" value="Выдать">
+                </form>
+            </td>
+        </tr>
+    </table>
+</section>
+
+<section th:unless="${taked.isEmpty()}">
+    <h1>На руках</h1>
+    <table border="1" cellpadding="5">
+        <tr>
+            <td>Имя</td>
+            <td>Пол</td>
+            <td>Год рождения</td>
+            <td>Почта</td>
+            <td>Дата</td>
+            <td>Продление</td>
+            <td>Удаление</td>
+        </tr>
+        <tr th:each="order: ${taked}">
+            <td><a th:text="${order.getPerson.getName()}" th:href="@{/admin/people/{id}(id=${order.getPerson.getId()})}"></a></td>
+            <td th:text="${order.getPerson.getLastName()}"></td>
+            <td th:text="${order.getPerson.getYear()}"></td>
+            <td th:text="${order.getPerson.getEmail()}"></td>
+            <td th:text="${order.getData()}" th:style = "${order.isOverdue()} ? 'color: red' : 'color: black' "></td>
+            <td><form th:action="@{/admin/books/order}" th:method="PATCH">
+                <input type="hidden" name="order" th:value="${order.getId()}">
+                <input type="submit" value="Продлить">
+            </form>
+            </td>
+            <td>
+            <form th:action="@{/admin/books/order}" th:method="DELETE">
+                <input type="hidden" name="order" th:value="${order.getId()}">
+                <input type="submit" value="Удалить">
+            </form>
+            </td>
+        </tr>
+    </table>
+</section>
+
 <form th:method="DELETE" th:action="@{/admin/delete/{id}(id=${book.getId()})}">
     <input type="submit" value="Удалить">
 </form>

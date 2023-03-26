@@ -5,12 +5,12 @@
     <title>Title</title>
 </head>
 <style>
-    #books {
+    .books {
         display: flex;
         gap: 20px;
     }
 
-    #books div {
+    .books div {
         border-style: solid;
     }
 </style>
@@ -29,17 +29,29 @@
 
 <a href="/profile/edit">Редактировать</a>
 
-<section id="books">
-    <div th:each="book : ${likedBooks}">
-        <img th:src="@{/static/images/books/{name}(name=${book.getUrl()})}" width="170" height="200">
-        <p th:text="${book.getName()}"></p>
-        <p th:text="${book.getAuthor()}"></p>
-        <a th:href="@{/books/{id}(id=${book.getId()})}">Подробнее</a>
+<h1 th:unless="${orderedBooks.isEmpty()}">Заказы</h1>
+<section class="books" >
+    <div th:each="order : ${orderedBooks}">
+        <img th:src="@{/image/books/{name}(name=${order.getBook().getUrl()})}" width="170" height="200">
+        <p th:text="${order.getBook().getName()}"></p>
+        <p th:text="${order.getBook().getAuthor()}"></p>
+        <p th:text="${order.getData()}" th:style = "${order.isOverdue()} ? 'color: red' : 'color: black' "></p>
+        <a th:href="@{/books/{id}(id=${order.getBook().getId()})}">Подробнее</a>
     </div>
 </section>
 
-<a href="/bin">Корзина</a>
-<br>
+<h1 th:unless="${takedBooks.isEmpty()}">Книги на руках</h1>
+<section class="books" >
+    <div th:each="order : ${takedBooks}">
+        <img th:src="@{/image/books/{name}(name=${order.getBook().getUrl()})}" width="170" height="200">
+        <p th:text="${order.getBook().getName()}"></p>
+        <p th:text="${order.getBook().getAuthor()}"></p>
+        <p th:text="${order.getData()}" th:style = "${order.isOverdue()} ? 'color: red' : 'color: black' "></p>
+        <a th:href="@{/books/{id}(id=${order.getBook().getId()})}">Подробнее</a>
+    </div>
+</section>
+
+
 
 <form th:method="POST" th:action="@{/logout}">
     <input type="submit" value="Выйти">

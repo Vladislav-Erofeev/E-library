@@ -38,9 +38,13 @@
         <input type="submit" value="Убрать лайк">
     </form>
 
-    <form th:method="POST" th:action="@{/order/add/{id}(id=${book.getId()})}">
-        <input type="submit" value="Добавить в корзину">
+    <form th:method="POST" th:action="@{/order/add/{id}(id=${book.getId()})}" th:unless="${isOrdered}" th:if="${isFree}">
+        <input type="submit" value="Заказать">
     </form>
+
+    <p th:unless="${isFree}">
+        Книг в наличии нет
+    </p>
 </div>
 
 <div th:unless="${isAuthorised}">

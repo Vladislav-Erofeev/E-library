@@ -23,14 +23,12 @@
         <td>Пол</td>
         <td>Год рождения</td>
         <td>Почта</td>
-        <td>Номер телефона</td>
     </tr>
     <tr th:each="person: ${people}">
         <td><a th:text="${person.getName()}" th:href="@{/admin/people/{id}(id=${person.getId()})}"></a></td>
-        <td th:text="${person.getGender()}"></td>
+        <td th:text="${person.getLastName()}"></td>
         <td th:text="${person.getYear()}"></td>
         <td th:text="${person.getEmail()}"></td>
-        <td th:text="${person.getPhone()}"></td>
     </tr>
 </table>
 

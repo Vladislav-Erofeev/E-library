@@ -48,8 +48,8 @@ public class Book {
     @ManyToMany(mappedBy = "likedBooks")
     private List<Person> likedPerson;
 
-    @ManyToMany(mappedBy = "pendingBooks")
-    private List<Person> pendingPerson;
+    @ManyToMany(mappedBy = "orderedBooks")
+    private List<Person> orderedPerson;
 
     public void addLikedPerson(Person person) {
         if(likedPerson == null)
@@ -57,9 +57,9 @@ public class Book {
         likedPerson.add(person);
     }
 
-    public void addPendingPerson(Person person) {
-        if(pendingPerson == null)
-            pendingPerson = new ArrayList<>();
-        pendingPerson.add(person);
+    public void addOrderedPerson(Person person) {
+        if(orderedPerson == null)
+            orderedPerson = new ArrayList<>();
+        orderedPerson.add(person);
     }
 }
