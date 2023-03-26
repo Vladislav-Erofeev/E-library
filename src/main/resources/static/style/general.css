@@ -91,13 +91,66 @@
     justify-content: center;
 }
 /*------------books------------*/
+
+.books__form{
+    display: grid;
+    width: calc(100% - 120px);
+    margin: 20px 40px;
+    grid-template-columns: 85% 15%;
+    gap: 40px;
+}
+
+.books__form__search{
+    display:grid;
+    grid-template-columns: 1fr 80px;
+    gap: 5px 10px;
+}
+
+.books__form__search input[type="text"]{
+    height:30px;
+    border-radius: 50px;
+    border: 2px #616B75 solid;
+    background-color:#E2DFD8;
+    padding-left: 20px;
+    font-weight: bold;
+    font-size: 20px;
+    align-items: center;
+}
+
+.books__form__count input[type="submit"],
+.books__form__search input[type="submit"]{
+    background-color: #616B75;
+    border-radius: 20px;
+    color: #E2DFD8;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.books__form__count{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px 10px;
+}
+.books__form__count select{
+    border-radius: 15px;
+    text-align: center;
+    background-color: #E2DFD8;
+    font-weight: 700;
+    font-size: 16px;
+    border: none;
+}
+
+.books__form__count input[type="submit"]{
+    font-size: 16px;
+}
+
 .books__on__books {
-    width: calc(100% - 40px);
-    display: flex;
-    justify-content: center;
+    width: calc(100% - 80px);
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
     gap: 20px;
-    flex-wrap: wrap;
-    margin: 20px;
+    justify-items: center;
+    margin: 20px 40px;
 }
 
 .books__block {
@@ -147,6 +200,31 @@
     font-size: 12px;
     color: black;
     font-weight: 700;
+}
+
+.books__pages {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 10px 40px;
+}
+
+.books__pages li {
+    display: inline;
+    background-color: #E2DFD8;
+    margin: 5px;
+    border-radius: 10px;
+}
+.books__pages li a {
+    color: #4F4D52;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+.books__pages li a:hover:not(.active) {
+    background-color:#C6A88E;
+    border-radius: 10px;
 }
 
 .books__about{
@@ -207,6 +285,49 @@
     background-color: #E2DFD8;
     padding: 10px;
     border-radius: 20px;
+}
+.books__log,
+.books__notlog{
+    margin: 40px;
+    font-weight: 700;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.books__log{
+    justify-content: flex-end;
+}
+
+.books__log input[type="submit"]{
+    background-color: #D0A535;
+    border-radius: 20px;
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 18px;
+    height: fit-content;
+    width: fit-content;
+    padding: 5px;
+    border: 4px #4F4D52 solid;
+    margin: 10px;
+}
+
+.books__notlog div{
+    display:flex;
+    font-weight: 600;
+    font-size: 18px;
+    background-color: #C6A88E;
+    height: 20px;
+    width: fit-content;
+    align-items:center;
+    jestify-content: center;
+    margin: 10px;
+    padding:10px;
+    border-radius:30px;
+}
+
+.books__notlog a{
+    color: #E2DFD8;
 }
 /*------------login------------*/
 
