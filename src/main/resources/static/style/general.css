@@ -9,8 +9,8 @@
 }
 
 .error{
-    width: fit-content;
-    margin: 325px auto;
+    width:fit-content;
+    margin: 320px auto;
     display: flex;
     flex-direction: column;
     align-items: center;
