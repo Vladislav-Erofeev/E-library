@@ -32,7 +32,7 @@ public class BooksService {
     }
 
     public List<Book> findByName(String name) {
-        return booksRepository.findByNameStartsWithIgnoreCase(name);
+        return booksRepository.findByNameContainingIgnoreCase(name);
     }
 
     @Transactional
@@ -53,7 +53,7 @@ public class BooksService {
      * @return Страницу с найденными элементами
      */
     public Page<Book> getPage(String name, int page, int booksPerPage) {
-        return booksRepository.findByNameStartsWithIgnoreCase(name,
+        return booksRepository.findByNameContainingIgnoreCase(name,
                 PageRequest.of(page, booksPerPage, Sort.by("views").descending()));
     }
 
