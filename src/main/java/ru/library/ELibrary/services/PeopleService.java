@@ -61,21 +61,4 @@ public class PeopleService {
         Person person = repository.findById(id).get();
         person.getLikedBooks().remove(book);
     }
-
-    public List<Book> getPendingBooks(int id) {
-        return repository.findById(id).get().getPendingBooks();
-    }
-
-    @Transactional
-    public void addPendingBook(int id, Book book) {
-        Person person = repository.findById(id).get();
-        Hibernate.initialize(person.getPendingBooks());
-        person.addPendingBook(book);
-    }
-
-    @Transactional
-    public void deletePendingBook(int id, Book book) {
-        Person person = repository.findById(id).get();
-        person.getPendingBooks().remove(book);
-    }
 }

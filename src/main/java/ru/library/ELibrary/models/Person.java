@@ -56,10 +56,10 @@ public class Person {
     private List<Book> likedBooks;
 
     @ManyToMany
-    @JoinTable(name = "pending_book",
-    joinColumns = @JoinColumn(name = "person_id"),
-    inverseJoinColumns = @JoinColumn(name = "book_id"))
-    private List<Book> pendingBooks;
+    @JoinTable(name = "order_book",
+            joinColumns = @JoinColumn(name = "person_id"),
+            inverseJoinColumns = @JoinColumn(name = "book_id"))
+    private List<Book> orderedBooks;
 
     public void addLikedBook(Book book) {
         if(likedBooks == null)
@@ -67,9 +67,9 @@ public class Person {
         likedBooks.add(book);
     }
 
-    public void addPendingBook(Book book) {
-        if(pendingBooks == null)
-            pendingBooks = new ArrayList<>();
-        pendingBooks.add(book);
+    public void addOrderedBook(Book book) {
+        if(orderedBooks == null)
+            orderedBooks = new ArrayList<>();
+        orderedBooks.add(book);
     }
 }

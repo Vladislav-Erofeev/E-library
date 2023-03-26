@@ -1,11 +1,15 @@
 package ru.library.ELibrary.controllers;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import ru.library.ELibrary.models.Book;
+import ru.library.ELibrary.models.Order;
 import ru.library.ELibrary.models.Person;
 import ru.library.ELibrary.services.AuthService;
 import ru.library.ELibrary.services.BooksService;
+import ru.library.ELibrary.services.OrderService;
 import ru.library.ELibrary.services.PeopleService;
 
 import java.util.Optional;
@@ -15,13 +19,16 @@ import java.util.Optional;
 public class BookController {
     private final BooksService booksService;
     private final PeopleService peopleService;
+    private final OrderService orderService;
 
     private final AuthService authService;
 
     @Autowired
-    public BookController(BooksService booksService, PeopleService peopleService, AuthService authService) {
+    public BookController(BooksService booksService, PeopleService peopleService,
+                          OrderService orderService, AuthService authService) {
         this.booksService = booksService;
         this.peopleService = peopleService;
+        this.orderService = orderService;
         this.authService = authService;
     }
 
@@ -45,16 +52,25 @@ public class BookController {
 
     @GetMapping("/{id}")
     public String book(@PathVariable("id")int id, Model model) {
-        model.addAttribute("book", booksService.getById(id));
+        Book book = booksService.getById(id);
+        model.addAttribute("book", book);
         booksService.incrViews(id);
         Optional<Person> optionalPerson = authService.getPerson();
         model.addAttribute("isAuthorised", false);
         model.addAttribute("isLiked", null);
+        model.addAttribute("isOrdered", false);
+        model.addAttribute("isFree", true);
+        if(orderService.getByBookId(id).size() == book.getCount()) {
+            model.addAttribute("isFree", false);
+        }
 
         if(optionalPerson.isPresent()) {
             model.addAttribute("isAuthorised", true);
             Person person = optionalPerson.get();
             model.addAttribute("isLiked", booksService.isLiked(person.getId(), id));
+            Optional<Order> optionalOrder = orderService.findOrder(id, person.getId());
+            if(optionalOrder.isPresent())
+                model.addAttribute("isOrdered", true);
         }
 
         return "book/showBook";
