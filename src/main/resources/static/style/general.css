@@ -90,6 +90,22 @@
     display: flex;
     justify-content: center;
 }
+/*------------person------------*/
+
+.person__top{
+    margin: 5px 50px;
+}
+.person__about{
+    display: flex;
+    font-size: 20px;
+    font-weight: 400;
+}
+.person__about div{
+    margin: 30px 60px;
+}
+.person__about p{
+    margin: 5px;
+}
 /*------------books------------*/
 
 .books__form{
@@ -286,6 +302,8 @@
     padding: 10px;
     border-radius: 20px;
 }
+
+.person__info,
 .books__log,
 .books__notlog{
     margin: 40px;
@@ -299,6 +317,7 @@
     justify-content: flex-end;
 }
 
+.person__about__exit input,
 .books__log input[type="submit"]{
     background-color: #D0A535;
     border-radius: 20px;
@@ -311,7 +330,14 @@
     border: 4px #4F4D52 solid;
     margin: 10px;
 }
+.person__about__exit input{
+    border: none;
+    background-color: red;
+    margin: 30px -40px;
+    height: 40px;
+}
 
+.person__about__btn,
 .books__notlog div{
     display:flex;
     font-weight: 600;
@@ -320,14 +346,14 @@
     height: 20px;
     width: fit-content;
     align-items:center;
-    jestify-content: center;
+    justify-content: center;
     margin: 10px;
     padding:10px;
     border-radius:30px;
 }
-
+.person__about__btn a,
 .books__notlog a{
-    color: #E2DFD8;
+    color: #FFFFFF;
 }
 /*------------login------------*/
 
