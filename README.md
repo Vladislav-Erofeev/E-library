@@ -11,6 +11,7 @@
 * Spring validation
 * PostgreSQL driver
 * Project Lombok
+
 Команды для запуска:
 1. Для сборки проекта необходимо использовать ``.\mvn package``
 2. Для запуска ``java -jar <название файла>``
