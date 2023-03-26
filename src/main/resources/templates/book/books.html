@@ -32,12 +32,12 @@
 <form method="get" action="/books">
     <input type="hidden" name="search" th:value="${search}">
     <select name="books_per_page">
-        <option value="2" th:if="${booksPerPage == 2}" selected>2</option>
-        <option value="2" th:unless="${booksPerPage == 2}">2</option>
-        <option value="4" th:if="${booksPerPage == 4}" selected>4</option>
-        <option value="4" th:unless="${booksPerPage == 4}">4</option>
-        <option value="6" th:if="${booksPerPage == 6}" selected>6</option>
-        <option value="6" th:unless="${booksPerPage == 6}">6</option>
+        <option value="20" th:if="${booksPerPage == 20}" selected>20</option>
+        <option value="20" th:unless="${booksPerPage == 20}">20</option>
+        <option value="40" th:if="${booksPerPage == 40}" selected>40</option>
+        <option value="40" th:unless="${booksPerPage == 40}">40</option>
+        <option value="60" th:if="${booksPerPage == 60}" selected>60</option>
+        <option value="60" th:unless="${booksPerPage == 60}">60</option>
     </select>
 
     <input type="submit" value="Показать!">
