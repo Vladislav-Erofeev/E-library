@@ -94,6 +94,7 @@
 .books__on__books {
     width: calc(100% - 40px);
     display: flex;
+    justify-content: center;
     gap: 20px;
     flex-wrap: wrap;
     margin: 20px;

@@ -37,7 +37,7 @@
 
     <div class="books__about">
         <div class="books__img">
-            <img th:src="@{/image/books/{name}(name=${book.getUrl()})}">
+            <img th:src="@{/image/{name}(name=${book.getUrl()})}">
         </div>
         <div class="books__name" th:text="${book.getName()}"></div>
         <div class="books__author" th:text="${book.getAuthor()}"></div>
