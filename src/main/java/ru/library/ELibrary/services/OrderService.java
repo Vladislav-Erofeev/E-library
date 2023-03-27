@@ -1,6 +1,5 @@
 package ru.library.ELibrary.services;
 
-import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,8 +40,7 @@ public class OrderService {
     }
 
     public List<Order> findOrderByPersonIdAndOrderStatus(int personId, OrderStatus orderStatus) {
-        List<Order> orders = orderRepository.findOrderByPersonIdAndOrderStatus(personId, orderStatus);
-        return orders;
+        return orderRepository.findOrderByPersonIdAndOrderStatus(personId, orderStatus);
     }
 
     public Order getById(int id) {
