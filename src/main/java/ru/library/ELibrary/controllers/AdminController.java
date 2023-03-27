@@ -68,8 +68,7 @@ public class AdminController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public String deleteBook(@PathVariable("id") int id,
-                             Model model) throws IOException{
+    public String deleteBook(@PathVariable("id") int id) throws IOException{
         Path fileNameAndPath = Paths.get( IMAGES_DIRECTORY, booksService.getById(id).getUrl());
         Files.delete(fileNameAndPath);
         booksService.delete(id);
@@ -107,7 +106,7 @@ public class AdminController {
     }
 
     @DeleteMapping("/order")
-    public String deleteBook(@RequestParam("order")int id) {
+    public String deleteBookfromOrder(@RequestParam("order")int id) {
         Order order = orderService.getById(id);
         orderService.deleteOrder(order);
         return "redirect:/admin/people/" + order.getPersonId();

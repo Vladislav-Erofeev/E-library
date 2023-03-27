@@ -56,6 +56,13 @@ public class PersonController {
         return "person/edit";
     }
 
+    @GetMapping("/liked_books")
+    public String likedBooksPage(Model model) {
+        Person person = authService.getPerson().get();
+        model.addAttribute("books", peopleService.getLikedBooks(person.getId()));
+        return "person/liked_books";
+    }
+
     @PatchMapping("/edit")
     public String edit(@ModelAttribute("person") @Valid Person person,
                        BindingResult bindingResult) {

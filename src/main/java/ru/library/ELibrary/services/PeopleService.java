@@ -20,10 +20,6 @@ public class PeopleService {
         this.repository = repository;
     }
 
-    public List<Person> getPeopleList() {
-        return repository.findAll();
-    }
-
     public Person getPerson(int id) {
         return repository.findById(id).orElse(null);
     }

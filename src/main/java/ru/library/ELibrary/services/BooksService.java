@@ -3,7 +3,6 @@ package ru.library.ELibrary.services;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -29,10 +28,6 @@ public class BooksService {
 
     public Book getById(int id) {
         return booksRepository.findById(id).orElse(null);
-    }
-
-    public List<Book> findByName(String name) {
-        return booksRepository.findByNameContainingIgnoreCase(name);
     }
 
     @Transactional
@@ -95,8 +90,7 @@ public class BooksService {
     }
 
     public List<Book> getTopBooks() {
-        List<Book> books= booksRepository.findAll(PageRequest.of(0, 5,
+        return booksRepository.findAll(PageRequest.of(0, 5,
                 Sort.by("views").descending())).getContent();
-        return books;
     }
 }

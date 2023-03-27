@@ -77,7 +77,7 @@ public class BookController {
     }
 
     @PostMapping("/{id}")
-    public String likeBook(@PathVariable("id")int id, Model model) {
+    public String likeBook(@PathVariable("id")int id) {
         Person person = authService.getPerson().get();
         booksService.addLikedPerson(id, peopleService.getPerson(id));
         peopleService.addLikedBook(person.getId(), booksService.getById(id));
@@ -85,7 +85,7 @@ public class BookController {
     }
 
     @DeleteMapping("/{id}")
-    public String deleteLikeBook(@PathVariable("id")int id, Model model) {
+    public String deleteLikeBook(@PathVariable("id")int id) {
         Person person = authService.getPerson().get();
         booksService.deleteLikedPerson(id, peopleService.getPerson(id));
         peopleService.deleteLikedBook(person.getId(), booksService.getById(id));
