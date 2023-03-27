@@ -6,39 +6,42 @@
     <link rel="stylesheet" href="/style/general.css" />
 </head>
 <body>
-
-<header>
-    <div class="logo">
-        <img src="/Vector.svg">
-    </div>
-    <ul class="menu">
-        <div class="menu__osn">
-            <div class="menu__osn__btnone"><a href="/index">Главная</a></div>
-            <div class="menu__osn__btnone"><a href="/books">Книги</a></div>
+    <header>
+        <div class="logo">
+            <img src="/Vector.svg">
         </div>
-        <div class="menu__osn">
-            <div th:if="${isAuthorised}"><a class="menu__osn__text"  href="/profile/liked_books">Понравившееся книги</a></div>
-            <div th:if="${isAuthorised}" class="menu__osn__btntwo" ><a href="/profile">Профиль</a></div>
-            <div th:unless="${isAuthorised}"><a class="menu__osn__text"  href="/auth/registration">Регистрация</a></div>
-            <div th:unless="${isAuthorised}" class="menu__osn__btntwo"><a href="/login">Войти</a></div>
+        <ul class="menu">
+            <div class="menu__osn">
+                <div class="menu__osn__btnone"><a href="/index">Главная</a></div>
+                <div class="menu__osn__btnone"><a href="/books">Книги</a></div>
+            </div>
+            <div class="menu__osn">
+                <div th:if="${isAuthorised}"><a class="menu__osn__text"  href="/profile/liked_books">Понравившееся книги</a></div>
+                <div th:if="${isAuthorised}" class="menu__osn__btntwo" ><a href="/profile">Профиль</a></div>
+                <div th:unless="${isAuthorised}"><a class="menu__osn__text"  href="/auth/registration">Регистрация</a></div>
+                <div th:unless="${isAuthorised}" class="menu__osn__btntwo"><a href="/login">Войти</a></div>
+            </div>
+        </ul>
+    </header>
+    <form class="login__form" th:method="POST" th:action="@{/process_login}">
+        <h1>Вход</h1>
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+        <input class="login__form__intext" type="text" name="username" id="username" placeholder="Введите почту:">
+        <input class="login__form__intext" type="password" name="password" id="password" placeholder="Введите пароль:">
+        <p th:if="${param.error}" style="color: red">Неверный логин или пароль</p>
+        <input class="login__form__btn" type="submit" value="Войти">
+        <a href="/auth/registration">Впервые здесь?</a>
+    </form>
+    <footer>
+        <div>
+            <p>+7 (9999) 99-99-99</p>
+            <p>e-library@mail.ru</p>
+            <p>пн. – пт.: 10:00 – 20:00</p>
+            <p>сб. – вс.: 10:00 – 18:00</p>
         </div>
-    </ul>
-</header>
-
-
-
-
-<form class="login__form" th:method="POST" th:action="@{/process_login}">
-    <h1>Вход</h1>
-    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-    <input class="login__form__intext" type="text" name="username" id="username" placeholder="Введите почту:">
-    <input class="login__form__intext" type="password" name="password" id="password" placeholder="Введите пароль:">
-    <p th:if="${param.error}" style="color: red">Неверный логин или пароль</p>
-    <input class="login__form__btn" type="submit" value="Войти">
-    <a href="/auth/registration">Впервые здесь?</a>
-</form>
-
-
-
+        <div>
+            <p>©РТУ МИРЭА ИКБО-01-21 Ерофеев В.С. Булгакова У.И.</p>
+        </div>
+    </footer>
 </body>
 </html>
