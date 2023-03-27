@@ -27,7 +27,7 @@
 <h1 th:unless="${orderedBooks.isEmpty()}">Заказы</h1>
 <section class="books" >
     <div th:each="order : ${orderedBooks}">
-        <img th:src="@{/image/books/{name}(name=${order.getBook().getUrl()})}" width="170" height="200">
+        <img th:src="@{/image/{name}(name=${order.getBook().getUrl()})}" width="170" height="200">
         <p th:text="${order.getBook().getName()}"></p>
         <p th:text="${order.getBook().getAuthor()}"></p>
         <p th:text="${order.getData()}" th:style = "${order.isOverdue()} ? 'color: red' : 'color: black' "></p>
@@ -41,7 +41,7 @@
 <h1 th:unless="${takedBooks.isEmpty()}">Книги на руках</h1>
 <section class="books" >
     <div th:each="order : ${takedBooks}">
-        <img th:src="@{/image/books/{name}(name=${order.getBook().getUrl()})}" width="170" height="200">
+        <img th:src="@{/image/{name}(name=${order.getBook().getUrl()})}" width="170" height="200">
         <p th:text="${order.getBook().getName()}"></p>
         <p th:text="${order.getBook().getAuthor()}"></p>
         <p th:text="${order.getData()}" th:style = "${order.isOverdue()} ? 'color: red' : 'color: black' "></p>
