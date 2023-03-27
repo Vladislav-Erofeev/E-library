@@ -18,6 +18,7 @@ import ru.library.ELibrary.services.OrderService;
 import ru.library.ELibrary.services.PeopleService;
 import ru.library.ELibrary.utils.BooksName;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -38,12 +39,13 @@ public class AdminController {
 
     @Autowired
     public AdminController(PeopleService peopleService, BooksService booksService,
-                           OrderService orderService, BooksName booksName, @Value("${upload.directory}") String upload_directory) {
+                           OrderService orderService, BooksName booksName) {
         this.peopleService = peopleService;
         this.booksService = booksService;
         this.orderService = orderService;
         this.booksName = booksName;
-        IMAGES_DIRECTORY = upload_directory + "/books/";
+        IMAGES_DIRECTORY = System.getProperty("user.dir") + "/src/main/resources/static/images/books/"; // на локалке
+//        IMAGES_DIRECTORY = System.getProperty("user.dir") + "/"; // в docker
     }
 
     @GetMapping("/books")

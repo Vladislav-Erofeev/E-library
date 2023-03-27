@@ -51,7 +51,7 @@
 
 <section id="books">
 <div th:each="book : ${books}">
-    <img th:src="@{/image/books/{name}(name=${book.getUrl()})}" width="170" height="200">
+    <img th:src="@{/image/{name}(name=${book.getUrl()})}" width="170" height="200">
     <p th:text="${book.getName()}"></p>
     <p th:text="${book.getAuthor()}"></p>
     <a th:href="@{/books/{id}(id=${book.getId()})}">Подробнее</a>
