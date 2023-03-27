@@ -55,7 +55,7 @@ public class BooksService {
     }
 
     public Page<Book> getPage(String name, int page, int booksPerPage, Sort sort) {
-        return booksRepository.findByNameStartsWithIgnoreCase(name,
+        return booksRepository.findByNameContainingIgnoreCase(name,
                 PageRequest.of(page, booksPerPage, sort.descending()));
     }
 

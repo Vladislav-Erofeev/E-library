@@ -106,6 +106,63 @@
 .person__about p{
     margin: 5px;
 }
+/*------------edit------------*/
+.edit__top{
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+.edit__form{
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #ABA299;
+    width: fit-content;
+    padding: 20px;
+    border-radius: 30px;
+    align-items: center;
+}
+.edit__form__block{
+    display:flex;
+    margin: 10px auto;
+}
+
+.edit__form__block div{
+    display: flex;
+    flex-direction: column;
+    margin: 10px 30px;
+}
+
+.edit__form__block p{
+    padding: 7px;
+    font-size: 19px;
+
+}
+
+.edit__form__block input[type="text"]{
+    margin: 5px;
+    height: 20px;
+    width: 300px;
+    font-size: 18px;
+    padding: 2px;
+    padding-left: 5px;
+    border-radius: 20px;
+    background-color: #E2DFD8;
+    border: 2px solid #4F4D52;
+}
+
+.edit__form input[type="submit"]{
+    width: fit-content;
+    height:fit-content;
+    padding:7px;
+    border-radius: 30px;
+    background-color: #D0A535;
+    border: 4px solid #4F4D52;
+    font-size: 16px;
+    font-weight:600;
+    color: #FFFFFF;
+}
 /*------------books------------*/
 
 .books__form{
@@ -133,8 +190,7 @@
     align-items: center;
 }
 
-.books__form__count input[type="submit"],
-.books__form__search input[type="submit"]{
+.books__form input[type="submit"] {
     background-color: #616B75;
     border-radius: 20px;
     color: #E2DFD8;

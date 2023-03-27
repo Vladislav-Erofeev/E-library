@@ -16,7 +16,7 @@
                 <div class="menu__osn__btnone"><a href="/books">Книги</a></div>
             </div>
             <div class="menu__osn">
-                <div th:if="${isAuthorised}"><a class="menu__osn__text"  href="/profile">Мои книги</a></div>
+                <div th:if="${isAuthorised}"><a class="menu__osn__text"  href="/profile/liked_books">Понравившееся книги</a></div>
                 <div th:if="${isAuthorised}" class="menu__osn__btntwo" ><a href="/profile">Профиль</a></div>
                 <div th:unless="${isAuthorised}"><a class="menu__osn__text"  href="/auth/registration">Регистрация</a></div>
                 <div th:unless="${isAuthorised}" class="menu__osn__btntwo"><a href="/login">Войти</a></div>
@@ -25,7 +25,7 @@
     </header>
 
     <form class="login__form" th:method="POST" th:action="@{/auth/registration}" th:object="${person}">
-        <h1>Регистация</h1>
+        <h1>Регистрация</h1>
         <input class="login__form__intext" type="text" th:field="*{lastName}" id="last_name" placeholder="Введите фамилию:">
         <p style="color: red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></p>
 

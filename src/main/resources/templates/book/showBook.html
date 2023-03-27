@@ -16,7 +16,7 @@
                 <div class="menu__osn__btnone"><a href="/books">Книги</a></div>
             </div>
             <div class="menu__osn">
-                <div th:if="${isAuthorised}"><a class="menu__osn__text"  href="/profile">Мои книги</a></div>
+                <div th:if="${isAuthorised}"><a class="menu__osn__text"  href="/profile/liked_books">Понравившееся книги</a></div>
                 <div th:if="${isAuthorised}" class="menu__osn__btntwo" ><a href="/profile">Профиль</a></div>
                 <div th:unless="${isAuthorised}"><a class="menu__osn__text"  href="/auth/registration">Регистрация</a></div>
                 <div th:unless="${isAuthorised}" class="menu__osn__btntwo"><a href="/login">Войти</a></div>

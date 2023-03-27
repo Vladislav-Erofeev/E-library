@@ -16,29 +16,38 @@
             <div class="menu__osn__btnone"><a href="/books">Книги</a></div>
         </div>
         <div class="menu__osn">
-            <div th:if="${isAuthorised}"><a class="menu__osn__text"  href="/profile">Мои книги</a></div>
-            <div th:if="${isAuthorised}" class="menu__osn__btntwo" ><a href="/profile">Профиль</a></div>
-            <div th:unless="${isAuthorised}"><a class="menu__osn__text"  href="/auth/registration">Регистрация</a></div>
-            <div th:unless="${isAuthorised}" class="menu__osn__btntwo"><a href="/login">Войти</a></div>
+            <div><a class="menu__osn__text"  href="/profile/liked_books">Понравившееся книги</a></div>
+            <div class="menu__osn__btntwo" ><a href="/profile">Профиль</a></div>
         </div>
     </ul>
 </header>
+<h1 class="edit__top">Редактирование профиля</h1>
+<form class="edit__form" th:method="PATCH" th:action="@{/profile/edit}" th:object="${person}">
+    <div class="edit__form__block">
+        <div>
+            <p>Фамилия:</p>
+            <p>Имя:</p>
+            <p>Отчество:</p>
+            <p>Год рождения:</p>
+            <p>Почта:</p>
+        </div>
+        <div>
+            <input type="text" th:field="*{lastName}" id="last_name" placeholder="Введите фамилию:">
+            <p style="color: red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></p>
 
-<form th:method="PATCH" th:action="@{/profile/edit}" th:object="${person}">
-    <input type="text" th:field="*{lastName}" id="last_name" placeholder="Введите фамилию:">
-    <p style="color: red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></p>
+            <input type="text" th:field="*{name}" id="name" placeholder="Введите имя:">
+            <p style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
 
-    <input type="text" th:field="*{name}" id="name" placeholder="Введите имя:">
-    <p style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+            <input type="text" th:field="*{surname}" id="surname" placeholder="Введите отчество:">
+            <p style="color: red" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></p>
 
-    <input type="text" th:field="*{surname}" id="surname" placeholder="Введите отчество:">
-    <p style="color: red" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></p>
+            <input type="text" th:field="*{year}" id="year" placeholder="Введите год рождения:">
+            <p style="color: red" th:if="${#fields.hasErrors('year')}" th:errors="*{year}"></p>
 
-    <input type="text" th:field="*{year}" id="year" placeholder="Введите год рождения:">
-    <p style="color: red" th:if="${#fields.hasErrors('year')}" th:errors="*{year}"></p>
-
-    <input type="text" th:field="*{email}" id="email" placeholder="Введите почту:">
-    <p style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+            <input type="text" th:field="*{email}" id="email" placeholder="Введите почту:">
+            <p style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+        </div>
+    </div>
 
     <input type="submit" value="Сохранить">
 </form>
