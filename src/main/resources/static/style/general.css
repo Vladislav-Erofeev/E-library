@@ -239,6 +239,7 @@ html{
     align-items: center;
     justify-content: space-around;
     padding: 5px;
+    font-weight: 600;
 }
 
 .books__block img{
@@ -533,6 +534,10 @@ footer p{
     gap: 10px;
 }
 
+.admin__people__form{
+    grid-template-columns:1fr 100px;
+}
+
 .admin__book__form input[type="text"]{
     height:40px;
     border-radius: 50px;
@@ -597,6 +602,12 @@ footer p{
 .admin__pages li a:hover:not(.active) {
     background-color:#6389DE;
     border-radius: 10px;
+}
+
+.admin__not{
+    margin: 40px 80px;
+    font-weight: 600;
+    font-size: 18px;
 }
 
 .admin__table{
@@ -700,7 +711,7 @@ footer p{
 
 
 /*------------admin-showBook------------*/
-.admin__book__info{
+.admin__info{
     display: grid;
     margin: 20px 80px;
     grid-template-columns: 250px 1fr;
@@ -709,13 +720,13 @@ footer p{
     font-size: 18px;
 }
 
-.admin__book__info form{
+.admin__info form{
     position:absolute;
     top: 0;
     right: 0;
 }
 
-.admin__book__info input{
+.admin__info input{
     background-color: red;
     padding: 10px;
     border-radius: 50px;
@@ -723,4 +734,63 @@ footer p{
     border: none;
     font-size: 18px;
     font-weight: 700;
+}
+
+.admin__books__block {
+    background-color: #A1CCF7;
+    height: 350px;
+    padding: 10px 5px;
+}
+
+.admin__books__block .books__btn{
+    background-color: #FFFFFF;
+    height: fit-content;
+    width: fit-content;
+    padding: 5px 10px;
+}
+
+.admin__books__block input[value="Выдать"]{
+    background-color: #202B6D;
+    padding:5px 10px;
+    border-radius: 30px;
+    color: #FFFFFF;
+    border: none;
+    font-weight: 600;
+}
+
+.admin__block__btn input[value="Продлить"],
+.admin__block__btn input[value="Удалить"],
+.admin__books__block input[value="Выдать"]{
+    background-color: #202B6D;
+    padding:5px 10px;
+    border-radius: 30px;
+    color: #FFFFFF;
+    border: none;
+    font-weight: 600;
+    margin: 0 5px;
+}
+.admin__block__btn input[value="Удалить"]{
+    background-color:red;
+}
+
+.admin__block__btn{
+    display: flex;
+    justify-content: space-between;
+}
+
+.admin__footer{
+    background-color: #202B6D;
+    display: flex;
+    justify-content: flex-end;
+    height:70px;
+    bottom:-80px;
+}
+
+.admin__footer p{
+    color: #FFFFFF;
+}
+
+.for__footer{
+    display: block;
+    margin-bottom: 50px;
 }

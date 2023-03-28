@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="/style/general.css" />
 </head>
 <body>
-
     <header>
         <div class="admin__logo">
             <img src="/Vector.svg">
@@ -20,7 +19,7 @@
     <div class="admin__top">
         <h1>Карточка книги</h1>
     </div>
-    <div class="admin__book__info">
+    <div class="admin__info">
         <p>Название книги:</p>
         <p th:text="${book.getName()}"></p>
         <p>Автор книги: </p>
@@ -39,7 +38,7 @@
         <h2>Заказы</h2>
     </div>
     <section >
-        <div th:if="${ordered.isEmpty()}">
+        <div class="admin__not" th:if="${ordered.isEmpty()}">
             <p>Заказов нет</p>
         </div>
         <table th:unless="${ordered.isEmpty()}" class="admin__table">
@@ -79,12 +78,11 @@
             </tbody>
         </table>
     </section>
-
     <div class="admin__top">
         <h2>На руках</h2>
     </div>
-    <section >
-        <div th:if="${taked.isEmpty()}">
+    <section class="for__footer">
+        <div class="admin__not" th:if="${taked.isEmpty()}">
             <p>Все экземпляры в библиотеке</p>
         </div>
         <table th:unless="${taked.isEmpty()}" class="admin__table">
@@ -129,5 +127,8 @@
             </tr>
         </table>
     </section>
+    <footer class="admin__footer">
+        <p>©РТУ МИРЭА ИКБО-01-21 Ерофеев В.С. Булгакова У.И.</p>
+    </footer>
 </body>
 </html>
