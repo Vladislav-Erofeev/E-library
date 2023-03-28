@@ -68,6 +68,12 @@
 			<artifactId>commons-lang3</artifactId>
 			<version>3.12.0</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.liquibase/liquibase-core -->
+		<dependency>
+			<groupId>org.liquibase</groupId>
+			<artifactId>liquibase-core</artifactId>
+			<version>4.20.0</version>
+		</dependency>
 
 	</dependencies>
 
@@ -96,6 +102,23 @@
 						</goals>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+				<!--start with basic information to get Liquibase plugin:
+                include <groupId>, <artifactID>, and <version> elements-->
+				<groupId>org.liquibase</groupId>
+				<artifactId>liquibase-maven-plugin</artifactId>
+				<version>4.20.0</version>
+				<configuration>
+					<!--set values for Liquibase properties and settings
+                    for example, the location of a properties file to use-->
+					<url>jdbc:postgresql://localhost:5432/library_db</url>
+					<username>postgres</username>
+					<password>19112003</password>
+					<changeLogFile>
+						./src/main/resources/db/changelog/db.changelog-master.yaml
+					</changeLogFile>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
