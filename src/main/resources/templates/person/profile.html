@@ -57,7 +57,7 @@
                 <img th:src="@{/image/{name}(name=${order.getBook().getUrl()})}">
                 <div class="books__author" th:text="${order.getBook().getAuthor()}"></div>
                 <div class="books__name" th:text="${order.getBook().getName()}"></div>
-                <p th:text="${order.getData()}" th:style = "${order.isOverdue()} ? 'color: red' : 'color: black' "></p>
+                <p th:text="${order.getData()}" th:style = "${order.isOverdue()} ? 'color: red' : 'color: #4F4D52' "></p>
                 <div class="books__btn"><a th:href="@{/books/{id}(id=${order.getBook().getId()})}">Подробнее</a></div>
             </div>
         </div>
@@ -73,7 +73,7 @@
                 <img th:src="@{/image/{name}(name=${order.getBook().getUrl()})}">
                 <div class="books__author" th:text="${order.getBook().getAuthor()}"></div>
                 <div class="books__name" th:text="${order.getBook().getName()}"></div>
-                <p th:text="${order.getData()}" th:style = "${order.isOverdue()} ? 'color: red' : 'color: black' "></p>
+                <p th:text="${order.getData()}" th:style = "${order.isOverdue()} ? 'color: red' : 'color: #4F4D52' "></p>
                 <div class="books__btn"><a th:href="@{/books/{id}(id=${order.getBook().getId()})}">Подробнее</a></div>
             </div>
         </div>

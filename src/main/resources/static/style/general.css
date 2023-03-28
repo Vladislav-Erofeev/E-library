@@ -520,14 +520,15 @@ footer p{
     margin:10px;
 }
 
-.admin__top h1{
+.admin__top h1,
+.admin__top h2{
     color: #202B6D;
 }
 
 .admin__book__form{
     display: grid;
     width: auto;
-    grid-template-columns:1fr 100px;
+    grid-template-columns:1fr 100px 220px;
     margin: 10px 40px;
     gap: 10px;
 }
@@ -551,21 +552,22 @@ footer p{
     color:#FFFFFF;
     font-weight: bold;
     font-size: 20px;
+    border: none;
 }
 
 .admin__book__add{
     background-color:#202B6D;
     width: 180px;
-    height: 60px;
+    height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 10px 40px;
     border-radius: 30px;
+    margin-left: 40px;
 }
 
-.admin__book__add a{
-    color: white;
+.admin__book__add p{
+    color: #FFFFFF;
     font-size: 18px;
     font-weight: bold;
 }
@@ -615,6 +617,21 @@ footer p{
 
 .admin__table td{
     padding:10px 30px;
+}
+
+.admin__table input[value="Продлить"],
+.admin__table input[value="Удалить"],
+.admin__table input[value="Выдать"]{
+    background-color: #202B6D;
+    padding:10px;
+    border-radius: 30px;
+    color: #FFFFFF;
+    border: none;
+    font-weight: 600;
+}
+
+.admin__table input[value="Удалить"]{
+    background-color: red;
 }
 
 /*----------*/
@@ -681,3 +698,29 @@ footer p{
     font-size:18px;
 }
 
+
+/*------------admin-showBook------------*/
+.admin__book__info{
+    display: grid;
+    margin: 20px 80px;
+    grid-template-columns: 250px 1fr;
+    gap:10px;
+    position: relative;
+    font-size: 18px;
+}
+
+.admin__book__info form{
+    position:absolute;
+    top: 0;
+    right: 0;
+}
+
+.admin__book__info input{
+    background-color: red;
+    padding: 10px;
+    border-radius: 50px;
+    color: #FFFFFF;
+    border: none;
+    font-size: 18px;
+    font-weight: 700;
+}

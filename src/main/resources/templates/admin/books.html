@@ -26,6 +26,7 @@
     <form class="admin__book__form" method="get" action="/admin/books">
         <input type="text" name="search" th:value="${search}" placeholder="Поиск">
         <input type="submit" value="Найти">
+        <a href="/admin/add"><div class="admin__book__add"><p>Добавить книгу</p></div></a>
     </form>
 
 
@@ -58,11 +59,11 @@
         </li>
     </ul>
 
-    <div class="admin__book__add"><a href="/admin/add">Добавить книгу</a></div>
 
 
 
-<a href="/admin/batch">Вставить 100 книг</a>
+
+<a href="/admin/batch"><div class="admin__book__add"><p>Вставить 100 книг</p></div></a>
 
 </body>
 </html>
