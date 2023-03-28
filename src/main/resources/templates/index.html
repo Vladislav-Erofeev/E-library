@@ -5,34 +5,41 @@
     <title>Title</title>
     <link rel="stylesheet" th:href="@{/style/general.css}" />
 </head>
-<style>
-    #books {
-        display: flex;
-        gap: 20px;
-    }
-
-    #books div {
-        border-style: solid;
-    }
-</style>
 <body>
-
-<a href="/index">Главная</a>
-<a href="/books">Книги</a>
-<a th:if="${isAuthorised}" href="/profile">Профиль</a>
-<a th:unless="${isAuthorised}" href="/login">Войти</a>
-
-<h1>Index</h1>
-<section id="books">
-    <div th:each="book : ${books}">
-        <img th:src="@{/image/books/{name}(name=${book.getUrl()})}" width="170" height="200">
-        <p th:text="${book.getName()}"></p>
-        <p th:text="${book.getAuthor()}"></p>
-        <a th:href="@{/books/{id}(id=${book.getId()})}">Подробнее</a>
+    <header>
+        <div class="logo">
+            <img th:src="@{/Vector.svg}">
+            <div class="logo__btn"><a href="/admin/books">Админ</a></div>
+        </div>
+        <ul class="menu">
+            <div class="menu__osn">
+                <div class="menu__osn__btnone"><a href="/index">Главная</a></div>
+                <div class="menu__osn__btnone"><a href="/books">Книги</a></div>
+            </div>
+            <div class="menu__osn">
+                <div th:if="${isAuthorised}"><a class="menu__osn__text"  href="/profile/liked_books">Понравившееся книги</a></div>
+                <div th:if="${isAuthorised}" class="menu__osn__btntwo" ><a href="/profile">Профиль</a></div>
+                <div th:unless="${isAuthorised}"><a class="menu__osn__text"  href="/auth/registration">Регистрация</a></div>
+                <div th:unless="${isAuthorised}" class="menu__osn__btntwo"><a href="/login">Войти</a></div>
+            </div>
+        </ul>
+    </header>
+    <div class="image__library">
+        <img th:src="@{/image_15.png}">
     </div>
-</section>
+    <div class="top_book">
+        <h1>Топ книги за месяц</h1>
+    </div>
 
-<a href="/admin/books">Для админа</a>
+    <section class="books__on__books">
+        <div class="books__block" th:each="book : ${books}">
+            <img th:src="@{/image/{name}(name=${book.getUrl()})}" width="100px">
+            <div class="books__author" th:text="${book.getAuthor()}"></div>
+            <div class="books__name" th:text="${book.getName()}"></div>
+            <div class="books__btn"><a th:href="@{/books/{id}(id=${book.getId()})}">Подробнее</a></div>
+        </div>
+    </section>
+
 
 </body>
 </html>

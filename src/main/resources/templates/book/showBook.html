@@ -3,53 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="/style/general.css" />
 </head>
-<style>
-    #books {
-        display: flex;
-        gap: 20px;
-    }
-
-    #books div {
-        border-style: solid;
-    }
-</style>
 <body>
+    <header>
+        <div class="logo">
+            <img src="/Vector.svg">
+        </div>
+        <ul class="menu">
+            <div class="menu__osn">
+                <div class="menu__osn__btnone"><a href="/index">Главная</a></div>
+                <div class="menu__osn__btnone"><a href="/books">Книги</a></div>
+            </div>
+            <div class="menu__osn">
+                <div th:if="${isAuthorised}"><a class="menu__osn__text"  href="/profile/liked_books">Понравившееся книги</a></div>
+                <div th:if="${isAuthorised}" class="menu__osn__btntwo" ><a href="/profile">Профиль</a></div>
+                <div th:unless="${isAuthorised}"><a class="menu__osn__text"  href="/auth/registration">Регистрация</a></div>
+                <div th:unless="${isAuthorised}" class="menu__osn__btntwo"><a href="/login">Войти</a></div>
+            </div>
+        </ul>
+    </header>
 
-<a href="/index">Главная</a>
-<a href="/books">Книги</a>
-<a th:if="${isAuthorised}" href="/profile">Профиль</a>
-<a th:unless="${isAuthorised}" href="/login">Войти</a>
-<br>
+    <div class="books__about">
+        <div class="books__img">
+            <img th:src="@{/image/{name}(name=${book.getUrl()})}">
+        </div>
+        <div class="books__name" th:text="${book.getName()}"></div>
+        <div class="books__author" th:text="${book.getAuthor()}"></div>
+        <div class="books__description">
+            <p>Описание:</p>
+            <div th:text="${book.getDescription()}"></div>
+        </div>
 
-<img th:src="@{/image/{name}(name=${book.getUrl()})}" width="300" height="450">
+    </div>
 
-<h1 th:text="${book.getName()}"></h1>
-<p th:text="${book.getAuthor()}"></p>
-<p th:text="${book.getDescription()}"></p>
+    <div class="books__log" th:if="${isAuthorised}">
 
-<div th:if="${isAuthorised}">
+        <form th:method="POST" th:action="@{/books/{id}(id=${book.getId()})}" th:unless="${isLiked}">
+            <input type="submit" value="Лайкнуть">
+        </form>
 
-    <form th:method="POST" th:action="@{/books/{id}(id=${book.getId()})}" th:unless="${isLiked}">
-      <input type="submit" value="Лайкнуть">
-    </form>
+        <form th:method="DELETE" th:action="@{/books/{id}(id=${book.getId()})}" th:if="${isLiked}">
+            <input type="submit" value="Убрать лайк">
+        </form>
 
-    <form th:method="DELETE" th:action="@{/books/{id}(id=${book.getId()})}" th:if="${isLiked}">
-        <input type="submit" value="Убрать лайк">
-    </form>
+        <form th:method="POST" th:action="@{/order/add/{id}(id=${book.getId()})}" th:unless="${isOrdered}" th:if="${isFree}">
+            <input type="submit" value="Заказать">
+        </form>
 
-    <form th:method="POST" th:action="@{/order/add/{id}(id=${book.getId()})}" th:unless="${isOrdered}" th:if="${isFree}">
-        <input type="submit" value="Заказать">
-    </form>
+        <p th:unless="${isFree}">
+            Книг в наличии нет
+        </p>
+    </div>
 
-    <p th:unless="${isFree}">
-        Книг в наличии нет
-    </p>
-</div>
-
-<div th:unless="${isAuthorised}">
-    <p>Необходима авторизация</p>
-</div>
+    <div class="books__notlog" th:unless="${isAuthorised}">
+        <p>Чтобы заказать книгу необходима авторизация</p>
+        <div><a href="/login">Авторизироваться</a></div>
+    </div>
 
 </body>
 </html>

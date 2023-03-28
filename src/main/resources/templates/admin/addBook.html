@@ -2,34 +2,47 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Добавление книги</title>
+    <link rel="stylesheet" href="   /style/general.css" />
 </head>
 <body>
 
-<a href="/admin/books">Книги</a>
-<a href="/admin/people">Люди</a>
+    <header>
+        <div class="admin__logo">
+            <img src="/Vector.svg">
+        </div>
+        <div class="admin__menu">
+            <div><a href="/index">Главная</a></div>
+            <div><a href="/admin/books">Книги</a></div>
+            <div><a href="/admin/people">Люди</a></div>
+        </div>
+    </header>
 
-<form th:method="POST" th:action="@{/admin/add}" th:object="${book}" enctype="multipart/form-data">
-    <label for="name">Введите имя:</label>
+
+    <div class="admin__top">
+        <h1>Добавление книги</h1>
+    </div>
+
+<form class="admin__form" th:method="POST" th:action="@{/admin/add}" th:object="${book}" enctype="multipart/form-data">
+    <label for="name">Название:</label>
     <input type="text" th:field="*{name}" id="name">
-    <br>
 
-    <label for="author">Введите автора:</label>
+    <label for="author">Автор:</label>
     <input type="text" th:field="*{author}" id="author">
-    <br>
 
-    <label for="year">Введите год написания:</label>
+    <label for="year">Год написания:</label>
     <input type="text" th:field="*{year}" id="year">
-    <br>
 
-    <label for="count">Введите количество книг:</label>
+    <label for="count">Количество книг:</label>
     <input type="text" th:field="*{count}" id="count">
-    <br>
 
-    <label for="description">Введите описание:</label>
-    <input type="text" th:field="*{description}" id="description">
-    <br>
-    <input type="file" name="image" accept="image/*" class="form-control-file">
+    <label for="description">Описание:</label>
+    <textarea th:field="*{description}" id="description"></textarea>
+
+    <p>Изображение:</p>
+
+    <input type="file" id="file" name="image" accept="image/*">
+    <label for="file">Выберите файл</label>
 
     <input type="submit" value="Сохранить">
 </form>

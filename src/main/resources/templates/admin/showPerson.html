@@ -3,13 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="${person.getName()}">Title</title>
+    <link rel="stylesheet" href="/style/general.css" />
 </head>
 <body>
 
-<a href="/index">Главная</a>
-<a href="/admin/books">Книги</a>
-<a href="/admin/people">Люди</a>
+<header>
+    <div class="admin__logo">
+        <img src="/Vector.svg">
+    </div>
+    <div class="admin__menu">
+        <div><a href="/index">Главная</a></div>
+        <div><a href="/admin/books">Книги</a></div>
+        <div><a href="/admin/people">Люди</a></div>
+    </div>
+</header>
 
+<p th:text="${person.getLastName()}"></p>
 <p th:text="${person.getName()}"></p>
 <p th:text="${person.getLastName()}"></p>
 <p th:text="${person.getSurname()}"></p>
@@ -18,7 +27,7 @@
 <h1 th:unless="${orderedBooks.isEmpty()}">Заказы</h1>
 <section class="books" >
     <div th:each="order : ${orderedBooks}">
-        <img th:src="@{/image/books/{name}(name=${order.getBook().getUrl()})}" width="170" height="200">
+        <img th:src="@{/image/{name}(name=${order.getBook().getUrl()})}" width="170" height="200">
         <p th:text="${order.getBook().getName()}"></p>
         <p th:text="${order.getBook().getAuthor()}"></p>
         <p th:text="${order.getData()}" th:style = "${order.isOverdue()} ? 'color: red' : 'color: black' "></p>
@@ -32,7 +41,7 @@
 <h1 th:unless="${takedBooks.isEmpty()}">Книги на руках</h1>
 <section class="books" >
     <div th:each="order : ${takedBooks}">
-        <img th:src="@{/image/books/{name}(name=${order.getBook().getUrl()})}" width="170" height="200">
+        <img th:src="@{/image/{name}(name=${order.getBook().getUrl()})}" width="170" height="200">
         <p th:text="${order.getBook().getName()}"></p>
         <p th:text="${order.getBook().getAuthor()}"></p>
         <p th:text="${order.getData()}" th:style = "${order.isOverdue()} ? 'color: red' : 'color: black' "></p>

@@ -2,13 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title th:text="${book.getName()}">Title</title>
+    <title th:text="${book.getName()}"></title>
+    <link rel="stylesheet" href="/style/general.css" />
 </head>
 <body>
 
-<a href="/index">Главная</a>
-<a href="/admin/books">Книги</a>
-<a href="/admin/people">Люди</a>
+    <header>
+        <div class="admin__logo">
+            <img src="/Vector.svg">
+        </div>
+        <div class="admin__menu">
+            <div><a href="/index">Главная</a></div>
+            <div><a href="/admin/books">Книги</a></div>
+            <div><a href="/admin/people">Люди</a></div>
+        </div>
+    </header>
 
 <p>Название книги: <span th:text="${book.getName()}"></span></p>
 <p>Автор книги: <span  th:text="${book.getAuthor()}"></span></p>

@@ -3,65 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="/style/general.css" />
 </head>
-<style>
-    #books {
-        width: 100%;
-        display: flex;
-        gap: 20px;
-        flex-wrap: wrap;
-    }
-
-    #books div {
-        border-style: solid;
-    }
-
-    #pages {
-        display: flex;
-        flex-direction: row;
-        gap: 20px;
-    }
-</style>
 <body>
+    <header>
+        <div class="logo">
+            <img src="/Vector.svg">
+        </div>
+        <ul class="menu">
+            <div class="menu__osn">
+                <div class="menu__osn__btnone"><a href="/index">Главная</a></div>
+                <div class="menu__osn__btnone"><a href="/books">Книги</a></div>
+            </div>
+            <div class="menu__osn">
+                <div th:if="${isAuthorised}"><a class="menu__osn__text"  href="/profile/liked_books">Понравившееся книги</a></div>
+                <div th:if="${isAuthorised}" class="menu__osn__btntwo" ><a href="/profile">Профиль</a></div>
+                <div th:unless="${isAuthorised}"><a class="menu__osn__text"  href="/auth/registration">Регистрация</a></div>
+                <div th:unless="${isAuthorised}" class="menu__osn__btntwo"><a href="/login">Войти</a></div>
+            </div>
+        </ul>
+    </header>
 
-<a href="/index">Главная</a>
-<a href="/books">Книги</a>
-<a th:if="${isAuthorised}" href="/profile">Профиль</a>
-<a th:unless="${isAuthorised}" href="/login">Войти</a>
+    <div class="books__form">
+        <form class="books__form__search" method="get" action="/books">
+            <input type="hidden" th:value="${booksPerPage}" name="books_per_page">
+            <input type="text" name="search" th:value="${search}">
+            <input type="submit" value="найти">
+        </form>
 
-<form method="get" action="/books">
-    <input type="hidden" name="search" th:value="${search}">
-    <select name="books_per_page">
-        <option value="2" th:if="${booksPerPage == 2}" selected>2</option>
-        <option value="2" th:unless="${booksPerPage == 2}">2</option>
-        <option value="4" th:if="${booksPerPage == 4}" selected>4</option>
-        <option value="4" th:unless="${booksPerPage == 4}">4</option>
-        <option value="6" th:if="${booksPerPage == 6}" selected>6</option>
-        <option value="6" th:unless="${booksPerPage == 6}">6</option>
-    </select>
+        <form class="books__form__count" method="get" action="/books">
+            <input type="hidden" name="search" th:value="${search}">
+            <select name="books_per_page">
+                <option value="15" th:if="${booksPerPage == 15}" selected>15</option>
+                <option value="15" th:unless="${booksPerPage == 15}">15</option>
+                <option value="30" th:if="${booksPerPage == 30}" selected>30</option>
+                <option value="30" th:unless="${booksPerPage == 30}">30</option>
+                <option value="45" th:if="${booksPerPage == 45}" selected>45</option>
+                <option value="45" th:unless="${booksPerPage == 45}">45</option>
+            </select>
+            <input type="submit" value="показать">
+        </form>
+    </div>
 
-    <input type="submit" value="Показать!">
-</form>
+    <section class="books__on__books">
+        <div class="books__block" th:each="book : ${books}">
+            <img th:src="@{/image/{name}(name=${book.getUrl()})}">
+            <div class="books__author" th:text="${book.getAuthor()}"></div>
+            <div class="books__name" th:text="${book.getName()}"></div>
+            <div class="books__btn"><a th:href="@{/books/{id}(id=${book.getId()})}">Подробнее</a></div>
+        </div>
+    </section>
 
-<form method="get" action="/books">
-    <input type="hidden" th:value="${booksPerPage}" name="books_per_page">
-    <input type="text" name="search" th:value="${search}">
-    <input type="submit" value="найти">
-</form>
-
-<section id="books">
-<div th:each="book : ${books}">
-    <img th:src="@{/image/{name}(name=${book.getUrl()})}" width="170" height="200">
-    <p th:text="${book.getName()}"></p>
-    <p th:text="${book.getAuthor()}"></p>
-    <a th:href="@{/books/{id}(id=${book.getId()})}">Подробнее</a>
-</div>
-</section>
-
-<div id="pages">
-    <a th:each="number : ${#numbers.sequence(0, pageCount-1)}"
-       th:href="@{/books(page=${number}, books_per_page=${booksPerPage}, search=${search})}"
-       th:text="${number+1}"></a>
-</div>
+    <div class="books__pages">
+        <li th:each="number : ${#numbers.sequence(0, pageCount-1)}">
+            <a th:href="@{/books(page=${number}, books_per_page=${booksPerPage}, search=${search})}"  th:text="${number+1}"></a>
+        </li>
+    </div>
 </body>
 </html>
