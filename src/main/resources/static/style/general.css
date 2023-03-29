@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url(//fonts.googleapis.com/css2?family=Montserrat&display=swap);
 
 *{
+    color: #4F4D52;
+    font-family: 'Montserrat', sans-serif;
     margin: 0;
     padding: 0;
-    font-family: 'Montserrat', sans-serif;
-    color: #4F4D52;
     text-decoration: none;
 }
 html{
@@ -33,7 +33,6 @@ html{
     display: block;
     width: 250px;
 }
-
 
 .menu{
     background-color: #C6A88E;
@@ -221,19 +220,19 @@ html{
 }
 
 .books__on__books {
-    width: calc(100% - 80px);
     display: grid;
-    grid-template-columns: repeat(5,1fr);
+    grid-template-columns: repeat(auto-fit,210px);
     gap: 20px;
     justify-items: center;
-    margin: 40px 40px;
+    margin: 40px;
+    justify-content: center
 }
 
 .books__block {
     background-color: #C6A88E;
     border-radius: 10px;
-    width: 230px;
-    height: 310px;
+    width: 200px;
+    height: 295px;
     display: flex;
     flex-direction: column;
     align-items: center;
