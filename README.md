@@ -1,17 +1,19 @@
 # Проект E-library
 Веб-приложение для ведения учёта книг и пользователей в библиотеке 
 ## Зависимости
-Для запуска приложения необходимы следующие зависимости:
-* Spring boot
-* Spring web mvc
-* Hibernate
-* Spring data JPA
-* Thymeleaf
+Использованные в проекте зависимости:
+* Spring web
+* Spring Data JPA
 * Spring Security
-* Spring validation
-* PostgreSQL driver
+* PostgreSQL Driver
 * Project Lombok
+* Spring Validation
+* Thymeleaf
+* Liquibase
 
-Команды для запуска:
-1. Для сборки проекта необходимо использовать ``.\mvn package``
-2. Для запуска ``java -jar <название файла>``
+## Конфигурация
+Для запуска проекта необходимо добавить файлы конфигурации:
+* application.properties
+* liquibase.properties
+
+Также необходимо настроить конфигурацию в файле docker-compose.yaml
