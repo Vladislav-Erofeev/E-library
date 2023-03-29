@@ -13,23 +13,18 @@ import ru.library.ELibrary.models.Person;
 import ru.library.ELibrary.services.AuthService;
 import ru.library.ELibrary.services.BooksService;
 import ru.library.ELibrary.services.OrderService;
-import ru.library.ELibrary.services.PeopleService;
-
-import java.util.Date;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/order")
 public class OrderController {
-    private final PeopleService peopleService;
+
     private final BooksService booksService;
     private final AuthService authService;
     private final OrderService orderService;
 
     @Autowired
-    public OrderController(PeopleService peopleService, BooksService booksService,
+    public OrderController(BooksService booksService,
                            AuthService authService, OrderService orderService) {
-        this.peopleService = peopleService;
         this.booksService = booksService;
         this.authService = authService;
         this.orderService = orderService;

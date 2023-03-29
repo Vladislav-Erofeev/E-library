@@ -56,10 +56,4 @@ public class Book {
             likedPerson = new ArrayList<>();
         likedPerson.add(person);
     }
-
-    public void addOrderedPerson(Person person) {
-        if(orderedPerson == null)
-            orderedPerson = new ArrayList<>();
-        orderedPerson.add(person);
-    }
 }

@@ -1,0 +1,31 @@
+version: '2'
+
+services:
+  
+  postgres:
+    image: postgres
+    restart: always
+    container_name: db
+    environment:
+      POSTGRES_DB: library_db
+      POSTGRES_PASSWORD: password
+
+  spring:
+    build: .
+    container_name: spring_app
+    depends_on:
+      - postgres
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/library_db
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=password
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    ports:
+      - 8080:8080
+
+  adminer:
+    image: adminer
+    restart: always
+    container_name: panel_db
+    ports:
+      - 8000:8080

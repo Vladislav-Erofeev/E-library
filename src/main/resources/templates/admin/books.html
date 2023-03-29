@@ -2,44 +2,65 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Админ книги</title>
+    <link rel="stylesheet" href="/style/general.css" />
 </head>
 <body>
 
-<a href="/index">Главная</a>
-<a href="/admin/books">Книги</a>
-<a href="/admin/people">Люди</a>
+    <header>
+        <div class="admin__logo">
+            <img src="/Vector.svg">
+        </div>
+        <div class="admin__menu">
+            <div><a href="/index">Главная</a></div>
+            <div><a href="/admin/books">Книги</a></div>
+            <div><a href="/admin/people">Люди</a></div>
+        </div>
+    </header>
 
-<h1>Book admin page</h1>
+    <div class="admin__top">
+        <h1>Книги</h1>
+    </div>
 
-<form method="get" action="/admin/books">
-    <input type="text" name="search" th:value="${search}">
-    <input type="submit" value="найти">
-</form>
 
-<table border="1" cellpadding="5">
-    <tr>
-        <td>Название</td>
-        <td>Год написания</td>
-        <td>Автор</td>
-        <td>Количество</td>
-    </tr>
-    <tr th:each="book: ${books}">
-        <td><a th:text="${book.getName()}" th:href="@{/admin/books/{id}(id=${book.getId()})}"></a></td>
-        <td th:text="${book.getYear()}"></td>
-        <td th:text="${book.getAuthor()}"></td>
-        <td th:text="${book.getCount()}"></td>
-    </tr>
-</table>
+    <form class="admin__book__form" method="get" action="/admin/books">
+        <input type="text" name="search" th:value="${search}" placeholder="Поиск">
+        <input type="submit" value="Найти">
+    </form>
 
-<a href="/admin/add">Добавить книгу</a>
 
-<br>
-<div id="pages">
-    <a th:each="number : ${#numbers.sequence(0, pageCount-1)}"
-       th:href="@{/admin/books(page=${number}, search=${search})}"
-       th:text="${number+1}"></a>
-</div>
+    <table class="admin__table">
+        <colgroup>
+            <col style="width: 35%;">
+            <col style="width: 35%;">
+            <col style="width: 15%;">
+            <col style="width: 15%;">
+        </colgroup>
+        <tbody>
+            <tr>
+                <th>Название</th>
+                <th>Автор</th>
+                <th>Год написания</th>
+                <th>Количество</th>
+            </tr>
+            <tr th:each="book: ${books}">
+                <td><a th:text="${book.getName()}" th:href="@{/admin/books/{id}(id=${book.getId()})}"></a></td>
+                <td th:text="${book.getAuthor()}"></td>
+                <td th:text="${book.getYear()}"></td>
+                <td th:text="${book.getCount()}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul class="admin__pages">
+        <li  th:each="number : ${#numbers.sequence(0, pageCount-1)}">
+            <a th:href="@{/admin/books(page=${number}, search=${search})}" th:text="${number+1}"></a>
+        </li>
+    </ul>
+
+    <div class="admin__book__add"><a href="/admin/add">Добавить книгу</a></div>
+
+
 
 <a href="/admin/batch">Вставить 100 книг</a>
 

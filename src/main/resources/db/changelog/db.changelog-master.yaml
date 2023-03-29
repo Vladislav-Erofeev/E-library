@@ -1,0 +1,12 @@
+databaseChangeLog:
+  - id : 2
+  - include:
+      file: db/changelog/changeset/create-person.sql
+  - include:
+      file: db/changelog/changeset/create-book.sql
+  - include:
+      file: db/changelog/changeset/create-liked.sql
+  - include:
+      file: db/changelog/changeset/create-order.sql
+  - include:
+      file: db/changelog/changeset/insert-admin.sql

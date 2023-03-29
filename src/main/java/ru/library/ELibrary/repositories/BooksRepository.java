@@ -11,6 +11,6 @@ import java.util.List;
 
 @Repository
 public interface BooksRepository extends JpaRepository<Book, Integer> {
-    List<Book> findByNameStartsWithIgnoreCase(String name);
-    Page<Book> findByNameStartsWithIgnoreCase(String name, PageRequest pageRequest);
+    List<Book> findByNameContainingIgnoreCase(String name);
+    Page<Book> findByNameContainingIgnoreCase(String name, PageRequest pageRequest);
 }

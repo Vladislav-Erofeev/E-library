@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Понравившиеся книги</title>
+    <link rel="stylesheet" href="/style/general.css" />
+</head>
+<body>
+<header>
+    <div class="logo">
+        <img src="/Vector.svg">
+    </div>
+    <ul class="menu">
+        <div class="menu__osn">
+            <div class="menu__osn__btnone"><a href="/index">Главная</a></div>
+            <div class="menu__osn__btnone"><a href="/books">Книги</a></div>
+        </div>
+        <div class="menu__osn">
+            <div><a class="menu__osn__text"  href="/profile/liked_books">Понравившееся книги</a></div>
+            <div class="menu__osn__btntwo" ><a href="/profile">Профиль</a></div>
+        </div>
+    </ul>
+</header>
+
+<h1 class="top_book">Понравившиеся книги</h1>
+<section class="books__on__books">
+    <div class="books__block" th:each="book : ${books}">
+        <img th:src="@{/image/{name}(name=${book.getUrl()})}">
+        <div class="books__author" th:text="${book.getAuthor()}"></div>
+        <div class="books__name" th:text="${book.getName()}"></div>
+        <div class="books__btn"><a th:href="@{/books/{id}(id=${book.getId()})}">Подробнее</a></div>
+    </div>
+</section>
+
+
+</body>
+</html>

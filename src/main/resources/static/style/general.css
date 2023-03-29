@@ -1,3 +1,663 @@
-body {
-    background-color: aquamarine;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    color: #4F4D52;
+    text-decoration: none;
 }
+
+.error{
+    width:fit-content;
+    margin: 320px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo{
+    background-color: white;
+    padding-left: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin__logo img,
+.logo img{
+    display: block;
+    width: 250px;
+}
+
+
+.menu{
+    background-color: #C6A88E;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.menu__osn{
+    display:flex;
+    align-items: center;
+}
+
+.logo__btn,
+.error div,
+.menu__osn__btnone,
+.menu__osn__btntwo{
+    background-color: #E2DFD8;
+    height: 50px;
+    width: 150px;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
+.logo__btn a,
+.error div a,
+.menu__osn__btnone a,
+.menu__osn__btntwo a{
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.menu__osn__btntwo{
+    background-color: #616B75;
+}
+
+.menu__osn__btntwo a{
+    color: #E2DFD8;
+}
+
+.menu__osn__text{
+    text-decoration: none;
+    font-weight: 1000;
+    color: #E2DFD8;
+    font-size: 20px;
+}
+/*------------index------------*/
+.image__library img{
+    width: 100%;
+    height: 100%;
+}
+
+.top_book{
+    display: flex;
+    justify-content: center;
+}
+/*------------person------------*/
+
+.person__top{
+    margin: 5px 50px;
+}
+.person__about{
+    display: flex;
+    font-size: 20px;
+    font-weight: 400;
+}
+.person__about div{
+    margin: 30px 60px;
+}
+.person__about p{
+    margin: 5px;
+}
+/*------------edit------------*/
+.edit__top{
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+.edit__form{
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #ABA299;
+    width: fit-content;
+    padding: 20px;
+    border-radius: 30px;
+    align-items: center;
+}
+.edit__form__block{
+    display:flex;
+    margin: 10px auto;
+}
+
+.edit__form__block div{
+    display: flex;
+    flex-direction: column;
+    margin: 10px 30px;
+}
+
+.edit__form__block p{
+    padding: 7px;
+    font-size: 19px;
+
+}
+
+.edit__form__block input[type="text"]{
+    margin: 5px;
+    height: 20px;
+    width: 300px;
+    font-size: 18px;
+    padding: 2px;
+    padding-left: 5px;
+    border-radius: 20px;
+    background-color: #E2DFD8;
+    border: 2px solid #4F4D52;
+}
+
+.edit__form input[type="submit"]{
+    width: fit-content;
+    height:fit-content;
+    padding:7px;
+    border-radius: 30px;
+    background-color: #D0A535;
+    border: 4px solid #4F4D52;
+    font-size: 16px;
+    font-weight:600;
+    color: #FFFFFF;
+}
+/*------------books------------*/
+
+.books__form{
+    display: grid;
+    width: calc(100% - 120px);
+    margin: 20px 40px;
+    grid-template-columns: 85% 15%;
+    gap: 40px;
+}
+
+.books__form__search{
+    display:grid;
+    grid-template-columns: 1fr 80px;
+    gap: 5px 10px;
+}
+
+.books__form__search input[type="text"]{
+    height:30px;
+    border-radius: 50px;
+    border: 2px #616B75 solid;
+    background-color:#E2DFD8;
+    padding-left: 20px;
+    font-weight: bold;
+    font-size: 20px;
+    align-items: center;
+}
+
+.books__form input[type="submit"] {
+    background-color: #616B75;
+    border-radius: 20px;
+    color: #E2DFD8;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.books__form__count{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px 10px;
+}
+.books__form__count select{
+    border-radius: 15px;
+    text-align: center;
+    background-color: #E2DFD8;
+    font-weight: 700;
+    font-size: 16px;
+    border: none;
+}
+
+.books__form__count input[type="submit"]{
+    font-size: 16px;
+}
+
+.books__on__books {
+    width: calc(100% - 80px);
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    gap: 20px;
+    justify-items: center;
+    margin: 20px 40px;
+}
+
+.books__block {
+    background-color: #C6A88E;
+    border-radius: 10px;
+    width: 230px;
+    height: 310px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding: 5px;
+}
+
+.books__block img{
+    display: block;
+    height: 170px;
+    width: 100px;
+}
+.books__author,
+.books__name{
+    text-decoration: none;
+    font-weight: 700;
+    color: #4F4D52;
+    font-size: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 210px;
+    text-align: center;
+}
+
+.books__author{
+    color: #000000;
+}
+
+.books__btn{
+    width: 120px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: #E2DFD8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.books__btn a{
+    font-size: 12px;
+    color: black;
+    font-weight: 700;
+}
+
+.books__pages {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 10px 40px;
+}
+
+.books__pages li {
+    display: inline;
+    background-color: #E2DFD8;
+    margin: 5px;
+    border-radius: 10px;
+}
+.books__pages li a {
+    color: #4F4D52;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+.books__pages li a:hover:not(.active) {
+    background-color:#C6A88E;
+    border-radius: 10px;
+}
+
+.books__about{
+    display: grid;
+    margin: 10px 40px;
+    width: auto;
+    gap: 10px 30px;
+    grid-template-areas:
+        "photo name"
+        "photo autor"
+        "photo description";
+}
+.books__about{
+    display: grid;
+    margin: 10px 60px;
+    width: auto;
+    gap: 10px 30px;
+    grid-template-areas:
+        "photo name"
+        "photo autor"
+        "photo description";
+}
+.books__about .books__img{
+    grid-area: photo;
+    background-color: #4F4D52;
+    width: 250px;
+    height: 250px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.books__img img{
+    height: 230px;
+}
+
+.books__about .books__name{
+    grid-area: name;
+    width: fit-content;
+    font-size: 30px;
+}
+.books__about .books__author{
+    grid-area: autor;
+    width: fit-content;
+    font-size: 26px;
+}
+.books__description{
+    grid-area: description;
+}
+
+.books__description p{
+    font-weight: bold;
+    font-size: 20px;
+    padding: 10px 0px;
+}
+
+.books__description div{
+    background-color: #E2DFD8;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.person__info,
+.books__log,
+.books__notlog{
+    margin: 40px;
+    font-weight: 700;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.books__log{
+    justify-content: flex-end;
+}
+
+.person__about__exit input,
+.books__log input[type="submit"]{
+    background-color: #D0A535;
+    border-radius: 20px;
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 18px;
+    height: fit-content;
+    width: fit-content;
+    padding: 5px;
+    border: 4px #4F4D52 solid;
+    margin: 10px;
+}
+.person__about__exit input{
+    border: none;
+    background-color: red;
+    margin: 30px -40px;
+    height: 40px;
+}
+
+.person__about__btn,
+.books__notlog div{
+    display:flex;
+    font-weight: 600;
+    font-size: 18px;
+    background-color: #C6A88E;
+    height: 20px;
+    width: fit-content;
+    align-items:center;
+    justify-content: center;
+    margin: 10px;
+    padding:10px;
+    border-radius:30px;
+}
+.person__about__btn a,
+.books__notlog a{
+    color: #FFFFFF;
+}
+/*------------login------------*/
+
+.login__form{
+    display: flex;
+    width: 620px;
+    height: 400px;
+    background-color: #ABA299;
+    border-radius: 50px;
+    margin: auto;
+    margin-top: 50px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+}
+
+.login__form h1{
+    color: white;
+    font-size: 36px;
+}
+
+.login__form__intext{
+    width: 560px;
+    height: 50px;
+    background-color: #E2DFD8;
+    border: none;
+    border-radius: 50px;
+    margin: 15px 0;
+    font-weight: bold;
+    font-size: 20px;
+    padding-left: 40px;
+}
+
+.login__form__intext:focus{
+    outline: none;
+}
+
+.login__form__btn{
+    width: 248px;
+    height: 50px;
+    background-color: #D0A535;
+    border: solid 4px #616B75;
+    border-radius: 50px;
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+}
+
+/*------------admin------------*/
+
+.admin__logo{
+    background-color: white;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 20px;
+}
+
+.admin__menu{
+    background-color: #6389DE;
+    height: 80px;
+    display: flex;
+    align-items: center;
+}
+
+.admin__menu div{
+    background-color: #FFFFFF;
+    height: 50px;
+    width: 150px;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
+.admin__menu div a{
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+    color: #202B6D;
+}
+
+.admin__top{
+    display: flex;
+    justify-content: center;
+    margin:10px;
+}
+
+.admin__top h1{
+    color: #202B6D;
+}
+
+.admin__book__form{
+    display: grid;
+    width: auto;
+    grid-template-columns:1fr 100px;
+    margin: 10px 40px;
+    gap: 10px;
+}
+
+.admin__book__form input[type="text"]{
+    height:40px;
+    border-radius: 50px;
+    border: 2px #202B6D solid;
+    background-color:#EBEEF3;
+    padding-left: 20px;
+    font-weight: bold;
+    font-size: 20px;
+    align-items: center;
+}
+
+.admin__book__form input[type="submit"]{
+    height: 40px;
+    width: 100px;
+    border-radius: 20px;
+    background-color:#202B6D;
+    color:#FFFFFF;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.admin__book__add{
+    background-color:#202B6D;
+    width: 180px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 40px;
+    border-radius: 30px;
+}
+
+.admin__book__add a{
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+/*----------*/
+.admin__pages {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 10px 40px;
+}
+
+.admin__pages li {
+    display: inline;
+    background-color: #EBEEF3;
+    margin: 5px;
+    border-radius: 10px;
+}
+.admin__pages li a {
+    color: #202B6D;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+.admin__pages li a:hover:not(.active) {
+    background-color:#6389DE;
+    border-radius: 10px;
+}
+
+.admin__table{
+    margin: 10px 40px;
+    width: calc(100% - 80px);
+    border-collapse: collapse;
+}
+
+.admin__table th{
+    padding:10px;
+    background-color: #6389DE;
+    color:#EBEEF3;
+}
+
+.admin__table tr:nth-child(odd){
+    background-color: #EBEEF3;
+}
+
+.admin__table td{
+    padding:10px 30px;
+}
+
+/*----------*/
+
+.admin__form{
+    width: 500px;
+    display: grid;
+    grid-template-columns: 150px 400px;
+    margin: 30px auto;
+    gap: 10px;
+}
+
+.admin__form input[type="text"]{
+    background-color:#EBEEF3;
+    height: 25px;
+    border: 2px solid #202B6D;
+    border-radius: 20px;
+    padding-left: 10px;
+}
+
+.admin__form textarea{
+    background-color:#EBEEF3;
+    height: 150px;
+    border: 2px solid #202B6D;
+    border-radius: 20px;
+    padding-left: 10px;
+}
+
+.admin__form input[type="file"] {
+    width: 0;
+    height: 0;
+    position: absolute !important;
+}
+
+.admin__form input[type="file"] + label {
+    background-color: #202B6D;
+    width: 150px;
+    height: 25px;
+    border-radius: 25px;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.admin__form input[type="file"]:focus + label,
+.admin__form input[type="file"] + label:hover {
+    background-color: #6389DE;
+}
+.admin__form input[type="file"]:focus + label {
+    outline: 1px dotted #000;
+}
+
+.admin__form input[type="submit"]{
+    background-color:#202B6D;
+    border:none;
+    width: 200px;
+    height:40px;
+    grid-column: span 2;
+    border-radius: 30px;
+    margin: 10px auto;
+    color: #FFF;
+    font-weight: bold;
+    font-size:18px;
+}
+

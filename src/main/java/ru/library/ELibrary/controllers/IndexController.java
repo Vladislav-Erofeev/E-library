@@ -38,15 +38,13 @@ public class IndexController {
     }
 
     @GetMapping("/errors")
-    public String errorPage(HttpServletRequest request, Model model) {
+    public String errorPage(HttpServletRequest request) {
         Object error = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
-        Integer code = Integer.valueOf(error.toString());
-        switch (code) {
-            case 403:
-                return "error/403";
-            case 404:
-                return "error/404";
-        }
-        return "index";
+        int code = Integer.parseInt(error.toString());
+        return switch (code) {
+            case 403 -> "error/403";
+            case 404 -> "error/404";
+            default -> "index";
+        };
     }
 }

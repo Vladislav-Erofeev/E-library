@@ -20,6 +20,7 @@ import ru.library.ELibrary.services.OrderService;
 import ru.library.ELibrary.services.PeopleService;
 import ru.library.ELibrary.utils.BooksName;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -40,12 +41,13 @@ public class AdminController {
 
     @Autowired
     public AdminController(PeopleService peopleService, BooksService booksService,
-                           OrderService orderService, BooksName booksName, @Value("${upload.directory}") String upload_directory) {
+                           OrderService orderService, BooksName booksName) {
         this.peopleService = peopleService;
         this.booksService = booksService;
         this.orderService = orderService;
         this.booksName = booksName;
-        IMAGES_DIRECTORY = upload_directory + "/books/";
+        IMAGES_DIRECTORY = System.getProperty("user.dir") + "/src/main/resources/static/images/books/"; // на локалке
+//        IMAGES_DIRECTORY = System.getProperty("user.dir") + "/"; // в docker
     }
 
     @GetMapping("/books")
@@ -71,8 +73,7 @@ public class AdminController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public String deleteBook(@PathVariable("id") int id,
-                             Model model) throws IOException{
+    public String deleteBook(@PathVariable("id") int id) throws IOException{
         Path fileNameAndPath = Paths.get( IMAGES_DIRECTORY, booksService.getById(id).getUrl());
         Files.delete(fileNameAndPath);
         booksService.delete(id);
@@ -110,7 +111,7 @@ public class AdminController {
     }
 
     @DeleteMapping("/order")
-    public String deleteBook(@RequestParam("order")int id) {
+    public String deleteBookfromOrder(@RequestParam("order")int id) {
         Order order = orderService.getById(id);
         orderService.deleteOrder(order);
         return "redirect:/admin/people/" + order.getPersonId();

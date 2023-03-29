@@ -3,7 +3,6 @@ package ru.library.ELibrary.services;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -32,10 +31,6 @@ public class BooksService {
         return booksRepository.findById(id).orElse(null);
     }
 
-    public List<Book> findByName(String name) {
-        return booksRepository.findByNameStartsWithIgnoreCase(name);
-    }
-
     @Transactional
     public void save(Book book) {
         book.setViews(1);
@@ -55,12 +50,12 @@ public class BooksService {
      * @return Страницу с найденными элементами
      */
     public Page<Book> getPage(String name, int page, int booksPerPage) {
-        return booksRepository.findByNameStartsWithIgnoreCase(name,
+        return booksRepository.findByNameContainingIgnoreCase(name,
                 PageRequest.of(page, booksPerPage, Sort.by("views").descending()));
     }
 
     public Page<Book> getPage(String name, int page, int booksPerPage, Sort sort) {
-        return booksRepository.findByNameStartsWithIgnoreCase(name,
+        return booksRepository.findByNameContainingIgnoreCase(name,
                 PageRequest.of(page, booksPerPage, sort.descending()));
     }
 
@@ -102,9 +97,8 @@ public class BooksService {
     }
 
     public List<Book> getTopBooks() {
-        List<Book> books= booksRepository.findAll(PageRequest.of(0, 5,
+        return booksRepository.findAll(PageRequest.of(0, 5,
                 Sort.by("views").descending())).getContent();
-        return books;
     }
 
     private List<Book> generate100Books() {
