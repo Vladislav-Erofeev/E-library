@@ -23,7 +23,6 @@
             </div>
         </ul>
     </header>
-
     <div class="books__about">
         <div class="books__img">
             <img th:src="@{/image/{name}(name=${book.getUrl()})}">
@@ -34,9 +33,7 @@
             <p>Описание:</p>
             <div th:text="${book.getDescription()}"></div>
         </div>
-
     </div>
-
     <div class="books__log" th:if="${isAuthorised}">
 
         <form th:method="POST" th:action="@{/books/{id}(id=${book.getId()})}" th:unless="${isLiked}">
@@ -55,11 +52,20 @@
             Книг в наличии нет
         </p>
     </div>
-
     <div class="books__notlog" th:unless="${isAuthorised}">
         <p>Чтобы заказать книгу необходима авторизация</p>
         <div><a href="/login">Авторизироваться</a></div>
     </div>
-
+    <footer>
+        <div>
+            <p>+7 (9999) 99-99-99</p>
+            <p>e-library@mail.ru</p>
+            <p>пн. – пт.: 10:00 – 20:00</p>
+            <p>сб. – вс.: 10:00 – 18:00</p>
+        </div>
+        <div>
+            <p>©РТУ МИРЭА ИКБО-01-21 Ерофеев В.С. Булгакова У.И.</p>
+        </div>
+    </footer>
 </body>
 </html>

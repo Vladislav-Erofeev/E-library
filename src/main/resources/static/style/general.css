@@ -7,6 +7,10 @@
     color: #4F4D52;
     text-decoration: none;
 }
+html{
+    min-height: 100%;
+    position:relative;
+}
 
 .error{
     width:fit-content;
@@ -222,7 +226,7 @@
     grid-template-columns: repeat(5,1fr);
     gap: 20px;
     justify-items: center;
-    margin: 20px 40px;
+    margin: 40px 40px;
 }
 
 .books__block {
@@ -235,6 +239,7 @@
     align-items: center;
     justify-content: space-around;
     padding: 5px;
+    font-weight: 600;
 }
 
 .books__block img{
@@ -278,7 +283,7 @@
     display: flex;
     flex-wrap: wrap;
     padding: 0;
-    margin: 10px 40px;
+    margin: 40px 40px;
 }
 
 .books__pages li {
@@ -419,8 +424,7 @@
     height: 400px;
     background-color: #ABA299;
     border-radius: 50px;
-    margin: auto;
-    margin-top: 50px;
+    margin: 50px auto;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
@@ -458,7 +462,24 @@
     font-weight: 700;
     color: white;
 }
+/*------------footer------------*/
+footer{
+    background-color: #4F4D52;
+    padding: 10px 80px;
+    width: calc(100% - 160px);
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    left:0;
+    bottom: -110px;
+}
 
+footer p{
+    color: #E2DFD8;
+    margin: 5px;
+}
 /*------------admin------------*/
 
 .admin__logo{
@@ -500,16 +521,21 @@
     margin:10px;
 }
 
-.admin__top h1{
+.admin__top h1,
+.admin__top h2{
     color: #202B6D;
 }
 
 .admin__book__form{
     display: grid;
     width: auto;
-    grid-template-columns:1fr 100px;
+    grid-template-columns:1fr 100px 220px;
     margin: 10px 40px;
     gap: 10px;
+}
+
+.admin__people__form{
+    grid-template-columns:1fr 100px;
 }
 
 .admin__book__form input[type="text"]{
@@ -531,21 +557,22 @@
     color:#FFFFFF;
     font-weight: bold;
     font-size: 20px;
+    border: none;
 }
 
 .admin__book__add{
     background-color:#202B6D;
     width: 180px;
-    height: 60px;
+    height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 10px 40px;
     border-radius: 30px;
+    margin-left: 40px;
 }
 
-.admin__book__add a{
-    color: white;
+.admin__book__add p{
+    color: #FFFFFF;
     font-size: 18px;
     font-weight: bold;
 }
@@ -577,6 +604,12 @@
     border-radius: 10px;
 }
 
+.admin__not{
+    margin: 40px 80px;
+    font-weight: 600;
+    font-size: 18px;
+}
+
 .admin__table{
     margin: 10px 40px;
     width: calc(100% - 80px);
@@ -595,6 +628,21 @@
 
 .admin__table td{
     padding:10px 30px;
+}
+
+.admin__table input[value="Продлить"],
+.admin__table input[value="Удалить"],
+.admin__table input[value="Выдать"]{
+    background-color: #202B6D;
+    padding:10px;
+    border-radius: 30px;
+    color: #FFFFFF;
+    border: none;
+    font-weight: 600;
+}
+
+.admin__table input[value="Удалить"]{
+    background-color: red;
 }
 
 /*----------*/
@@ -661,3 +709,88 @@
     font-size:18px;
 }
 
+
+/*------------admin-showBook------------*/
+.admin__info{
+    display: grid;
+    margin: 20px 80px;
+    grid-template-columns: 250px 1fr;
+    gap:10px;
+    position: relative;
+    font-size: 18px;
+}
+
+.admin__info form{
+    position:absolute;
+    top: 0;
+    right: 0;
+}
+
+.admin__info input{
+    background-color: red;
+    padding: 10px;
+    border-radius: 50px;
+    color: #FFFFFF;
+    border: none;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.admin__books__block {
+    background-color: #A1CCF7;
+    height: 350px;
+    padding: 10px 5px;
+}
+
+.admin__books__block .books__btn{
+    background-color: #FFFFFF;
+    height: fit-content;
+    width: fit-content;
+    padding: 5px 10px;
+}
+
+.admin__books__block input[value="Выдать"]{
+    background-color: #202B6D;
+    padding:5px 10px;
+    border-radius: 30px;
+    color: #FFFFFF;
+    border: none;
+    font-weight: 600;
+}
+
+.admin__block__btn input[value="Продлить"],
+.admin__block__btn input[value="Удалить"],
+.admin__books__block input[value="Выдать"]{
+    background-color: #202B6D;
+    padding:5px 10px;
+    border-radius: 30px;
+    color: #FFFFFF;
+    border: none;
+    font-weight: 600;
+    margin: 0 5px;
+}
+.admin__block__btn input[value="Удалить"]{
+    background-color:red;
+}
+
+.admin__block__btn{
+    display: flex;
+    justify-content: space-between;
+}
+
+.admin__footer{
+    background-color: #202B6D;
+    display: flex;
+    justify-content: flex-end;
+    height:70px;
+    bottom:-80px;
+}
+
+.admin__footer p{
+    color: #FFFFFF;
+}
+
+.for__footer{
+    display: block;
+    margin-bottom: 50px;
+}

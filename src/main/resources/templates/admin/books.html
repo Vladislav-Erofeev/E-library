@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="/style/general.css" />
 </head>
 <body>
-
     <header>
         <div class="admin__logo">
             <img src="/Vector.svg">
@@ -17,18 +16,14 @@
             <div><a href="/admin/people">Люди</a></div>
         </div>
     </header>
-
     <div class="admin__top">
         <h1>Книги</h1>
     </div>
-
-
     <form class="admin__book__form" method="get" action="/admin/books">
         <input type="text" name="search" th:value="${search}" placeholder="Поиск">
         <input type="submit" value="Найти">
+        <a href="/admin/add"><div class="admin__book__add"><p>Добавить книгу</p></div></a>
     </form>
-
-
     <table class="admin__table">
         <colgroup>
             <col style="width: 35%;">
@@ -51,18 +46,14 @@
             </tr>
         </tbody>
     </table>
-
     <ul class="admin__pages">
         <li  th:each="number : ${#numbers.sequence(0, pageCount-1)}">
             <a th:href="@{/admin/books(page=${number}, search=${search})}" th:text="${number+1}"></a>
         </li>
     </ul>
-
-    <div class="admin__book__add"><a href="/admin/add">Добавить книгу</a></div>
-
-
-
-<a href="/admin/batch">Вставить 100 книг</a>
-
+    <a class="for__footer" href="/admin/batch"><div class="admin__book__add"><p>Вставить 100 книг</p></div></a>
+    <footer class="admin__footer">
+            <p>©РТУ МИРЭА ИКБО-01-21 Ерофеев В.С. Булгакова У.И.</p>
+    </footer>
 </body>
 </html>
