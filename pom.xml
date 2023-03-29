@@ -110,11 +110,7 @@
 				<artifactId>liquibase-maven-plugin</artifactId>
 				<version>4.20.0</version>
 				<configuration>
-					<!--set values for Liquibase properties and settings
-                    for example, the location of a properties file to use-->
-					<url>jdbc:postgresql://localhost:5432/library_db</url>
-					<username>postgres</username>
-					<password>19112003</password>
+					<propertyFile>./src/main/resources/liquibase.properties</propertyFile>
 					<changeLogFile>
 						./src/main/resources/db/changelog/db.changelog-master.yaml
 					</changeLogFile>
