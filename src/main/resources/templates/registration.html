@@ -23,29 +23,30 @@
             </div>
         </ul>
     </header>
+    <main>
+        <form class="login__form" th:method="POST" th:action="@{/auth/registration}" th:object="${person}">
+            <h1>Регистрация</h1>
+            <input class="login__form__intext" type="text" th:field="*{lastName}" id="last_name" placeholder="Введите фамилию:">
+            <p style="color: red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></p>
 
-    <form class="login__form" th:method="POST" th:action="@{/auth/registration}" th:object="${person}">
-        <h1>Регистрация</h1>
-        <input class="login__form__intext" type="text" th:field="*{lastName}" id="last_name" placeholder="Введите фамилию:">
-        <p style="color: red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></p>
+            <input class="login__form__intext" type="text" th:field="*{name}" id="name" placeholder="Введите имя:">
+            <p style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
 
-        <input class="login__form__intext" type="text" th:field="*{name}" id="name" placeholder="Введите имя:">
-        <p style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+            <input class="login__form__intext" type="text" th:field="*{surname}" id="surname" placeholder="Введите отчество:">
+            <p style="color: red" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></p>
 
-        <input class="login__form__intext" type="text" th:field="*{surname}" id="surname" placeholder="Введите отчество:">
-        <p style="color: red" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></p>
+            <input class="login__form__intext" type="text" th:field="*{year}" id="year" placeholder="Введите год рождения:">
+            <p style="color: red" th:if="${#fields.hasErrors('year')}" th:errors="*{year}"></p>
 
-        <input class="login__form__intext" type="text" th:field="*{year}" id="year" placeholder="Введите год рождения:">
-        <p style="color: red" th:if="${#fields.hasErrors('year')}" th:errors="*{year}"></p>
+            <input class="login__form__intext" type="text" th:field="*{email}" id="email" placeholder="Введите почту:">
+            <p style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
 
-        <input class="login__form__intext" type="text" th:field="*{email}" id="email" placeholder="Введите почту:">
-        <p style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+            <input class="login__form__intext" type="text" th:field="*{password}" id="password" placeholder="Введите пароль:">
+            <p style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
 
-        <input class="login__form__intext" type="text" th:field="*{password}" id="password" placeholder="Введите пароль:">
-        <p style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
-
-        <input class="login__form__btn" type="submit" value="Зарегистрироваться">
-    </form>
+            <input class="login__form__btn" type="submit" value="Зарегистрироваться">
+        </form>
+    </main>
     <footer>
         <div>
             <p>+7 (9999) 99-99-99</p>
@@ -57,6 +58,5 @@
             <p>©РТУ МИРЭА ИКБО-01-21 Ерофеев В.С. Булгакова У.И.</p>
         </div>
     </footer>
-
 </body>
 </html>

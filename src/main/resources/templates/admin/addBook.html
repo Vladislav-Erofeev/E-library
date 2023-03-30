@@ -16,25 +16,27 @@
             <div><a href="/admin/people">Люди</a></div>
         </div>
     </header>
-    <div class="admin__top">
-        <h1>Добавление книги</h1>
-    </div>
-    <form class="admin__form" th:method="POST" th:action="@{/admin/add}" th:object="${book}" enctype="multipart/form-data">
-        <label for="name">Название:</label>
-        <input type="text" th:field="*{name}" id="name">
-        <label for="author">Автор:</label>
-        <input type="text" th:field="*{author}" id="author">
-        <label for="year">Год написания:</label>
-        <input type="text" th:field="*{year}" id="year">
-        <label for="count">Количество книг:</label>
-        <input type="text" th:field="*{count}" id="count">
-        <label for="description">Описание:</label>
-        <textarea th:field="*{description}" id="description"></textarea>
-        <p>Изображение:</p>
-        <input type="file" id="file" name="image" accept="image/*">
-        <label for="file">Выберите файл</label>
-        <input type="submit" value="Сохранить">
-    </form>
+    <main>
+        <div class="admin__top">
+            <h1>Добавление книги</h1>
+        </div>
+        <form class="admin__form" th:method="POST" th:action="@{/admin/add}" th:object="${book}" enctype="multipart/form-data">
+            <label for="name">Название:</label>
+            <input type="text" th:field="*{name}" id="name">
+            <label for="author">Автор:</label>
+            <input type="text" th:field="*{author}" id="author">
+            <label for="year">Год написания:</label>
+            <input type="text" th:field="*{year}" id="year">
+            <label for="count">Количество книг:</label>
+            <input type="text" th:field="*{count}" id="count">
+            <label for="description">Описание:</label>
+            <textarea th:field="*{description}" id="description"></textarea>
+            <p>Изображение:</p>
+            <input type="file" id="file" name="image" accept="image/*">
+            <label for="file">Выберите файл</label>
+            <input type="submit" value="Сохранить">
+        </form>
+    </main>
     <footer class="admin__footer">
         <p>©РТУ МИРЭА ИКБО-01-21 Ерофеев В.С. Булгакова У.И.</p>
     </footer>

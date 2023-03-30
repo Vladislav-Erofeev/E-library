@@ -12,6 +12,12 @@ html{
     position:relative;
 }
 
+
+main{
+    width: 90%;
+    margin: 0 auto;
+}
+
 .error{
     width:fit-content;
     margin: 320px auto;
@@ -221,7 +227,7 @@ html{
 
 .books__on__books {
     display: grid;
-    grid-template-columns: repeat(auto-fit,210px);
+    grid-template-columns: repeat(5,1fr);
     gap: 20px;
     justify-items: center;
     margin: 40px;
@@ -231,8 +237,8 @@ html{
 .books__block {
     background-color: #C6A88E;
     border-radius: 10px;
-    width: 200px;
-    height: 295px;
+    width: 230px;
+    height: 310px;
     display: flex;
     flex-direction: column;
     align-items: center;

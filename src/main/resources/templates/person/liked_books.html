@@ -21,15 +21,17 @@
             </div>
         </ul>
     </header>
-    <h1 class="top_book">Понравившиеся книги</h1>
-    <section class="books__on__books">
-        <div class="books__block" th:each="book : ${books}">
-            <img th:src="@{/image/{name}(name=${book.getUrl()})}">
-            <div class="books__author" th:text="${book.getAuthor()}"></div>
-            <div class="books__name" th:text="${book.getName()}"></div>
-            <div class="books__btn"><a th:href="@{/books/{id}(id=${book.getId()})}">Подробнее</a></div>
-        </div>
-    </section>
+    <main>
+        <h1 class="top_book">Понравившиеся книги</h1>
+        <section class="books__on__books">
+            <div class="books__block" th:each="book : ${books}">
+                <img th:src="@{/image/{name}(name=${book.getUrl()})}">
+                <div class="books__author" th:text="${book.getAuthor()}"></div>
+                <div class="books__name" th:text="${book.getName()}"></div>
+                <div class="books__btn"><a th:href="@{/books/{id}(id=${book.getId()})}">Подробнее</a></div>
+            </div>
+        </section>
+    </main>
     <footer>
         <div>
             <p>+7 (9999) 99-99-99</p>

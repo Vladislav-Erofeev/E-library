@@ -16,71 +16,73 @@
             <div><a href="/admin/people">Люди</a></div>
         </div>
     </header>
-    <div class="admin__top">
-        <h1>Карточка читателя</h1>
-    </div>
-    <div class="admin__info">
-        <p>Читательский номер:</p>
-        <p th:text="${person.getId()}"></p>
-        <p>Фамилия:</p>
-        <p th:text="${person.getLastName()}"></p>
-        <p>Имя:</p>
-        <p th:text="${person.getName()}"></p>
-        <p>Отчество:</p>
-        <p th:text="${person.getSurname()}"></p>
-        <p>Год рождения:</p>
-        <p th:text="${person.getYear()}"></p>
-        <p>Почта:</p>
-        <p th:text="${person.getEmail()}"></p>
-    </div>
-    <div class="admin__top">
-        <h2>Заказы</h2>
-    </div>
-    <section class="books" >
-        <div class="admin__not" th:if="${orderedBooks.isEmpty()}">
-            <p>Заказов нет</p>
+    <main>
+        <div class="admin__top">
+            <h1>Карточка читателя</h1>
         </div>
-        <div class="books__on__books" th:unless="${orderedBooks.isEmpty()}">
-            <div class="books__block admin__books__block" th:each="order : ${orderedBooks}">
-                <img th:src="@{/image/{name}(name=${order.getBook().getUrl()})}">
-                <div class="books__author" th:text="${order.getBook().getAuthor()}"></div>
-                <div class="books__name" th:text="${order.getBook().getName()}"></div>
-                <p th:text="${order.getData()}" th:style = "${order.isOverdue()} ? 'color: red' : 'color: #4F4D52' "></p>
-                <div class="books__btn"><a th:href="@{/admin/books/{id}(id=${order.getBook().getId()})}">Подробнее</a></div>
-                <form th:action="@{/admin/order}" th:method="POST">
-                    <input type="hidden" name="order" th:value="${order.getId()}">
-                    <input type="submit" value="Выдать">
-                </form>
+        <div class="admin__info">
+            <p>Читательский номер:</p>
+            <p th:text="${person.getId()}"></p>
+            <p>Фамилия:</p>
+            <p th:text="${person.getLastName()}"></p>
+            <p>Имя:</p>
+            <p th:text="${person.getName()}"></p>
+            <p>Отчество:</p>
+            <p th:text="${person.getSurname()}"></p>
+            <p>Год рождения:</p>
+            <p th:text="${person.getYear()}"></p>
+            <p>Почта:</p>
+            <p th:text="${person.getEmail()}"></p>
+        </div>
+        <div class="admin__top">
+            <h2>Заказы</h2>
+        </div>
+        <section class="books" >
+            <div class="admin__not" th:if="${orderedBooks.isEmpty()}">
+                <p>Заказов нет</p>
             </div>
-        </div>
-    </section>
-    <div class="admin__top">
-        <h2>Книги на руках</h2>
-    </div>
-    <section class="books" >
-        <div class="admin__not" th:if="${takedBooks.isEmpty()}">
-            <p>Книг на руках нет</p>
-        </div>
-        <div class="books__on__books" th:unless="${takedBooks.isEmpty()}">
-            <div  class="books__block admin__books__block" th:each="order : ${takedBooks}">
-                <img th:src="@{/image/{name}(name=${order.getBook().getUrl()})}">
-                <div class="books__author" th:text="${order.getBook().getAuthor()}"></div>
-                <div class="books__name" th:text="${order.getBook().getName()}"></div>
-                <p th:text="${order.getData()}" th:style = "${order.isOverdue()} ? 'color: red' : 'color: #4F4D52' "></p>
-                <div class="books__btn"><a th:href="@{/admin/books/{id}(id=${order.getBook().getId()})}">Подробнее</a></div>
-                <div class="admin__block__btn">
-                    <form th:action="@{/admin/order}" th:method="PATCH">
+            <div class="books__on__books" th:unless="${orderedBooks.isEmpty()}">
+                <div class="books__block admin__books__block" th:each="order : ${orderedBooks}">
+                    <img th:src="@{/image/{name}(name=${order.getBook().getUrl()})}">
+                    <div class="books__author" th:text="${order.getBook().getAuthor()}"></div>
+                    <div class="books__name" th:text="${order.getBook().getName()}"></div>
+                    <p th:text="${order.getData()}" th:style = "${order.isOverdue()} ? 'color: red' : 'color: #4F4D52' "></p>
+                    <div class="books__btn"><a th:href="@{/admin/books/{id}(id=${order.getBook().getId()})}">Подробнее</a></div>
+                    <form th:action="@{/admin/order}" th:method="POST">
                         <input type="hidden" name="order" th:value="${order.getId()}">
-                        <input type="submit" value="Продлить">
-                    </form>
-                    <form th:action="@{/admin/order}" th:method="DELETE">
-                        <input type="hidden" name="order" th:value="${order.getId()}">
-                        <input type="submit" value="Удалить">
+                        <input type="submit" value="Выдать">
                     </form>
                 </div>
             </div>
+        </section>
+        <div class="admin__top">
+            <h2>Книги на руках</h2>
         </div>
-    </section>
+        <section class="books" >
+            <div class="admin__not" th:if="${takedBooks.isEmpty()}">
+                <p>Книг на руках нет</p>
+            </div>
+            <div class="books__on__books" th:unless="${takedBooks.isEmpty()}">
+                <div  class="books__block admin__books__block" th:each="order : ${takedBooks}">
+                    <img th:src="@{/image/{name}(name=${order.getBook().getUrl()})}">
+                    <div class="books__author" th:text="${order.getBook().getAuthor()}"></div>
+                    <div class="books__name" th:text="${order.getBook().getName()}"></div>
+                    <p th:text="${order.getData()}" th:style = "${order.isOverdue()} ? 'color: red' : 'color: #4F4D52' "></p>
+                    <div class="books__btn"><a th:href="@{/admin/books/{id}(id=${order.getBook().getId()})}">Подробнее</a></div>
+                    <div class="admin__block__btn">
+                        <form th:action="@{/admin/order}" th:method="PATCH">
+                            <input type="hidden" name="order" th:value="${order.getId()}">
+                            <input type="submit" value="Продлить">
+                        </form>
+                        <form th:action="@{/admin/order}" th:method="DELETE">
+                            <input type="hidden" name="order" th:value="${order.getId()}">
+                            <input type="submit" value="Удалить">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
     <footer class="admin__footer">
         <p>©РТУ МИРЭА ИКБО-01-21 Ерофеев В.С. Булгакова У.И.</p>
     </footer>

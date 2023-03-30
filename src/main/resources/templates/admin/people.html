@@ -16,38 +16,40 @@
             <div><a href="/admin/people">Люди</a></div>
         </div>
     </header>
-    <div class="admin__top">
-        <h1>Люди</h1>
-    </div>
-    <form class="admin__book__form admin__people__form" method="get" action="/admin/people">
-        <input type="text" name="search" th:value="${search}" placeholder="Поиск">
-        <input type="submit" value="Найти">
-    </form>
-    <table  class="admin__table">
-        <colgroup>
-            <col style="width: 18%;">
-            <col style="width: 18%;">
-            <col style="width: 18%;">
-            <col style="width: 8%;">
-            <col style="width: 18%;">
-        </colgroup>
-        <tbody>
-            <tr>
-                <th>Фамилия</th>
-                <th>Имя</th>
-                <th>Отчество</th>
-                <th>Год рождения</th>
-                <th>Почта</th>
-            </tr>
-            <tr th:each="person: ${people}">
-                <td><a th:text="${person.getLastName()}" th:href="@{/admin/people/{id}(id=${person.getId()})}"></a></td>
-                <td th:text="${person.getName()}"></td>
-                <td th:text="${person.getSurname()}"></td>
-                <td th:text="${person.getYear()}"></td>
-                <td th:text="${person.getEmail()}"></td>
-            </tr>
-        </tbody>
-    </table>
+    <main>
+        <div class="admin__top">
+            <h1>Люди</h1>
+        </div>
+        <form class="admin__book__form admin__people__form" method="get" action="/admin/people">
+            <input type="text" name="search" th:value="${search}" placeholder="Поиск">
+            <input type="submit" value="Найти">
+        </form>
+        <table  class="admin__table">
+            <colgroup>
+                <col style="width: 18%;">
+                <col style="width: 18%;">
+                <col style="width: 18%;">
+                <col style="width: 8%;">
+                <col style="width: 18%;">
+            </colgroup>
+            <tbody>
+                <tr>
+                    <th>Фамилия</th>
+                    <th>Имя</th>
+                    <th>Отчество</th>
+                    <th>Год рождения</th>
+                    <th>Почта</th>
+                </tr>
+                <tr th:each="person: ${people}">
+                    <td><a th:text="${person.getLastName()}" th:href="@{/admin/people/{id}(id=${person.getId()})}"></a></td>
+                    <td th:text="${person.getName()}"></td>
+                    <td th:text="${person.getSurname()}"></td>
+                    <td th:text="${person.getYear()}"></td>
+                    <td th:text="${person.getEmail()}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
     <footer class="admin__footer">
         <p>©РТУ МИРЭА ИКБО-01-21 Ерофеев В.С. Булгакова У.И.</p>
     </footer>
