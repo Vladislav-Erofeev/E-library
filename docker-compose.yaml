@@ -12,6 +12,8 @@ services:
 
   spring:
     build: .
+    volumes:
+      - C:/e-library:/images
     container_name: spring_app
     depends_on:
       - postgres

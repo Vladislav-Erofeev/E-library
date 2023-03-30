@@ -46,8 +46,8 @@ public class AdminController {
         this.booksService = booksService;
         this.orderService = orderService;
         this.booksName = booksName;
-        IMAGES_DIRECTORY = System.getProperty("user.dir") + "/src/main/resources/static/images/books/"; // на локалке
-//        IMAGES_DIRECTORY = System.getProperty("user.dir") + "/"; // в docker
+//        IMAGES_DIRECTORY = System.getProperty("user.dir") + "/src/main/resources/static/images/books/"; // на локалке
+        IMAGES_DIRECTORY =  "/images/"; // в docker
     }
 
     @GetMapping("/books")

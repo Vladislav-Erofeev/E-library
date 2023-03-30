@@ -6,8 +6,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class MVCConfig implements WebMvcConfigurer {
-    private final String UPLOAD_DIRECTORY = System.getProperty("user.dir") +  "/src/main/resources/static/images/books/"; // на локалке
-//    private final String UPLOAD_DIRECTORY = System.getProperty("user.dir") +  "/"; // в docker
+//    private final String UPLOAD_DIRECTORY = System.getProperty("user.dir") +  "/src/main/resources/static/images/books/"; // на локалке
+    private final String UPLOAD_DIRECTORY = "/images/"; // в docker
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
