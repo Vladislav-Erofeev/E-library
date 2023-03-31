@@ -7,6 +7,17 @@
     padding: 0;
     text-decoration: none;
 }
+
+a div,
+input[type="submit"]{
+    cursor: pointer;
+    transition: 1s ease all;
+}
+a div:hover,
+input[type="submit"]:hover{
+    transform: scale(1.05);
+}
+
 html{
     min-height: 100%;
     position:relative;
@@ -66,10 +77,10 @@ main{
     margin: 10px;
 }
 
-.logo__btn a,
-.error div a,
-.menu__osn__btnone a,
-.menu__osn__btntwo a{
+.logo__btn p,
+.error div p,
+.menu__osn__btnone p,
+.menu__osn__btntwo p{
     text-decoration: none;
     font-weight: bold;
     font-size: 20px;
@@ -79,7 +90,7 @@ main{
     background-color: #616B75;
 }
 
-.menu__osn__btntwo a{
+.menu__osn__btntwo p{
     color: #E2DFD8;
 }
 
@@ -278,7 +289,7 @@ main{
     justify-content: center;
     align-items: center;
 }
-.books__btn a{
+.books__btn p{
     font-size: 12px;
     color: black;
     font-weight: 700;
@@ -513,7 +524,7 @@ footer p{
     margin: 10px;
 }
 
-.admin__menu div a{
+.admin__menu p{
     text-decoration: none;
     font-weight: bold;
     font-size: 20px;

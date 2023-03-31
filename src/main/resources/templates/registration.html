@@ -12,14 +12,14 @@
         </div>
         <ul class="menu">
             <div class="menu__osn">
-                <div class="menu__osn__btnone"><a href="/index">Главная</a></div>
-                <div class="menu__osn__btnone"><a href="/books">Книги</a></div>
+                <a href="/index"><div class="menu__osn__btnone"><p>Главная</p></div></a>
+                <a href="/books"><div class="menu__osn__btnone"><p>Книги</p></div></a>
             </div>
             <div class="menu__osn">
                 <div th:if="${isAuthorised}"><a class="menu__osn__text"  href="/profile/liked_books">Понравившееся книги</a></div>
-                <div th:if="${isAuthorised}" class="menu__osn__btntwo" ><a href="/profile">Профиль</a></div>
+                <a th:if="${isAuthorised}" href="/profile"><div class="menu__osn__btntwo"><p>Профиль</p></div></a>
                 <div th:unless="${isAuthorised}"><a class="menu__osn__text"  href="/auth/registration">Регистрация</a></div>
-                <div th:unless="${isAuthorised}" class="menu__osn__btntwo"><a href="/login">Войти</a></div>
+                <a th:unless="${isAuthorised}" href="/login"><div class="menu__osn__btntwo"><p>Войти</p></div></a>
             </div>
         </ul>
     </header>

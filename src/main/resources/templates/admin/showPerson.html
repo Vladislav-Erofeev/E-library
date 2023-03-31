@@ -11,9 +11,9 @@
             <img src="/Vector.svg">
         </div>
         <div class="admin__menu">
-            <div><a href="/index">Главная</a></div>
-            <div><a href="/admin/books">Книги</a></div>
-            <div><a href="/admin/people">Люди</a></div>
+            <a href="/index"><div><p>Главная</p></div></a>
+            <a href="/admin/books"><div><p>Книги</p></div></a>
+            <a href="/admin/people"><div><p>Люди</p></div></a>
         </div>
     </header>
     <main>
@@ -47,7 +47,7 @@
                     <div class="books__author" th:text="${order.getBook().getAuthor()}"></div>
                     <div class="books__name" th:text="${order.getBook().getName()}"></div>
                     <p th:text="${order.getData()}" th:style = "${order.isOverdue()} ? 'color: red' : 'color: #4F4D52' "></p>
-                    <div class="books__btn"><a th:href="@{/admin/books/{id}(id=${order.getBook().getId()})}">Подробнее</a></div>
+                    <a th:href="@{/admin/books/{id}(id=${order.getBook().getId()})}"><div class="books__btn"><p>Подробнее</p></div></a>
                     <form th:action="@{/admin/order}" th:method="POST">
                         <input type="hidden" name="order" th:value="${order.getId()}">
                         <input type="submit" value="Выдать">
@@ -68,7 +68,7 @@
                     <div class="books__author" th:text="${order.getBook().getAuthor()}"></div>
                     <div class="books__name" th:text="${order.getBook().getName()}"></div>
                     <p th:text="${order.getData()}" th:style = "${order.isOverdue()} ? 'color: red' : 'color: #4F4D52' "></p>
-                    <div class="books__btn"><a th:href="@{/admin/books/{id}(id=${order.getBook().getId()})}">Подробнее</a></div>
+                    <a th:href="@{/admin/books/{id}(id=${order.getBook().getId()})}"><div class="books__btn"><p>Подробнее</p></div></a>
                     <div class="admin__block__btn">
                         <form th:action="@{/admin/order}" th:method="PATCH">
                             <input type="hidden" name="order" th:value="${order.getId()}">

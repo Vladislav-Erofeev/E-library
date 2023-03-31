@@ -11,9 +11,9 @@
             <img src="/Vector.svg">
         </div>
         <div class="admin__menu">
-            <div><a href="/index">Главная</a></div>
-            <div><a href="/admin/books">Книги</a></div>
-            <div><a href="/admin/people">Люди</a></div>
+            <a href="/index"><div><p>Главная</p></div></a>
+            <a href="/admin/books"><div><p>Книги</p></div></a>
+            <a href="/admin/people"><div><p>Люди</p></div></a>
         </div>
     </header>
     <main>
@@ -28,7 +28,7 @@
             <label for="year">Год написания:</label>
             <input type="text" th:field="*{year}" id="year">
             <label for="count">Количество книг:</label>
-            <input type="text" th:field="*{count}" id="count">
+            <input type="text" value="" th:field="*{count}" id="count">
             <label for="description">Описание:</label>
             <textarea th:field="*{description}" id="description"></textarea>
             <p>Изображение:</p>
