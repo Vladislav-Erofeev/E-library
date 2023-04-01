@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Редактирование профиля</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style/general.css" />
 </head>
 <body>
@@ -10,41 +11,47 @@
         <div class="logo">
             <img src="/Vector.svg">
         </div>
-        <ul class="menu">
-            <div class="menu__osn">
-                <a href="/index"><div class="menu__osn__btnone"><p>Главная</p></div></a>
-                <a href="/books"><div class="menu__osn__btnone"><p>Книги</p></div></a>
+        <nav class="menu">
+            <input type="checkbox" id="navbar-toggle-button">
+            <label for="navbar-toggle-button" class="nav-bar-toggle-block">
+                <div class="nav-bar-toggle-icon"></div>
+            </label>
+            <div class="menu-osn">
+                <a href="/index"><div class="menu-osn-btnone"><p>Главная</p></div></a>
+                <a href="/books"><div class="menu-osn-btnone"><p>Книги</p></div></a>
             </div>
-            <div class="menu__osn">
-                <div><a class="menu__osn__text"  href="/profile/liked_books">Понравившееся книги</a></div>
-                <a href="/profile"><div class="menu__osn__btntwo"><p>Профиль</p></div></a>
+            <div class="menu-osn">
+                <a href="/profile/liked_books"><div><p class="menu-osn-text">Понравившееся книги</p></div></a>
+                <a href="/profile"><div class="menu-osn-btntwo"><p>Профиль</p></div></a>
             </div>
-        </ul>
+        </nav>
     </header>
     <main>
     <h1 class="edit__top">Редактирование профиля</h1>
         <form class="edit__form" th:method="PATCH" th:action="@{/profile/edit}" th:object="${person}">
             <div class="edit__form__block">
-                <div>
-                    <p>Фамилия:</p>
-                    <p>Имя:</p>
-                    <p>Отчество:</p>
-                    <p>Год рождения:</p>
-                    <p>Почта:</p>
-                </div>
+                <p>Фамилия:</p>
                 <div>
                     <input type="text" th:field="*{lastName}" id="last_name" placeholder="Введите фамилию:">
                     <p style="color: red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></p>
-
+                </div>
+                <p>Имя:</p>
+                <div>
                     <input type="text" th:field="*{name}" id="name" placeholder="Введите имя:">
                     <p style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
-
+                </div>
+                <p>Отчество:</p>
+                <div>
                     <input type="text" th:field="*{surname}" id="surname" placeholder="Введите отчество:">
                     <p style="color: red" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></p>
-
+                </div>
+                <p>Год рождения:</p>
+                <div>
                     <input type="text" th:field="*{year}" id="year" placeholder="Введите год рождения:">
                     <p style="color: red" th:if="${#fields.hasErrors('year')}" th:errors="*{year}"></p>
-
+                </div>
+                <p>Почта:</p>
+                <div>
                     <input type="text" th:field="*{email}" id="email" placeholder="Введите почту:">
                     <p style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
                 </div>

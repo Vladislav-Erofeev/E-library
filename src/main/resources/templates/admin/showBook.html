@@ -38,26 +38,22 @@
         <div class="admin__top">
             <h2>Заказы</h2>
         </div>
-        <section >
+        <section>
             <div class="admin__not" th:if="${ordered.isEmpty()}">
                 <p>Заказов нет</p>
             </div>
             <table th:unless="${ordered.isEmpty()}" class="admin__table">
                 <colgroup>
-                    <col style="width: 18%;">
-                    <col style="width: 18%;">
-                    <col style="width: 18%;">
-                    <col style="width: 10%;">
-                    <col style="width: 18%;">
+                    <col style="width: 28%;">
+                    <col style="width: 28%;">
+                    <col style="width: 28%;">
                     <col style="width: 8%;">
-                    <col style="width: 10%;">
+                    <col style="width: 8%;">
                 </colgroup>
                 <tbody>
                     <tr>
                         <th>Фамилия</th>
                         <th>Имя</th>
-                        <th>Отчество</th>
-                        <th>Год рождения</th>
                         <th>Почта</th>
                         <th>Дата</th>
                         <th>Выдача</th>
@@ -65,8 +61,6 @@
                     <tr th:each="order: ${ordered}">
                         <td><a th:text="${order.getPerson.getLastName()}"  th:href="@{/admin/people/{id}(id=${order.getPerson.getId()})}"></a></td>
                         <td th:text="${order.getPerson.getName()}" ></td>
-                        <td th:text="${order.getPerson.getSurname()}"></td>
-                        <td th:text="${order.getPerson.getYear()}"></td>
                         <td th:text="${order.getPerson.getEmail()}"></td>
                         <td th:text="${order.getData()}" th:style = "${order.isOverdue()} ? 'color: red' : 'color: #4F4D52' "></td>
                         <td>
@@ -82,17 +76,15 @@
         <div class="admin__top">
             <h2>На руках</h2>
         </div>
-        <section class="for__footer">
+        <section>
             <div class="admin__not" th:if="${taked.isEmpty()}">
                 <p>Все экземпляры в библиотеке</p>
             </div>
             <table th:unless="${taked.isEmpty()}" class="admin__table">
                 <colgroup>
-                    <col style="width: 17%;">
-                    <col style="width: 17%;">
-                    <col style="width: 17%;">
-                    <col style="width: 8%;">
-                    <col style="width: 17%;">
+                    <col style="width: 24%;">
+                    <col style="width: 24%;">
+                    <col style="width: 25%;">
                     <col style="width: 8%;">
                     <col style="width: 8%;">
                     <col style="width: 8%;">
@@ -100,8 +92,6 @@
                 <tr>
                     <th>Фамилия</th>
                     <th>Имя</th>
-                    <th>Отчество</th>
-                    <th>Год рождения</th>
                     <th>Почта</th>
                     <th>Дата</th>
                     <th>Продление</th>
@@ -110,8 +100,6 @@
                 <tr th:each="order: ${taked}">
                     <td><a th:text="${order.getPerson.getLastName()}"th:href="@{/admin/people/{id}(id=${order.getPerson.getId()})}"></a></td>
                     <td th:text="${order.getPerson.getName()}"></td>
-                    <td th:text="${order.getPerson.getSurname()}"></td>
-                    <td th:text="${order.getPerson.getYear()}"></td>
                     <td th:text="${order.getPerson.getEmail()}"></td>
                     <td th:text="${order.getData()}" th:style = "${order.isOverdue()} ? 'color: red' : 'color: #4F4D52' "></td>
                     <td><form th:action="@{/admin/books/order}" th:method="PATCH">

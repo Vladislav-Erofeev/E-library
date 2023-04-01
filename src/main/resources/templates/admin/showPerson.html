@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title th:text="${person.getName()}">Title</title>
+    <title th:text="${person.getName()}"></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style/general.css" />
 </head>
 <body>
@@ -37,7 +38,7 @@
         <div class="admin__top">
             <h2>Заказы</h2>
         </div>
-        <section class="books" >
+        <section>
             <div class="admin__not" th:if="${orderedBooks.isEmpty()}">
                 <p>Заказов нет</p>
             </div>
@@ -58,7 +59,7 @@
         <div class="admin__top">
             <h2>Книги на руках</h2>
         </div>
-        <section class="books" >
+        <section>
             <div class="admin__not" th:if="${takedBooks.isEmpty()}">
                 <p>Книг на руках нет</p>
             </div>

@@ -2,7 +2,8 @@
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Книги</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style/general.css" />
 </head>
 <body>
@@ -10,18 +11,22 @@
         <div class="logo">
             <img src="/Vector.svg">
         </div>
-        <ul class="menu">
-            <div class="menu__osn">
-                <a href="/index"><div class="menu__osn__btnone"><p>Главная</p></div></a>
-                <a href="/books"><div class="menu__osn__btnone"><p>Книги</p></div></a>
+        <nav class="menu">
+            <input type="checkbox" id="navbar-toggle-button">
+            <label for="navbar-toggle-button" class="nav-bar-toggle-block">
+                <div class="nav-bar-toggle-icon"></div>
+            </label>
+            <div class="menu-osn">
+                <a href="/index"><div class="menu-osn-btnone"><p>Главная</p></div></a>
+                <a href="/books"><div class="menu-osn-btnone"><p>Книги</p></div></a>
             </div>
-            <div class="menu__osn">
-                <div th:if="${isAuthorised}"><a class="menu__osn__text"  href="/profile/liked_books">Понравившееся книги</a></div>
-                <a th:if="${isAuthorised}" href="/profile"><div class="menu__osn__btntwo"><p>Профиль</p></div></a>
-                <div th:unless="${isAuthorised}"><a class="menu__osn__text"  href="/auth/registration">Регистрация</a></div>
-                <a th:unless="${isAuthorised}" href="/login"><div class="menu__osn__btntwo"><p>Войти</p></div></a>
+            <div class="menu-osn">
+                <a th:if="${isAuthorised}" href="/profile/liked_books"><div><p class="menu-osn-text">Понравившееся книги</p></div></a>
+                <a th:if="${isAuthorised}" href="/profile"><div class="menu-osn-btntwo"><p>Профиль</p></div></a>
+                <a th:unless="${isAuthorised}" href="/auth/registration" ><div><p class="menu-osn-text">Регистрация</p></div></a>
+                <a th:unless="${isAuthorised}" href="/login"><div class="menu-osn-btntwo"><p>Войти</p></div></a>
             </div>
-        </ul>
+        </nav>
     </header>
     <main>
         <div class="books__form">
@@ -30,7 +35,6 @@
                 <input type="text" name="search" th:value="${search}">
                 <input type="submit" value="найти">
             </form>
-
             <form class="books__form__count" method="get" action="/books">
                 <input type="hidden" name="search" th:value="${search}">
                 <select name="books_per_page">
@@ -49,7 +53,7 @@
                 <img th:src="@{/image/{name}(name=${book.getUrl()})}">
                 <div class="books__author" th:text="${book.getAuthor()}"></div>
                 <div class="books__name" th:text="${book.getName()}"></div>
-                <div class="books__btn"><a th:href="@{/books/{id}(id=${book.getId()})}">Подробнее</a></div>
+                <a th:href="@{/books/{id}(id=${book.getId()})}"><div class="books__btn"><p>Подробнее</p></div></a>
             </div>
         </section>
         <div class="books__pages">

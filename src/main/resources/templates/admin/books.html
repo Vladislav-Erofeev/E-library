@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Админ книги</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style/general.css" />
 </head>
 <body>
@@ -27,10 +28,10 @@
         </form>
         <table class="admin__table">
             <colgroup>
-                <col style="width: 35%;">
-                <col style="width: 35%;">
-                <col style="width: 15%;">
-                <col style="width: 15%;">
+                <col style="width: 42%;">
+                <col style="width: 42%;">
+                <col style="width: 8%;">
+                <col style="width: 8%;">
             </colgroup>
             <tbody>
                 <tr>
@@ -52,7 +53,7 @@
                 <a th:href="@{/admin/books(page=${number}, search=${search})}" th:text="${number+1}"></a>
             </li>
         </ul>
-        <a class="for__footer" href="/admin/batch"><div class="admin__book__add"><p>Вставить 100 книг</p></div></a>
+        <a href="/admin/batch"><div class="admin__book__add"><p>Вставить 100 книг</p></div></a>
     </main>
     <footer class="admin__footer">
             <p>©РТУ МИРЭА ИКБО-01-21 Ерофеев В.С. Булгакова У.И.</p>

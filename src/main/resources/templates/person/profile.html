@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Профиль</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style/general.css" />
 </head>
 <body>
@@ -10,42 +11,44 @@
         <div class="logo">
             <img src="/Vector.svg">
         </div>
-        <ul class="menu">
-            <div class="menu__osn">
-                <a href="/index"><div class="menu__osn__btnone"><p>Главная</p></div></a>
-                <a href="/books"><div class="menu__osn__btnone"><p>Книги</p></div></a>
+        <nav class="menu">
+            <input type="checkbox" id="navbar-toggle-button">
+            <label for="navbar-toggle-button" class="nav-bar-toggle-block">
+                <div class="nav-bar-toggle-icon"></div>
+            </label>
+            <div class="menu-osn">
+                <a href="/index"><div class="menu-osn-btnone"><p>Главная</p></div></a>
+                <a href="/books"><div class="menu-osn-btnone"><p>Книги</p></div></a>
             </div>
-            <div class="menu__osn">
-                <div><a class="menu__osn__text"  href="/profile/liked_books">Понравившееся книги</a></div>
-                <a href="/profile"><div class="menu__osn__btntwo"><p>Профиль</p></div></a>
+            <div class="menu-osn">
+                <a href="/profile/liked_books"><div><p class="menu-osn-text">Понравившееся книги</p></div></a>
+                <a href="/profile"><div class="menu-osn-btntwo"><p>Профиль</p></div></a>
             </div>
-        </ul>
+        </nav>
     </header>
     <main>
         <h1 class="person__top">Карточка читателя</h1>
         <div class="person__about">
-            <div>
+            <div class="person__about__inf">
                 <p>Читательский номер:</p>
-                <p>Фамилия:</p>
-                <p>Имя:</p>
-                <p>Отчество:</p>
-                <p>Год рождения:</p>
-                <p>Почта:</p>
-            </div>
-            <div>
                 <p th:text="${person.getId()}"></p>
+                <p>Фамилия:</p>
                 <p th:text="${person.getLastName()}"></p>
+                <p>Имя:</p>
                 <p th:text="${person.getName()}"></p>
+                <p>Отчество:</p>
                 <p th:text="${person.getSurname()}"></p>
+                <p>Год рождения:</p>
                 <p th:text="${person.getYear()}"></p>
+                <p>Почта:</p>
                 <p th:text="${person.getEmail()}"></p>
             </div>
-            <div class="person__about__btn">
-                <a href="/profile/edit">Редактировать</a>
+            <div class="person__about__block">
+                <a href="/profile/edit"><div class="person__about__btn"><p>Редактировать</p></div></a>
+                <form class="person__about__exit" th:method="POST" th:action="@{/logout}">
+                    <input type="submit" value="Выйти">
+                </form>
             </div>
-            <form class="person__about__exit" th:method="POST" th:action="@{/logout}">
-                <input type="submit" value="Выйти">
-            </form>
         </div>
 
         <h2 class="person__top">Заказы</h2>
@@ -59,7 +62,7 @@
                     <div class="books__author" th:text="${order.getBook().getAuthor()}"></div>
                     <div class="books__name" th:text="${order.getBook().getName()}"></div>
                     <p th:text="${order.getData()}" th:style = "${order.isOverdue()} ? 'color: red' : 'color: #4F4D52' "></p>
-                    <div class="books__btn"><a th:href="@{/books/{id}(id=${order.getBook().getId()})}">Подробнее</a></div>
+                    <a th:href="@{/books/{id}(id=${order.getBook().getId()})}"><div class="books__btn"><p>Подробнее</p></div></a>
                 </div>
             </div>
         </section>
@@ -75,7 +78,7 @@
                     <div class="books__author" th:text="${order.getBook().getAuthor()}"></div>
                     <div class="books__name" th:text="${order.getBook().getName()}"></div>
                     <p th:text="${order.getData()}" th:style = "${order.isOverdue()} ? 'color: red' : 'color: #4F4D52' "></p>
-                    <div class="books__btn"><a th:href="@{/books/{id}(id=${order.getBook().getId()})}">Подробнее</a></div>
+                    <a th:href="@{/books/{id}(id=${order.getBook().getId()})}"><div class="books__btn"><p>Подробнее</p></div></a>
                 </div>
             </div>
         </section>
