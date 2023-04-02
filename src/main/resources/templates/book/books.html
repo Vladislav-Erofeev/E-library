@@ -2,7 +2,8 @@
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Книги</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style/general.css" />
 </head>
 <body>
@@ -10,52 +11,57 @@
         <div class="logo">
             <img src="/Vector.svg">
         </div>
-        <ul class="menu">
-            <div class="menu__osn">
-                <div class="menu__osn__btnone"><a href="/index">Главная</a></div>
-                <div class="menu__osn__btnone"><a href="/books">Книги</a></div>
+        <nav class="menu">
+            <input type="checkbox" id="navbar-toggle-button">
+            <label for="navbar-toggle-button" class="nav-bar-toggle-block">
+                <div class="nav-bar-toggle-icon"></div>
+            </label>
+            <div class="menu-osn">
+                <a href="/index"><div class="menu-osn-btnone"><p>Главная</p></div></a>
+                <a href="/books"><div class="menu-osn-btnone"><p>Книги</p></div></a>
             </div>
-            <div class="menu__osn">
-                <div th:if="${isAuthorised}"><a class="menu__osn__text"  href="/profile/liked_books">Понравившееся книги</a></div>
-                <div th:if="${isAuthorised}" class="menu__osn__btntwo" ><a href="/profile">Профиль</a></div>
-                <div th:unless="${isAuthorised}"><a class="menu__osn__text"  href="/auth/registration">Регистрация</a></div>
-                <div th:unless="${isAuthorised}" class="menu__osn__btntwo"><a href="/login">Войти</a></div>
+            <div class="menu-osn">
+                <a th:if="${isAuthorised}" href="/profile/liked_books"><div><p class="menu-osn-text">Понравившееся книги</p></div></a>
+                <a th:if="${isAuthorised}" href="/profile"><div class="menu-osn-btntwo"><p>Профиль</p></div></a>
+                <a th:unless="${isAuthorised}" href="/auth/registration" ><div><p class="menu-osn-text">Регистрация</p></div></a>
+                <a th:unless="${isAuthorised}" href="/login"><div class="menu-osn-btntwo"><p>Войти</p></div></a>
             </div>
-        </ul>
+        </nav>
     </header>
-    <div class="books__form">
-        <form class="books__form__search" method="get" action="/books">
-            <input type="hidden" th:value="${booksPerPage}" name="books_per_page">
-            <input type="text" name="search" th:value="${search}">
-            <input type="submit" value="найти">
-        </form>
-
-        <form class="books__form__count" method="get" action="/books">
-            <input type="hidden" name="search" th:value="${search}">
-            <select name="books_per_page">
-                <option value="15" th:if="${booksPerPage == 15}" selected>15</option>
-                <option value="15" th:unless="${booksPerPage == 15}">15</option>
-                <option value="30" th:if="${booksPerPage == 30}" selected>30</option>
-                <option value="30" th:unless="${booksPerPage == 30}">30</option>
-                <option value="45" th:if="${booksPerPage == 45}" selected>45</option>
-                <option value="45" th:unless="${booksPerPage == 45}">45</option>
-            </select>
-            <input type="submit" value="показать">
-        </form>
-    </div>
-    <section class="books__on__books">
-        <div class="books__block" th:each="book : ${books}">
-            <img th:src="@{/image/{name}(name=${book.getUrl()})}">
-            <div class="books__author" th:text="${book.getAuthor()}"></div>
-            <div class="books__name" th:text="${book.getName()}"></div>
-            <div class="books__btn"><a th:href="@{/books/{id}(id=${book.getId()})}">Подробнее</a></div>
+    <main>
+        <div class="books__form">
+            <form class="books__form__search" method="get" action="/books">
+                <input type="hidden" th:value="${booksPerPage}" name="books_per_page">
+                <input type="text" name="search" th:value="${search}">
+                <input type="submit" value="найти">
+            </form>
+            <form class="books__form__count" method="get" action="/books">
+                <input type="hidden" name="search" th:value="${search}">
+                <select name="books_per_page">
+                    <option value="15" th:if="${booksPerPage == 15}" selected>15</option>
+                    <option value="15" th:unless="${booksPerPage == 15}">15</option>
+                    <option value="30" th:if="${booksPerPage == 30}" selected>30</option>
+                    <option value="30" th:unless="${booksPerPage == 30}">30</option>
+                    <option value="45" th:if="${booksPerPage == 45}" selected>45</option>
+                    <option value="45" th:unless="${booksPerPage == 45}">45</option>
+                </select>
+                <input type="submit" value="показать">
+            </form>
         </div>
-    </section>
-    <div class="books__pages">
-        <li th:each="number : ${#numbers.sequence(0, pageCount-1)}">
-            <a th:href="@{/books(page=${number}, books_per_page=${booksPerPage}, search=${search})}"  th:text="${number+1}"></a>
-        </li>
-    </div>
+        <section class="books__on__books">
+            <div class="books__block" th:each="book : ${books}">
+                <img th:src="@{/image/{name}(name=${book.getUrl()})}">
+                <div class="books__author" th:text="${book.getAuthor()}"></div>
+                <div class="books__name" th:text="${book.getName()}"></div>
+                <a th:href="@{/books/{id}(id=${book.getId()})}"><div class="books__btn"><p>Подробнее</p></div></a>
+            </div>
+        </section>
+        <div class="books__pages">
+            <li th:each="number : ${#numbers.sequence(0, pageCount-1)}">
+                <a th:href="@{/books(page=${number}, books_per_page=${booksPerPage}, search=${search})}"  th:text="${number+1}"></a>
+            </li>
+        </div>
+    </main>
     <footer>
         <div>
             <p>+7 (9999) 99-99-99</p>

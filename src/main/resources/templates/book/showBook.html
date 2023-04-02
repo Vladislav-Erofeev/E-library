@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title th:text="${book.getName()}"></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style/general.css" />
 </head>
 <body>
@@ -10,52 +11,60 @@
         <div class="logo">
             <img src="/Vector.svg">
         </div>
-        <ul class="menu">
-            <div class="menu__osn">
-                <div class="menu__osn__btnone"><a href="/index">Главная</a></div>
-                <div class="menu__osn__btnone"><a href="/books">Книги</a></div>
+        <nav class="menu">
+            <input type="checkbox" id="navbar-toggle-button">
+            <label for="navbar-toggle-button" class="nav-bar-toggle-block">
+                <div class="nav-bar-toggle-icon"></div>
+            </label>
+            <div class="menu-osn">
+                <a href="/index"><div class="menu-osn-btnone"><p>Главная</p></div></a>
+                <a href="/books"><div class="menu-osn-btnone"><p>Книги</p></div></a>
             </div>
-            <div class="menu__osn">
-                <div th:if="${isAuthorised}"><a class="menu__osn__text"  href="/profile/liked_books">Понравившееся книги</a></div>
-                <div th:if="${isAuthorised}" class="menu__osn__btntwo" ><a href="/profile">Профиль</a></div>
-                <div th:unless="${isAuthorised}"><a class="menu__osn__text"  href="/auth/registration">Регистрация</a></div>
-                <div th:unless="${isAuthorised}" class="menu__osn__btntwo"><a href="/login">Войти</a></div>
+            <div class="menu-osn">
+                <a th:if="${isAuthorised}" href="/profile/liked_books"><div><p class="menu-osn-text">Понравившееся книги</p></div></a>
+                <a th:if="${isAuthorised}" href="/profile"><div class="menu-osn-btntwo"><p>Профиль</p></div></a>
+                <a th:unless="${isAuthorised}" href="/auth/registration" ><div><p class="menu-osn-text">Регистрация</p></div></a>
+                <a th:unless="${isAuthorised}" href="/login"><div class="menu-osn-btntwo"><p>Войти</p></div></a>
             </div>
-        </ul>
+        </nav>
     </header>
-    <div class="books__about">
-        <div class="books__img">
-            <img th:src="@{/image/{name}(name=${book.getUrl()})}">
+    <main>
+        <div class="books__about">
+            <div class="books__img">
+                <img th:src="@{/image/{name}(name=${book.getUrl()})}">
+            </div>
+            <div class="books__info">
+                <p th:text="${book.getName()}"></p>
+                <p th:text="${book.getAuthor()}"></p>
+            </div>
+            <div class="books__description">
+                <p>Описание:</p>
+                <div th:text="${book.getDescription()}"></div>
+            </div>
         </div>
-        <div class="books__name" th:text="${book.getName()}"></div>
-        <div class="books__author" th:text="${book.getAuthor()}"></div>
-        <div class="books__description">
-            <p>Описание:</p>
-            <div th:text="${book.getDescription()}"></div>
+        <div class="books__log" th:if="${isAuthorised}">
+
+            <form th:method="POST" th:action="@{/books/{id}(id=${book.getId()})}" th:unless="${isLiked}">
+                <input type="submit" value="Лайкнуть">
+            </form>
+
+            <form th:method="DELETE" th:action="@{/books/{id}(id=${book.getId()})}" th:if="${isLiked}">
+                <input type="submit" value="Убрать лайк">
+            </form>
+
+            <form th:method="POST" th:action="@{/order/add/{id}(id=${book.getId()})}" th:unless="${isOrdered}" th:if="${isFree}">
+                <input type="submit" value="Заказать">
+            </form>
+
+            <p th:unless="${isFree}">
+                Книг в наличии нет
+            </p>
         </div>
-    </div>
-    <div class="books__log" th:if="${isAuthorised}">
-
-        <form th:method="POST" th:action="@{/books/{id}(id=${book.getId()})}" th:unless="${isLiked}">
-            <input type="submit" value="Лайкнуть">
-        </form>
-
-        <form th:method="DELETE" th:action="@{/books/{id}(id=${book.getId()})}" th:if="${isLiked}">
-            <input type="submit" value="Убрать лайк">
-        </form>
-
-        <form th:method="POST" th:action="@{/order/add/{id}(id=${book.getId()})}" th:unless="${isOrdered}" th:if="${isFree}">
-            <input type="submit" value="Заказать">
-        </form>
-
-        <p th:unless="${isFree}">
-            Книг в наличии нет
-        </p>
-    </div>
-    <div class="books__notlog" th:unless="${isAuthorised}">
-        <p>Чтобы заказать книгу необходима авторизация</p>
-        <div><a href="/login">Авторизироваться</a></div>
-    </div>
+        <div class="books__notlog" th:unless="${isAuthorised}">
+            <p>Чтобы заказать книгу необходима авторизация</p>
+            <a href="/login"><div><p>Авторизироваться</p></div></a>
+        </div>
+    </main>
     <footer>
         <div>
             <p>+7 (9999) 99-99-99</p>

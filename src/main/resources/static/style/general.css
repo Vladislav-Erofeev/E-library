@@ -1,23 +1,42 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url(//fonts.googleapis.com/css2?family=Montserrat&display=swap);
 
 *{
+    color: #4F4D52;
+    font-family: 'Montserrat', sans-serif;
     margin: 0;
     padding: 0;
-    font-family: 'Montserrat', sans-serif;
-    color: #4F4D52;
     text-decoration: none;
 }
-html{
-    min-height: 100%;
-    position:relative;
+
+a div,
+input[type="submit"]{
+    cursor: pointer;
+    transition: 1s ease all;
+}
+a div:hover,
+input[type="submit"]:hover{
+    transform: scale(1.05);
+}
+
+body{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+
+main{
+    width: 90%;
+    margin: 0 auto;
+    flex-grow: 1;
 }
 
 .error{
     width:fit-content;
-    margin: 320px auto;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 .logo{
@@ -34,23 +53,24 @@ html{
     width: 250px;
 }
 
-
 .menu{
     background-color: #C6A88E;
     height: 80px;
     display: flex;
     justify-content: space-between;
+    position: relative;
 }
 
-.menu__osn{
+.menu-osn{
     display:flex;
     align-items: center;
+    transition: opacity .5s linear;
 }
 
-.logo__btn,
+.logo-btn,
 .error div,
-.menu__osn__btnone,
-.menu__osn__btntwo{
+.menu-osn-btnone,
+.menu-osn-btntwo{
     background-color: #E2DFD8;
     height: 50px;
     width: 150px;
@@ -61,60 +81,167 @@ html{
     margin: 10px;
 }
 
-.logo__btn a,
-.error div a,
-.menu__osn__btnone a,
-.menu__osn__btntwo a{
+.logo-btn p,
+.error div p,
+.menu-osn-btnone p,
+.menu-osn-btntwo p{
     text-decoration: none;
     font-weight: bold;
     font-size: 20px;
 }
 
-.menu__osn__btntwo{
+.menu-osn-btntwo{
     background-color: #616B75;
 }
 
-.menu__osn__btntwo a{
+.menu-osn-btntwo p{
     color: #E2DFD8;
 }
 
-.menu__osn__text{
+.menu-osn-text{
     text-decoration: none;
     font-weight: 1000;
     color: #E2DFD8;
     font-size: 20px;
 }
+
+/*------------burger------------*/
+#navbar-toggle-button{
+    display: none;
+}
+
+.nav-bar-toggle-block{
+    display: none;
+    position: absolute;
+    right: 20px;
+    height: 80px;
+    width: 50px;
+}
+.nav-bar-toggle-icon{
+    position: relative;
+}
+.nav-bar-toggle-icon::after,
+.nav-bar-toggle-icon::before,
+.nav-bar-toggle-icon{
+    content: "";
+    display: block;
+    top: calc(50% - 3px);
+    width: 50px;
+    height: 6px;
+    background-color: #FFF;
+    border-radius: 10px;
+
+}
+.nav-bar-toggle-icon::after{
+    position: absolute;
+    top: 12px;
+}
+.nav-bar-toggle-icon::before{
+    position: absolute;
+    top: -12px;
+}
+
+@media (max-width: 750px){
+    .nav-bar-toggle-block{
+        display: block;
+    }
+    .menu,
+    .menu-osn{
+        flex-direction: column;
+    }
+    .menu-osn{
+        opacity: 0;
+        position: absolute;
+        top:-500px;
+        width: 100%;
+        background-color: #616B75;
+    }
+    .menu a{
+        opacity: 0;
+        display: flex;
+        text-align: center;
+        width: 100%;
+        height: 70px;
+        border: #4F4D52 solid 2px;
+        justify-content: center;
+        align-items: center;
+    }
+    #navbar-toggle-button:checked ~ .menu-osn{
+        opacity: 1;
+        position: static;
+    }
+    #navbar-toggle-button:checked ~ .menu-osn a{
+        opacity: 1;
+    }
+    #navbar-toggle-button:checked + .nav-bar-toggle-block .nav-bar-toggle-icon{
+        transform: rotate(45deg);
+    }
+    #navbar-toggle-button:checked + .nav-bar-toggle-block .nav-bar-toggle-icon::after{
+        top:0;
+    }
+    #navbar-toggle-button:checked + .nav-bar-toggle-block .nav-bar-toggle-icon::before{
+        top:0;
+        transform: rotate(90deg);
+    }
+    .menu-osn-btnone{
+        background-color: #616B75;
+    }
+    .menu-osn-btnone p{
+        color: #E2DFD8;
+    }
+    .menu-osn:nth-of-type(1){
+        margin-top: 80px;
+    }
+
+    .logo-btn{
+        display: none;
+    }
+}
 /*------------index------------*/
 .image__library img{
     width: 100%;
-    height: 100%;
+    height: 300px;
+    object-fit: cover;
 }
 
 .top_book{
+    margin: 10px 0;
     display: flex;
     justify-content: center;
+    text-align: center;
 }
 /*------------person------------*/
 
 .person__top{
-    margin: 5px 50px;
+    margin: 5px 0;
 }
 .person__about{
     display: flex;
-    font-size: 20px;
-    font-weight: 400;
+    flex-wrap: wrap;
 }
-.person__about div{
-    margin: 30px 60px;
+.person__about__inf{
+    grid-area: info;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 20px 0;
+    font-weight: 600;
 }
-.person__about p{
-    margin: 5px;
+
+.person__about__block{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.person__about .person__about__btn,
+.person__about .person__about__exit input{
+    margin: 0 10px;
 }
 /*------------edit------------*/
 .edit__top{
     display: flex;
     justify-content: center;
-    margin: 10px;
+    text-align: center;
 }
 .edit__form{
     margin: 20px auto;
@@ -122,26 +249,26 @@ html{
     flex-direction: column;
     justify-content: center;
     background-color: #ABA299;
-    width: fit-content;
-    padding: 20px;
+    max-width: 600px;
+    padding: 20px 10px;
     border-radius: 30px;
     align-items: center;
 }
+
 .edit__form__block{
-    display:flex;
-    margin: 10px auto;
+    display: grid;
+    grid-template-columns: 30% 1fr;
+    margin: 10px;
+    align-items: center;
 }
-
-.edit__form__block div{
-    display: flex;
-    flex-direction: column;
-    margin: 10px 30px;
+@media (max-width: 600px) {
+    .edit__form__block{
+        grid-template-columns: 1fr;
+    }
 }
-
 .edit__form__block p{
     padding: 7px;
     font-size: 19px;
-
 }
 
 .edit__form__block input[type="text"]{
@@ -171,10 +298,21 @@ html{
 
 .books__form{
     display: grid;
-    width: calc(100% - 120px);
-    margin: 20px 40px;
-    grid-template-columns: 85% 15%;
+    width: calc(100% - 40px);
+    margin: 20px 0;
+    grid-template-columns: 75% 25%;
     gap: 40px;
+}
+
+@media (max-width: 700px) {
+    .books__form{
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    .books__form__count{
+        width: 50%;
+        height: 40px;
+    }
 }
 
 .books__form__search{
@@ -204,7 +342,7 @@ html{
 
 .books__form__count{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 30% calc(70% - 10px);
     gap: 5px 10px;
 }
 .books__form__count select{
@@ -221,12 +359,11 @@ html{
 }
 
 .books__on__books {
-    width: calc(100% - 80px);
     display: grid;
-    grid-template-columns: repeat(5,1fr);
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 20px;
+    margin: 40px auto;
     justify-items: center;
-    margin: 40px 40px;
 }
 
 .books__block {
@@ -273,7 +410,7 @@ html{
     justify-content: center;
     align-items: center;
 }
-.books__btn a{
+.books__btn p{
     font-size: 12px;
     color: black;
     font-weight: 700;
@@ -282,8 +419,7 @@ html{
 .books__pages {
     display: flex;
     flex-wrap: wrap;
-    padding: 0;
-    margin: 40px 40px;
+    margin: 40px 0;
 }
 
 .books__pages li {
@@ -304,26 +440,34 @@ html{
     border-radius: 10px;
 }
 
+
 .books__about{
     display: grid;
-    margin: 10px 40px;
+    margin: 10px 0;
     width: auto;
     gap: 10px 30px;
+    grid-template-columns: 250px 1fr;
     grid-template-areas:
-        "photo name"
-        "photo autor"
+        "photo info"
         "photo description";
 }
-.books__about{
-    display: grid;
-    margin: 10px 60px;
-    width: auto;
-    gap: 10px 30px;
-    grid-template-areas:
-        "photo name"
-        "photo autor"
-        "photo description";
+
+@media (max-width: 750px){
+    .books__about{
+        grid-template-areas:
+        "photo info"
+        "description description";
+    }
 }
+
+@media (max-width: 600px){
+    .books__about{
+        grid-template-columns: 1fr;
+        grid-template-areas:
+        "photo" "info" "description";
+    }
+}
+
 .books__about .books__img{
     grid-area: photo;
     background-color: #4F4D52;
@@ -338,16 +482,23 @@ html{
     height: 230px;
 }
 
-.books__about .books__name{
-    grid-area: name;
-    width: fit-content;
+
+.books__info{
+    grid-area: info;
+    word-break: break-word;
+    font-weight: 700;
+}
+
+.books__info p:nth-of-type(1){
     font-size: 30px;
+    margin-bottom: 10px;
 }
-.books__about .books__author{
-    grid-area: autor;
-    width: fit-content;
+
+.books__info p:nth-of-type(2){
     font-size: 26px;
+    color: black;
 }
+
 .books__description{
     grid-area: description;
 }
@@ -355,7 +506,7 @@ html{
 .books__description p{
     font-weight: bold;
     font-size: 20px;
-    padding: 10px 0px;
+    padding: 10px 0;
 }
 
 .books__description div{
@@ -367,7 +518,7 @@ html{
 .person__info,
 .books__log,
 .books__notlog{
-    margin: 40px;
+    margin: 40px 0;
     font-weight: 700;
     font-size: 20px;
     display: flex;
@@ -376,6 +527,7 @@ html{
 
 .books__log{
     justify-content: flex-end;
+    text-align: center;
 }
 
 .person__about__exit input,
@@ -394,12 +546,11 @@ html{
 .person__about__exit input{
     border: none;
     background-color: red;
-    margin: 30px -40px;
     height: 40px;
 }
 
 .person__about__btn,
-.books__notlog div{
+.books__notlog a div{
     display:flex;
     font-weight: 600;
     font-size: 18px;
@@ -412,16 +563,24 @@ html{
     padding:10px;
     border-radius:30px;
 }
-.person__about__btn a,
-.books__notlog a{
+.person__about__btn p,
+.books__notlog a div p{
     color: #FFFFFF;
+}
+
+@media (max-width: 600px){
+    .books__notlog{
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
 }
 /*------------login------------*/
 
 .login__form{
     display: flex;
-    width: 620px;
-    height: 400px;
+    max-width: 620px;
+    height: fit-content;
     background-color: #ABA299;
     border-radius: 50px;
     margin: 50px auto;
@@ -436,8 +595,13 @@ html{
     font-size: 36px;
 }
 
+.login__form div{
+    display: inline-block;
+    min-height: 20px;
+}
+
 .login__form__intext{
-    width: 560px;
+    width: 90%;
     height: 50px;
     background-color: #E2DFD8;
     border: none;
@@ -445,7 +609,7 @@ html{
     margin: 15px 0;
     font-weight: bold;
     font-size: 20px;
-    padding-left: 40px;
+    padding: 0 20px;
 }
 
 .login__form__intext:focus{
@@ -461,25 +625,42 @@ html{
     font-size: 20px;
     font-weight: 700;
     color: white;
+    margin: 10px 0;
 }
 /*------------footer------------*/
+
+
 footer{
+    flex-shrink: 0;
     background-color: #4F4D52;
-    padding: 10px 80px;
-    width: calc(100% - 160px);
-    height: 100px;
+    height: fit-content;
+    padding: 0 60px;
     display: flex;
+    flex-flow: row wrap;
     justify-content: space-between;
     align-items: center;
-    position: absolute;
-    left:0;
-    bottom: -110px;
+}
+footer div{
+    margin: 10px 15px;
 }
 
 footer p{
+    display: block;
+    text-align: center;
+    width: fit-content;
     color: #E2DFD8;
     margin: 5px;
 }
+@media (max-width: 850px) {
+    footer{
+        justify-content: center;
+        padding: 0;
+    }
+
+}
+/*------------media------------*/
+
+
 /*------------admin------------*/
 
 .admin__logo{
@@ -508,7 +689,7 @@ footer p{
     margin: 10px;
 }
 
-.admin__menu div a{
+.admin__menu p{
     text-decoration: none;
     font-weight: bold;
     font-size: 20px;
@@ -530,7 +711,7 @@ footer p{
     display: grid;
     width: auto;
     grid-template-columns:1fr 100px 220px;
-    margin: 10px 40px;
+    margin: 10px 0;
     gap: 10px;
 }
 
@@ -560,6 +741,10 @@ footer p{
     border: none;
 }
 
+.admin__book__form a{
+    justify-self: flex-end;
+}
+
 .admin__book__add{
     background-color:#202B6D;
     width: 180px;
@@ -568,7 +753,6 @@ footer p{
     justify-content: center;
     align-items: center;
     border-radius: 30px;
-    margin-left: 40px;
 }
 
 .admin__book__add p{
@@ -583,7 +767,7 @@ footer p{
     display: flex;
     flex-wrap: wrap;
     padding: 0;
-    margin: 10px 40px;
+    margin: 10px 0;
 }
 
 .admin__pages li {
@@ -611,8 +795,8 @@ footer p{
 }
 
 .admin__table{
-    margin: 10px 40px;
-    width: calc(100% - 80px);
+    margin: 10px 0;
+    width: 100%;
     border-collapse: collapse;
 }
 
@@ -627,8 +811,13 @@ footer p{
 }
 
 .admin__table td{
-    padding:10px 30px;
+    text-align: center;
+    vertical-align: center;
+    border-spacing: 10px 30px;
+    height: 40px;
+    word-break: break-all;
 }
+
 
 .admin__table input[value="Продлить"],
 .admin__table input[value="Удалить"],
@@ -783,14 +972,10 @@ footer p{
     display: flex;
     justify-content: flex-end;
     height:70px;
-    bottom:-80px;
+    margin-top: 10px;
 }
 
 .admin__footer p{
     color: #FFFFFF;
 }
 
-.for__footer{
-    display: block;
-    margin-bottom: 50px;
-}

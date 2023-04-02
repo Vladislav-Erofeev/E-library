@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Вход</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style/general.css" />
 </head>
 <body>
@@ -10,28 +11,34 @@
         <div class="logo">
             <img src="/Vector.svg">
         </div>
-        <ul class="menu">
-            <div class="menu__osn">
-                <div class="menu__osn__btnone"><a href="/index">Главная</a></div>
-                <div class="menu__osn__btnone"><a href="/books">Книги</a></div>
+        <nav class="menu">
+            <input type="checkbox" id="navbar-toggle-button">
+            <label for="navbar-toggle-button" class="nav-bar-toggle-block">
+                <div class="nav-bar-toggle-icon"></div>
+            </label>
+            <div class="menu-osn">
+                <a href="/index"><div class="menu-osn-btnone"><p>Главная</p></div></a>
+                <a href="/books"><div class="menu-osn-btnone"><p>Книги</p></div></a>
             </div>
-            <div class="menu__osn">
-                <div th:if="${isAuthorised}"><a class="menu__osn__text"  href="/profile/liked_books">Понравившееся книги</a></div>
-                <div th:if="${isAuthorised}" class="menu__osn__btntwo" ><a href="/profile">Профиль</a></div>
-                <div th:unless="${isAuthorised}"><a class="menu__osn__text"  href="/auth/registration">Регистрация</a></div>
-                <div th:unless="${isAuthorised}" class="menu__osn__btntwo"><a href="/login">Войти</a></div>
+            <div class="menu-osn">
+                <a th:if="${isAuthorised}" href="/profile/liked_books"><div><p class="menu-osn-text">Понравившееся книги</p></div></a>
+                <a th:if="${isAuthorised}" href="/profile"><div class="menu-osn-btntwo"><p>Профиль</p></div></a>
+                <a th:unless="${isAuthorised}" href="/auth/registration" ><div><p class="menu-osn-text">Регистрация</p></div></a>
+                <a th:unless="${isAuthorised}" href="/login"><div class="menu-osn-btntwo"><p>Войти</p></div></a>
             </div>
-        </ul>
+        </nav>
     </header>
-    <form class="login__form" th:method="POST" th:action="@{/process_login}">
-        <h1>Вход</h1>
-        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-        <input class="login__form__intext" type="text" name="username" id="username" placeholder="Введите почту:">
-        <input class="login__form__intext" type="password" name="password" id="password" placeholder="Введите пароль:">
-        <p th:if="${param.error}" style="color: red">Неверный логин или пароль</p>
-        <input class="login__form__btn" type="submit" value="Войти">
-        <a href="/auth/registration">Впервые здесь?</a>
-    </form>
+    <main>
+        <form class="login__form" th:method="POST" th:action="@{/process_login}">
+            <h1>Вход</h1>
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+            <input class="login__form__intext" type="text" name="username" id="username" placeholder="Введите почту:">
+            <input class="login__form__intext" type="password" name="password" id="password" placeholder="Введите пароль:">
+            <div><p th:if="${param.error}" style="color: red">Неверный логин или пароль</p></div>
+            <input class="login__form__btn" type="submit" value="Войти">
+            <a href="/auth/registration">Впервые здесь?</a>
+        </form>
+    </main>
     <footer>
         <div>
             <p>+7 (9999) 99-99-99</p>

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Понравившиеся книги</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style/general.css" />
 </head>
 <body>
@@ -10,26 +11,32 @@
         <div class="logo">
             <img src="/Vector.svg">
         </div>
-        <ul class="menu">
-            <div class="menu__osn">
-                <div class="menu__osn__btnone"><a href="/index">Главная</a></div>
-                <div class="menu__osn__btnone"><a href="/books">Книги</a></div>
+        <nav class="menu">
+            <input type="checkbox" id="navbar-toggle-button">
+            <label for="navbar-toggle-button" class="nav-bar-toggle-block">
+                <div class="nav-bar-toggle-icon"></div>
+            </label>
+            <div class="menu-osn">
+                <a href="/index"><div class="menu-osn-btnone"><p>Главная</p></div></a>
+                <a href="/books"><div class="menu-osn-btnone"><p>Книги</p></div></a>
             </div>
-            <div class="menu__osn">
-                <div><a class="menu__osn__text"  href="/profile/liked_books">Понравившееся книги</a></div>
-                <div class="menu__osn__btntwo" ><a href="/profile">Профиль</a></div>
+            <div class="menu-osn">
+                <a href="/profile/liked_books"><div><p class="menu-osn-text">Понравившееся книги</p></div></a>
+                <a href="/profile"><div class="menu-osn-btntwo"><p>Профиль</p></div></a>
             </div>
-        </ul>
+        </nav>
     </header>
-    <h1 class="top_book">Понравившиеся книги</h1>
-    <section class="books__on__books">
-        <div class="books__block" th:each="book : ${books}">
-            <img th:src="@{/image/{name}(name=${book.getUrl()})}">
-            <div class="books__author" th:text="${book.getAuthor()}"></div>
-            <div class="books__name" th:text="${book.getName()}"></div>
-            <div class="books__btn"><a th:href="@{/books/{id}(id=${book.getId()})}">Подробнее</a></div>
-        </div>
-    </section>
+    <main>
+        <h1 class="top_book">Понравившиеся книги</h1>
+        <section class="books__on__books">
+            <div class="books__block" th:each="book : ${books}">
+                <img th:src="@{/image/{name}(name=${book.getUrl()})}">
+                <div class="books__author" th:text="${book.getAuthor()}"></div>
+                <div class="books__name" th:text="${book.getName()}"></div>
+                <a th:href="@{/books/{id}(id=${book.getId()})}"><div class="books__btn"><p>Подробнее</p></div></a>
+            </div>
+        </section>
+    </main>
     <footer>
         <div>
             <p>+7 (9999) 99-99-99</p>
