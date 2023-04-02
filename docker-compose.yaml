@@ -12,7 +12,9 @@ services:
 
   spring:
     build: .
-    container_name: spring_app
+    volumes:
+      - C:/e-library:/images
+    container_name: app
     depends_on:
       - postgres
     environment:

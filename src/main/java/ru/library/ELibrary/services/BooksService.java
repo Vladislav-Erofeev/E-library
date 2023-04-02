@@ -125,7 +125,7 @@ public class BooksService {
                     "viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius " +
                     "laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue.");
             book.setYear(2000);
-            book.setUrl("hDQ792eanX2N3wwTI0c3.png");
+            book.setUrl("pau25BX1OQqiXOynjZwn.webp");
             books.add(book);
         }
         return books;
